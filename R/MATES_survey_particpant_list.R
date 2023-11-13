@@ -3,6 +3,10 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 
+# Load required libraries
+library(tidyverse)
+library(stringr)
+
 # Read the CSV file
 data <- read.csv("data/MATES_participant_paper_list.csv")
 
@@ -11,11 +15,11 @@ data <- data %>%
   mutate(Email = str_extract_all(correspondence_address, "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b")) %>%
   unnest(Email, keep_empty = TRUE)
 
-                                                           
+# Write the modified CSV file
 write.csv(data, "data/MATES_participant_author_list.csv")
 
+# Read the new CSV file
 df <- read.csv("data/MATES_participant_author_list.csv")
-
 
 # Number of rows in the data frame
 total_rows <- nrow(df)
@@ -37,6 +41,7 @@ for (i in 1:num_chunks) {
   # Create the file name
   file_name <- paste("MATES_participants_", start_row, "_to_", end_row, ".csv", sep = "")
   
-  # Write the CSV file
-  write_csv(subset_df, paste("C:/Users/khtmo/OneDrive - UNSW/University/PhD_Chapters/5_mates/MATES_Analysis/data", file_name, sep = ""))
+  # Write the CSV file to the "data" directory
+  write.csv(subset_df, paste("data/", file_name, sep = ""))
 }
+
