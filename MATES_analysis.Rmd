@@ -4,7 +4,7 @@ author: "Kyle Morrison"
 date: "2024-01-28"
 output: html_document
 ---
-
+# knitr set up 
 ```{r setup, include = FALSE}
 rm(list = ls())
 # knitr setting
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-
+# Load packages
 ```{r}
 pacman::p_load(tidyverse,
                here,
@@ -24,7 +24,7 @@ pacman::p_load(tidyverse,
                purrr)
 ```
 
-
+# Load data
 ```{r}
 # Load data set 
 dat <- read_csv(here("data", "MATES_results.csv"), skip = 0) 
@@ -34,7 +34,6 @@ dat <- read_csv(here("data", "MATES_results.csv"), skip = 0)
 
 Select required columns & rows for the plots 
 ```{r}
-
 dat <-  select(dat, -c(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished, RecordedDate, ResponseId, RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude, DistributionChannel, UserLanguage))
 
 dat <- dat[-c(1, 2), ]
@@ -42,13 +41,10 @@ dat <- dat[-c(1, 2), ]
 dat
 ```
 
-
-
-
 # Question 1 
 What is your current stage of career?
 ```{r}
-# Rename each item in column Q2 to the appropiate 
+# Rename each item in column Q2 to the appropriate 
 dat$Q1 <- str_replace_all(dat$Q1, c("1" = "Senior career researcher", 
                                     "2" = "Middle career researcher", 
                                     "3" = "Early career researcher", 
@@ -63,7 +59,6 @@ total_career_stage_count <- dat %>%
   filter(!is.na(Q1)) %>%
   count(Q1) %>% 
   arrange(desc(n))
-
 
 # Calculate count as a percentage
 total_career_stage_percentage <-  total_career_stage_count %>% 
@@ -86,7 +81,6 @@ MATES_theme <-  function(){
   )
   }
 
-
 # Plot for survey question 1 
 fig_Q1 <-  total_career_stage_count %>% 
   ggplot(aes(x = n, y =reorder(Q1, n)), hjust = 0.5) +
@@ -96,11 +90,10 @@ fig_Q1 <-  total_career_stage_count %>%
             hjust = -0.1, size = 8, color = "black", fontface = "bold") +
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_career_stage_count$n*1.3))) +
-  MATES_theme()
-
+  MATES_theme() +
+  labs(tag = "Question 1", size = 15)
 
 fig_Q1
-
 ```
 
 # Question 2
@@ -134,7 +127,8 @@ fig_Q2 <-  total_ma_experience_count %>%
             hjust = -0.1, size = 8, color = "black", fontface = "bold") +
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_ma_experience_count$n*1.3))) +
-  MATES_theme()
+  MATES_theme() +
+  labs(tag = "Question 2", size = 15)
 
 fig_Q2
 ```
@@ -147,7 +141,7 @@ dat$Q3 <- str_replace_all(dat$Q3, c("1" = "Used",
                                     "2" = "Read", 
                                     "3" = "No experience"))
 
-# Seperate rows and count total 
+# Separate rows and count total 
 total_appraisal_tool_experience_count <- dat %>% 
   separate_rows(Q3, sep = ",\\s*") %>% 
   filter(!is.na(Q3)) %>%
@@ -159,7 +153,7 @@ total_appraisal_tool_experience_percentage <-  total_appraisal_tool_experience_c
   mutate(proportion = n/sum(total_appraisal_tool_experience_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 2 
+# Plot for survey question 3
 fig_Q3 <-  total_appraisal_tool_experience_count %>% 
   ggplot(aes(x = n, y =reorder(Q3, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -168,11 +162,12 @@ fig_Q3 <-  total_appraisal_tool_experience_count %>%
             hjust = -0.1, size = 8, color = "black", fontface = "bold") +
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_appraisal_tool_experience_count$n*1.3))) +
-  MATES_theme()
+  MATES_theme() +
+  labs(tag = "Question 3", size = 15)
+
 
 fig_Q3
 ```
-
 
 Function to rename the rest of the importance questions
 ```{r}
@@ -196,5 +191,732 @@ columns_to_modify <- paste0("Q", seq(4, 36, 2))
 dat <- dat %>% 
   mutate_at(vars(one_of(columns_to_modify)), ~replace_values_single(., replacements))
 
+```
+
+# Question 4
+What is the importance of reporting the software used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 1:
+Do the authors report the software used to conduct the analysis within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total 
+total_software_importance_count <- dat %>% 
+  filter(!is.na(Q4)) %>%
+  count(Q4) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_software_importance_percentage <-  total_software_importance_count %>% 
+  mutate(proportion = n/sum(total_software_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 4
+fig_Q4 <-  total_software_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q4, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q4,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_software_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_software_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 4", size = 15)
+
+
+fig_Q4
+```
+
+# Question 5
+Comments on MATES item 1 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q5 <- dat %>% 
+  filter(!is.na(Q5)) %>% 
+  select(c(Q4,Q5))
+
+df_Q5
+```
+
+
+# Question 6
+What is the importance of reporting the packages used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 2:
+Do the authors report the packages used to conduct the analysis within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total 
+total_package_importance_count <- dat %>% 
+  filter(!is.na(Q6)) %>%
+  count(Q6) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_package_importance_percentage <-  total_package_importance_count %>% 
+  mutate(proportion = n/sum(total_package_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 6
+fig_Q6 <-  total_package_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q6, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q6,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_package_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_package_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 6", size = 15)
+
+
+fig_Q6
+```
+
+# Question 7
+Comments on MATES item 2 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q7 <- dat %>% 
+  filter(!is.na(Q7)) %>% 
+  select(c(Q6,Q7))
+
+df_Q7
+```
+
+# Question 8
+What is the importance of reporting the version numbers of the software used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 3:
+Do the authors report the version numbers of the software used within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total 
+total_version_importance_count <- dat %>% 
+  filter(!is.na(Q8)) %>%
+  count(Q8) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_version_importance_percentage <-  total_version_importance_count %>% 
+  mutate(proportion = n/sum(total_version_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 8
+fig_Q8 <-  total_version_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q8, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q8,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_version_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_version_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 8", size = 15)
+
+
+fig_Q8
+```
+
+# Question 9
+Comments on MATES item 3 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q9 <- dat %>% 
+  filter(!is.na(Q9)) %>% 
+  select(c(Q8,Q9))
+
+df_Q9
+```
+
+# Question 10
+What is the importance of reporting the code used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 4:
+Do the authors report the relevant code to conduct the analysis within the manuscript, supplementary material or an attached repository?
+```{r}
+# Seperate rows and count total 
+total_code_importance_count <- dat %>% 
+  filter(!is.na(Q10)) %>%
+  count(Q10) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_code_importance_percentage <-  total_code_importance_count %>% 
+  mutate(proportion = n/sum(total_code_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 10
+fig_Q10 <-  total_code_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q10, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q10,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_code_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_code_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 10", size = 15)
+
+fig_Q10
+```
+
+# Question 11 
+Comments on MATES item 4 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q11 <- dat %>% 
+  filter(!is.na(Q11)) %>% 
+  select(c(Q10,Q11))
+
+df_Q11
+```
+
+# Question 12
+What is the importance of reporting the primary model (or first model) used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 5:
+Do the authors report the primary model (or first model) used, either as word or statistical notation within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total 
+total_model_importance_count <- dat %>% 
+  filter(!is.na(Q12)) %>%
+  count(Q12) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_model_importance_percentage <-  total_model_importance_count %>% 
+  mutate(proportion = n/sum(total_model_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 12
+fig_Q12 <-  total_model_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q12, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q12,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_model_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_model_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 12", size = 15)
+
+fig_Q12
+```
+
+# Question 13
+Comments on MATES item 5 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q13 <- dat %>% 
+  filter(!is.na(Q13)) %>% 
+  select(c(Q12,Q13))
+
+df_Q13
+```
+
+# Question 14 
+What is the importance of reporting a justification of the primary model (or first model) used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 6:
+Do the authors report a justification for the primary model (or first model) used to conduct the analysis within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total
+total_justification_importance_count <- dat %>% 
+  filter(!is.na(Q14)) %>%
+  count(Q14) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_justification_importance_percentage <-  total_justification_importance_count %>% 
+  mutate(proportion = n/sum(total_justification_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 14
+fig_Q14 <-  total_justification_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q14, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q14, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_justification_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_justification_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 14", size = 15)
+
+fig_Q14
+```
+
+# Question 15
+Comments on MATES item 6 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q15 <- dat %>% 
+  filter(!is.na(Q15)) %>% 
+  select(c(Q14,Q15))
+
+df_Q15
+```
+
+# Question 16
+What is the importance of reporting a weighting scheme for effect size estimates in a meta-analysis to the quality of reporting?
+Referring to MATES item 7:
+Do the authors report a weighting scheme for effect size estimates within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total
+total_weighting_scheme_importance_count <- dat %>% 
+  filter(!is.na(Q16)) %>%
+  count(Q16) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_weighting_scheme_importance_percentage <-  total_weighting_scheme_importance_count %>% 
+  mutate(proportion = n/sum(total_weighting_scheme_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 16
+fig_Q16 <-  total_weighting_scheme_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q16, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q16, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_weighting_scheme_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_weighting_scheme_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 16", size = 15)
+
+fig_Q16
+``` 
+
+# Question 17 
+Comments on MATES item 7 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q17 <- dat %>% 
+  filter(!is.na(Q17)) %>% 
+  select(c(Q16,Q17))
+
+df_Q17
+```
+
+# Question 18
+What is the importance of reporting a consideration of non-independence of effect size estimates in a meta-analysis to the quality of reporting?
+Referring to MATES item 8:
+Do the authors report whether there is non-independence of effect size estimates within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total
+total_non_independence_importance_count <- dat %>% 
+  filter(!is.na(Q18)) %>%
+  count(Q18) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_non_independence_importance_percentage <-  total_non_independence_importance_count %>% 
+  mutate(proportion = n/sum(total_non_independence_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 18
+fig_Q18 <-  total_non_independence_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q18, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q18, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_non_independence_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_non_independence_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 18", size = 15)
+
+fig_Q18
+```
+
+# Question 19
+Comments on MATES item 8 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q19 <- dat %>% 
+  filter(!is.na(Q19)) %>% 
+  select(c(Q18,Q19))
+
+df_Q18
+```
+
+
+# Question 20
+What is the importance of reporting a measure of heterogeneity between effect size estimates in a meta-analysis to the quality of reporting?
+Referring to MATES item 9:
+Do the authors report a measure of heterogeneity between effect size estimates within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 20
+total_heterogeneity_importance_count <- dat %>% 
+  filter(!is.na(Q20)) %>%
+  count(Q20) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_heterogeneity_importance_percentage <-  total_heterogeneity_importance_count %>% 
+  mutate(proportion = n/sum(total_heterogeneity_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 20
+fig_Q20 <-  total_heterogeneity_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q20, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q20, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_heterogeneity_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_heterogeneity_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 20", size = 15)
+
+fig_Q20
+```
+
+# Question 21
+Comments on MATES item 9 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q21 <- dat %>% 
+  filter(!is.na(Q21)) %>% 
+  select(c(Q20,Q21))
+
+df_Q21
+```
+
+# Question 22
+What is the importance of reporting the moderator variables included in a meta-regression in a meta-analysis to the quality of reporting?
+Referring to MATES item 10:
+Do the authors report the moderator variables included in a meta-regression within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 22
+total_moderator_variables_importance_count <- dat %>% 
+  filter(!is.na(Q22)) %>%
+  count(Q22) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_moderator_variables_importance_percentage <-  total_moderator_variables_importance_count %>% 
+  mutate(proportion = n/sum(total_moderator_variables_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 22
+fig_Q22 <-  total_moderator_variables_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q22, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q22, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_moderator_variables_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_moderator_variables_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 22", size = 15)
+
+fig_Q22
+```
+
+# Question 23
+Comments on MATES item 10 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q23 <- dat %>% 
+  filter(!is.na(Q23)) %>% 
+  select(c(Q22,Q23))
+
+df_Q23
+```
+
+
+# Question 24
+What is the importance of reporting a test or measure of publication bias in a meta-analysis to the quality of reporting?
+Referring to MATES item 11: 
+Do the authors report a test or measure of publication bias within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 24
+total_publication_bias_importance_count <- dat %>% 
+  filter(!is.na(Q24)) %>%
+  count(Q24) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_publication_bias_importance_percentage <-  total_publication_bias_importance_count %>% 
+  mutate(proportion = n/sum(total_publication_bias_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 24
+fig_Q24 <-  total_publication_bias_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q24, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q24, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_publication_bias_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_publication_bias_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 24", size = 15)
+
+fig_Q24
+```
+
+# Question 25
+Comments on MATES item 11 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q25 <- dat %>% 
+  filter(!is.na(Q25)) %>% 
+  select(c(Q24,Q25))
+
+df_Q25
+```
+
+# Question 26
+What is the importance of reporting a sensitivity analysis in a meta-analysis to the quality of reporting?
+Referring to MATES items 12:
+Do the authors report a sensitivity analysis in addition to a publication bias test within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 26
+total_sensitivity_analysis_importance_count <- dat %>% 
+  filter(!is.na(Q26)) %>%
+  count(Q26) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_sensitivity_analysis_importance_percentage <-  total_sensitivity_analysis_importance_count %>% 
+  mutate(proportion = n/sum(total_sensitivity_analysis_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 26
+fig_Q26 <-  total_sensitivity_analysis_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q26, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q26, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_sensitivity_analysis_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_sensitivity_analysis_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 26", size = 15)
+
+fig_Q26
+
+```
+
+# Question 27
+Comments on MATES item 12 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q27 <- dat %>% 
+  filter(!is.na(Q27)) %>% 
+  select(c(Q26,Q27))
+
+df_Q27
+```
+
+# Question 28
+What is the importance of reporting the total number of studies included in the meta-analysis to the quality of reporting?
+Referring to MATES item 13:
+Do the authors report the total number of studies within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 28
+total_studies_included_count <- dat %>% 
+  filter(!is.na(Q28)) %>%
+  count(Q28) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_studies_included_percentage <-  total_studies_included_count %>% 
+  mutate(proportion = n/sum(total_studies_included_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 28
+fig_Q28 <-  total_studies_included_count %>% 
+  ggplot(aes(x = n, y = reorder(Q28, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q28, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_studies_included_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_studies_included_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 28", size = 15)
+
+fig_Q28
+```
+
+# Question 29
+Comments on MATES item 13 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q29 <- dat %>% 
+  filter(!is.na(Q29)) %>% 
+  select(c(Q28,Q29))
+
+df_Q29
+```
+
+
+# Question 30
+What is the importance of reporting the total number of effect size estimates included in the meta-analysis to the quality of reporting?
+Referring to MATES item 14:
+Do the authors report the total number of effect sizes within the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 30
+total_effect_size_count <- dat %>% 
+  filter(!is.na(Q30)) %>%
+  count(Q30) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_effect_size_percentage <-  total_effect_size_count %>% 
+  mutate(proportion = n/sum(total_effect_size_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 30
+fig_Q30 <-  total_effect_size_count %>% 
+  ggplot(aes(x = n, y = reorder(Q30, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q30, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_effect_size_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_effect_size_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 30", size = 15)
+
+fig_Q30
+```
+
+# Question 31
+Comments on MATES item 12 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q31 <- dat %>% 
+  filter(!is.na(Q31)) %>% 
+  select(c(Q30,Q31))
+
+df_Q31
+```
+
+# Question 32
+What is the importance of reporting the results using a visualisation in a meta-analysis to the quality of reporting?
+Referring to MATES item 15:
+Do the authors report the results using a visualisation in the manuscript or supplementary material?
+```{r}
+# Separate rows and count total for Question 32
+total_visualisation_report_count <- dat %>% 
+  filter(!is.na(Q32)) %>%
+  count(Q32) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_visualisation_report_percentage <-  total_visualisation_report_count %>% 
+  mutate(proportion = n/sum(total_visualisation_report_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 32
+fig_Q32 <-  total_visualisation_report_count %>% 
+  ggplot(aes(x = n, y = reorder(Q32, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q32, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_visualisation_report_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_visualisation_report_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 32", size = 15)
+
+fig_Q32
+
+```
+
+# Question 33
+Comments on MATES item 13 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q33 <- dat %>% 
+  filter(!is.na(Q33)) %>% 
+  select(c(Q32,Q33))
+
+df_Q33
+```
+
+# Question 34
+What is the importance of reporting the data extracted in the meta-analysis to the quality of reporting?
+Referring to MATES item 16:
+Do the authors report the data extracted from each eligible primary study within the manuscript, supplementary material or external repository?
+```{r}
+# Separate rows and count total for Question 34
+total_data_extraction_report_count <- dat %>% 
+  filter(!is.na(Q34)) %>%
+  count(Q34) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_data_extraction_report_percentage <-  total_data_extraction_report_count %>% 
+  mutate(proportion = n/sum(total_data_extraction_report_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 34
+fig_Q34 <-  total_data_extraction_report_count %>% 
+  ggplot(aes(x = n, y = reorder(Q34, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q34, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_data_extraction_report_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_extraction_report_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 34", size = 15)
+
+fig_Q34
+```
+
+# Question 35
+Comments on MATES item 16 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q35 <- dat %>% 
+  filter(!is.na(Q35)) %>% 
+  select(c(Q34,Q35))
+
+df_Q35
+```
+
+# Question 36
+What is the importance of reporting the descriptions of data created in the meta-analysis to the quality of reporting?
+Referring to MATES item 17:
+Do the authors report descriptions of the data extracted from each eligible within the manuscript, supplementary material or external repository?
+```{r}
+# Separate rows and count total for Question 36
+total_data_description_report_count <- dat %>% 
+  filter(!is.na(Q36)) %>%
+  count(Q36) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_data_description_report_percentage <-  total_data_description_report_count %>% 
+  mutate(proportion = n/sum(total_data_description_report_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 36
+fig_Q36 <-  total_data_description_report_count %>% 
+  ggplot(aes(x = n, y = reorder(Q36, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q36, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_data_description_report_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_description_report_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "Question 36", size = 15)
+
+fig_Q36
+```
+
+# Question 37
+Comments on MATES item 17 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q37 <- dat %>% 
+  filter(!is.na(Q37)) %>% 
+  select(c(Q36,Q37))
+
+df_Q37
+```
+
+
+# Question 38
+Are there any elements of meta-analyses that are considered important to reporting quality that are not currently included in MATES?
+```{r}
+df_Q38 <- dat %>% 
+  filter(!is.na(Q38)) %>% 
+  select(Q38)
+
+df_Q38
+```
+
+# Question 39
+Any final comments or feedback on MATES?
+```{r}
+df_39 <- dat %>% 
+  filter(!is.na(Q39)) %>% 
+  select(Q39)
+
+df_39
 ```
 
