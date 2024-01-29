@@ -21,8 +21,11 @@ write.csv(data, "data/MATES_participant_author_list.csv")
 # Read the new CSV file
 df <- read.csv("data/MATES_participant_author_list.csv")
 
+df1 <- distinct(df, Email, .keep_all = TRUE) # select records with unique titles (removes exact duplicates)
+dim(df1) # 1827 22
+
 # Number of rows in the data frame
-total_rows <- nrow(df)
+total_rows <- nrow(df1)
 
 # Number of rows per chunk
 chunk_size <- 400
@@ -36,7 +39,7 @@ for (i in 1:num_chunks) {
   end_row <- min(i * chunk_size, total_rows)
   
   # Subset the data frame
-  subset_df <- df[start_row:end_row, ]
+  subset_df <- df1[start_row:end_row, ]
   
   # Create the file name
   file_name <- paste("MATES_participants_", start_row, "_to_", end_row, ".csv", sep = "")

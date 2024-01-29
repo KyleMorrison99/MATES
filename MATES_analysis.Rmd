@@ -1,0 +1,200 @@
+---
+title: "MATES_results_analysis"
+author: "Kyle Morrison"
+date: "2024-01-28"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+rm(list = ls())
+# knitr setting
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  cache = TRUE,
+  echo=TRUE
+)
+```
+
+
+```{r}
+pacman::p_load(tidyverse,
+               here,
+               stringr,
+               purrr)
+```
+
+
+```{r}
+# Load data set 
+dat <- read_csv(here("data", "MATES_results.csv"), skip = 0) 
+# 188 rows 60 columns 
+```
+
+
+Select required columns & rows for the plots 
+```{r}
+
+dat <-  select(dat, -c(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished, RecordedDate, ResponseId, RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude, DistributionChannel, UserLanguage))
+
+dat <- dat[-c(1, 2), ]
+
+dat
+```
+
+
+
+
+# Question 1 
+What is your current stage of career?
+```{r}
+# Rename each item in column Q2 to the appropiate 
+dat$Q1 <- str_replace_all(dat$Q1, c("1" = "Senior career researcher", 
+                                    "2" = "Middle career researcher", 
+                                    "3" = "Early career researcher", 
+                                    "4" = "PhD student", 
+                                    "5" = "Masters/Honours student",
+                                    "6" = "Other",
+                                    "7" = "Prefer not to say"))
+
+# Seperate rows and count total 
+total_career_stage_count <- dat %>% 
+  separate_rows(Q1, sep = ",\\s*") %>% 
+  filter(!is.na(Q1)) %>%
+  count(Q1) %>% 
+  arrange(desc(n))
+
+
+# Calculate count as a percentage
+total_career_stage_percentage <-  total_career_stage_count %>% 
+  mutate(proportion = n/sum(total_career_stage_count$n),
+         percentage = proportion*100)
+
+# Theme for all MATES plots 
+MATES_theme <-  function(){ 
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_line(color = "gray", linetype = "dashed"),
+    panel.grid.minor.y = element_blank(),
+    axis.line.x = element_line(linewidth = 1.2),
+    axis.line.y = element_line(linewidth = 1.2),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(hjust = 1, size = 15, color = "#666666"),
+    axis.text.y = element_text(size = 20, color = "#666666"),
+    legend.position = "none"
+  )
+  }
+
+
+# Plot for survey question 1 
+fig_Q1 <-  total_career_stage_count %>% 
+  ggplot(aes(x = n, y =reorder(Q1, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 ,y = reorder(Q1,n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = total_career_stage_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_career_stage_count$n*1.3))) +
+  MATES_theme()
+
+
+fig_Q1
+
+```
+
+# Question 2
+What is your current experience with meta-analyses?
+```{r}
+# Rename each item in column Q2 to the appropiate name
+dat$Q2 <- str_replace_all(dat$Q2, c("1" = "Author", 
+                                    "2" = "Editor", 
+                                    "3" = "Reviewer", 
+                                    "4" = "Other", 
+                                    "5" = "Prefer not to say"))
+
+# Seperate rows and count total 
+total_ma_experience_count <- dat %>% 
+  separate_rows(Q2, sep = ",\\s*") %>% 
+  filter(!is.na(Q2)) %>%
+  count(Q2) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_ma_experience_percentage <-  total_ma_experience_count %>% 
+  mutate(proportion = n/sum(total_ma_experience_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 2 
+fig_Q2 <-  total_ma_experience_count %>% 
+  ggplot(aes(x = n, y =reorder(Q2, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 ,y = reorder(Q2,n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = total_ma_experience_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_ma_experience_count$n*1.3))) +
+  MATES_theme()
+
+fig_Q2
+```
+
+# Question 3 
+What is your experience with systematic review or meta-analyses appraisal tools?
+```{r}
+# Rename each item in column Q3 to the appropiate name
+dat$Q3 <- str_replace_all(dat$Q3, c("1" = "Used", 
+                                    "2" = "Read", 
+                                    "3" = "No experience"))
+
+# Seperate rows and count total 
+total_appraisal_tool_experience_count <- dat %>% 
+  separate_rows(Q3, sep = ",\\s*") %>% 
+  filter(!is.na(Q3)) %>%
+  count(Q3) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_appraisal_tool_experience_percentage <-  total_appraisal_tool_experience_count %>% 
+  mutate(proportion = n/sum(total_appraisal_tool_experience_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 2 
+fig_Q3 <-  total_appraisal_tool_experience_count %>% 
+  ggplot(aes(x = n, y =reorder(Q3, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 ,y = reorder(Q3,n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = total_appraisal_tool_experience_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_appraisal_tool_experience_count$n*1.3))) +
+  MATES_theme()
+
+fig_Q3
+```
+
+
+Function to rename the rest of the importance questions
+```{r}
+# Define the function for single column
+replace_values_single <- function(column, replacements) {
+  map_chr(column, ~str_replace_all(.x, replacements))
+}
+
+
+# Define the replacements
+replacements <- c("1" = "Extremely Important", 
+                  "2" = "Very Important", 
+                  "3" = "Moderately Important",
+                  "4" = "Slightly Important",
+                  "5" = "Not important at all")
+
+# Columns to apply the function to (even Qs from Q4 to Q36)
+columns_to_modify <- paste0("Q", seq(4, 36, 2))
+
+# Apply the function to specified columns
+dat <- dat %>% 
+  mutate_at(vars(one_of(columns_to_modify)), ~replace_values_single(., replacements))
+
+```
+
