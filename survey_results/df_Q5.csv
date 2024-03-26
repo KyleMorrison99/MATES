@@ -1,0 +1,49 @@
+Q4,Q5
+Extremely important,The software used for analysis help reviewers and readers understand the nuances in the methodology used and provide transparency for repeatability.
+Extremely important,It should be more and more convenient and accessible for authors to use.
+Moderately important,Analysis methods is more important than software
+Extremely important,So that it can be replicated.  I like R because the code and data can be published.  RevMan which a lot of people use has its own format.
+Very important,"Different softwares can have differnet biases, so it has to be reported"
+Extremely important,"Reporting the software used to conduct the meta-analysis is important for several reasons. First, it allows other researchers to replicate the analysis and to verify the results. Second, it provides information about the capabilities and limitations of the software used, which can be helpful for other researchers when choosing software for their own meta-analyses. Third, it helps to ensure that the meta-analysis was conducted in a transparent and reproducible manner."
+Extremely important,"This practice enhances transparency and reproducibility in research, allowing readers to understand and potentially replicate the analysis. Providing information about the software used is also crucial for the scientific community to assess the validity of the findings and build upon the research in the future."
+Very important,State the tools used clearly in the methodology
+Very important,"Each software are based on specific algorithm, e.g. for the tau2 estimators, ...."
+Extremely important,"It is important to assist future researchers who are not as experience, but it also allows greater repeatability. i.e., when two different groups argue about responses using two different software is something I have encountered a  a reviewer"
+Very important,Systematic review data is complex and has multi-dimensional relationships and therefore the manner in which the data is collated and stored needs to be robust (e.g. in a relational database)
+Very important,"Perhaps be more specific or provide examples of when software would be used (literature screening, analysis etc)"
+Moderately important,No comments.
+Very important,"Since some analyzes may not be performed by all statistical software, it is necessary to mention this point."
+Extremely important,The used software can affect the quality of the results and respective conclusions.
+Extremely important,I am still learning
+Very important,including version
+Extremely important,no comment
+Very important,"One could generally think of having a more differentiated assessment: Full reporting (including versions), partial reporting and no reporting, to reduce the number of questions. Will make this comment only here but may apply to several questions."
+Moderately important,This matters less (or doesn’t) if the methods are well and fully described
+Extremely important,It might be worth splitting the statistical analysis from software used for screening and summarising the inclusion of articles.
+Extremely important,The type of software is important to work towards a standardization of meta-analysis methods
+Moderately important,"The software alone is not very important. It is more relevant to report (i) the statistical methods/models, and (ii) the code."
+Extremely important,"Perhaps an intermediate response could involve the software for analysis being indicated but other software not. I understand that the questions mainly target the statistical analysis itself. But if the appraisal questions were meant to be broader, software for paper management and screening and for extracting data (plot digitizer...) would also need to be indicated, and failure to do so would involve an intermediate level of response."
+Very important,processing mode and error level
+Very important,"Yes I think it's important to note the software used. But I do think you'll have to be clearer on the 'software' to report. For instance, the 'yes' example for this item is the citation of RStudio. It's fine to cite RStudio (I personally love RStudio) but really, the IDE used is not important, the computational language is. I do not care if the author used RStudio, the basic GUI/IDE that comes with R, Vim, Emacs, or even individual notepad windows + the R console: that is simply a matter of how people use the software. The real software in this example is *R*, the statistical computation language. I highly recommend changing the example as I'm weary of seeing authors cite RStudio yet neglecting R! (By the way, the confusion is very understandable, tons of people mix these up.)"
+Extremely important,"This is probably provided later on, but I think authors should also provide their meta-analysis code and data as well."
+Extremely important,This is an important piece of information that the reviewer should know when assessing the quality of the reported information.
+Very important,I it important report software to assess the quality of results
+Very important,"Overall approach and full disclosure is necessary. However, quality of analysis should go beyond software usage."
+Very important,"The use of software allows us to be more rigorous in the selection of manuscripts and quality analysis, avoiding errors."
+Very important,"Each tool can be based on certain points, for example, focusing on the keywords existing within the text but it can be used by the author as an example not the main topic of the paper"
+Moderately important,"Several softwares are available, better than software, the exact model implemented is very relevant (e.g. random versus fixed model)"
+Very important,Good question.
+Extremely important,None
+Extremely important,Synergizing MATES with real time data from different locality
+Extremely important,"The software and packages need to be reported to allow for the MA to be repeated, and for appraisal of potential bias"
+Extremely important,"Beside the obvious intent of providing enough info for repeatability, you also acknowledge the work of the people allowing you to do your work,which is fair and ethical."
+Extremely important,Quality and replication of data
+Extremely important,"As part of the methodology, authors should report the software used to conduct the meta-analysis. This is for transparency, and also to train readers and new researchers in the field."
+Very important,"I think this is very important because different software may yield different results. For example, using Google Scholar vs. Web of Science will likely show different publications. Differences in results may also be obtained if different versions of software packages are used etc."
+Very important,"configuration/options in some software are also important, although those may be covered in other parts of the methodology"
+Moderately important,"According to my experience, software is not important for doing meta-analysis, and the results from different softwares are always similar"
+Very important,"To ensure accurate comparison, reproduction, and discussion of results, it is crucial to provide detailed information about the software used for analysis. Even slight differences in software versions must be reported."
+Extremely important,"I think it is very important that all steps in conducting the meta-analyses are reported so that the process is as transparent as possible. Beyond reporting the software used, I think it is important to share codes to improve repeatability of analyses and also facilitate learning best practices."
+Extremely important,It's extremely important for transparency and reproducibility; and for future updates and revisions.
+Moderately important,"With no knowledge about what such a software does, this question is difficult for me to answer."
+Extremely important,"As in all research, reproducability is important. Therefore, the software used should clearly be stated."

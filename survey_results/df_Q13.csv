@@ -1,0 +1,43 @@
+Q12,Q13
+Moderately important,"I do think it is important, although I the vocabulary of model names vary across disciplines. I think reporting the packages used and describing the response/fixed/random variables used is more informative."
+Extremely important,These information if of vital importance.
+Extremely important,"I think the statistical notation can be confusing, we all know (I think) what a fixed/random/mixed model is.  I would advise just saying it and putting a reference for those who are interested."
+Very important,Every model that provides results in the manuscript should be reported.
+Extremely important,Reporting the primary model (or first model) used to conduct the meta-analysis is important because it allows other researchers to understand the specific assumptions that were made about the data and the statistical methods that were used. This information is essential for replicating the meta-analysis and for interpreting the results.
+Extremely important,The most important piece of information
+Very important,A generic flow chart with detailed explanation is important
+Extremely important,For all of these the importance is in allowing reproducibility
+Very important,"Yes, often text description are not very clear. Write clearly the equation is a good method to clearly define the model, the variables, with variables are considered as random effect,...."
+Extremely important,"To enable the reader to determine whether an appropriate model has been sued, and how random effects etc. have been dealt with."
+Moderately important,"maybe, it can be in supplementary files"
+NA,"unsure what is meant by ""primary model (or first model)"""
+Extremely important,"I think this notation should be ""general"" and avoid software specific notation.  E.g., not everyone is facile with the idiosyncrasies of various packages in R.  Of course, the code will provide the information specific to the particular software used."
+Slightly important,"If the flow of research is explained, data could be requested to the authors for further clarification on the first models. The final model with the appropiate sensitivity testing should be enouth to correctly appraisal the meta-analysis."
+Moderately important,"Depends on the complexity of the model. For a mixed effect model, I think its ok to just list the fixed and random terms in text."
+Extremely important,"Yes, as said above, we need the code and the model."
+NA,"I'm not sure what a primary model is, which may indicate something me more than the question."
+Not at all important,should be sufficient to say what studies go in the meta-analysis and the structure of the variables (exposure/response).
+Extremely important,I think reporting the model and code used should be mandatory in all journals to ensure repeatability of the review plus make scrutinising results easier.
+Not at all important,"I don't understand what is meant with primary model in this question, so I can't really answer this question"
+NA,"It's not clear to me what is meant by 'first model' but maybe I'm missing something. 
+I wonder if it might be beneficial to split this item up: as verbal description and as statistical notation. I find the latter to be best when done properly, and usually authors will cover the former in the process anyways. There's a lot of flexibility/permutations allowed within the statement ""multilevel linear mixed-effects"" (by the way I just realised the redundancy in that description). 
+However, I do know that not everyone is well-versed in statistical notation and I wouldn't want that to be too strict a burden, just a nice-to-have. As always, code to reproduce the analysis should most often clarify the model(s) used."
+Very important,"This item is slightly unclear. Is by ""reporting the model"", you mean reporting the model structure and characteristics? i.e., the response variables, covariates, and random effects? It is of course important, but less so if the code is provided and readers can directly check the model structure and characteristics. Often times, the models are misspecified in the text, and the only way to properly assess the models is to check how they were coded. Some analyses also do not have a ""primary"" model, but many primary models, and it can be hard to comprehensively describe each model in the main text."
+Moderately important,"I don't use statistical notation myself, so I don't really care about their presentation. The code is much more useful."
+Extremely important,Extremely important due to range of models with different goals available. It is however not unusual for reviewers to insist on removing elements usually to the supplementary materials section of contributions.
+Extremely important,"Detailed reporting of the first model used in a meta-analysis is key to the quality of scientific reporting as it impacts a clear understanding of how the analyzes were performed. This is essential so that other researchers, reviewers and readers understand the methodological bases of the study. Also reporting the primary model allows other researchers to reproduce the steps and results of the meta-analysis. By knowing the primary model, other researchers can critically evaluate the suitability of the model for the data and objectives of the study."
+Extremely important,I would avoid statistical notation unless it adds something.  The main models are fairly well described.  A reference to the model might be more useful.
+Extremely important,"This is fundamental to assess the model and the alternative, also for sensitivity analysis."
+Moderately important,"I'm actually not entirely sure what you mean by ""primary model used"" -- used to do what? Are you talking about the probability distributions? Might want to make question more specific."
+Moderately important,The importance of this item likely depends on the question being asked
+Very important,"It is important to report the type of model run and the estimator used.
+"
+Extremely important,Quality
+Extremely important,"Authors should report the primary model (or first model) for transparency, and also to train readers and new researchers in the field."
+Moderately important,it is not relevant to all meta analyses.
+Extremely important,This is crucial. Different models will give different results.
+Extremely important,inclusion/exclusion criteria should be described
+Extremely important,"If what you call the 'first model' means the basic structure of the analysis, this is possibly the most important step. Qualified data stratification and data sorting by co-variable is the alpha and omega of meta-analysis. The rest is maths"
+Very important,"I am not sure what is referred to as primary (or first) model -- but the rationale of how and why the model is built as it is, should be clearly explained and reasoned (this is why I responded ""very important"" to this question)"
+Very important,This can enhance methodological transparency and allow for comparisons with alternative models (i.e. sensitivity analyses)
+Moderately important,Same remark as before applies here.

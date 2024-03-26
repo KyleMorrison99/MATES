@@ -1,0 +1,43 @@
+Q8,Q9
+Moderately important,Package versions can be important if substantial changes are made to functions because changes may alter the reproducibility and transparency of analysis. Tight word counts on journals can make this level of detail challenging but I would love to see reporting at this level of detail as standard practice for all papers (not just meta-analyses).
+Extremely important,Noval versions are generally more preferred.
+Extremely important,"It all goes together, if you say what you are using give the version number.  It is probably more important with R than RevMan because R is more dynamic - especially metafor which they do a great job of updating."
+Extremely important,Different versions can give slightly different results
+Very important,"Reporting the version numbers of the software used to conduct the meta-analysis is important because different versions of software may have different features and functionality. By reporting the version numbers of the software used, other researchers can be sure that they are using the same software with the same features and functionality to replicate the meta-analysis."
+Moderately important,"version numbers of software packages are part of the reporting in scientific publications. However, the way packages work are often not changing among versions, so maybe moderately important after all."
+Very important,Understand the up-to-date info
+Moderately important,I have never really though about this.
+Very important,"Very important, but perhaps I would not expect too much difference between (say) different versions of R"
+Slightly important,Software version numbers change regularly but this shouldn't significantly alter the quality of the review
+Very important,To make it clear to different audiences (understanding)
+Slightly important,Only truly important if major changes to default method made and if actual methods underlying analysis made by program are poorly described.
+Very important,"As before, vital for reproducibility."
+Moderately important,The version is important for understading the updates of the software at the time of analysis.
+Very important,See my comment above
+Extremely important,"In some sense I don't necessarily think something like this is liable to make much difference to the outcomes of the analysis, but it seems so easy to report this information that I can't see why it would ever be omitted."
+Slightly important,see my comment on item 2
+Moderately important,"changes in reporting mode, error level, type of functions"
+Very important,"Depends on the package or software used, in case there are major updates between versions I would say yes."
+Very important,"Not unresolvable if not, but clearly ideal"
+Slightly important,"I don't find this item *too* severely important, but I can see it (e.g., 'brms' is still sort of maturing right now so version number could be helpful). But this item is moot if authors share the workflow/code in the supplementary (ideally with, e.g. for R, a `sessionInfo()` dump somewhere). Or maybe that's what this item is suggesting anyways -- apologies."
+Moderately important,Version number isn't terribly important if the authors also provide code and data.
+Extremely important,"When reporting the software, it is important to report both the package and the version numbers to ensure latest and appropriate tools have been used in the analysis."
+Slightly important,see my earlier comment
+Very important,"It allows knowing the extensions and types of quantitative analyzes for a meta-analysis that the authors can apply with the software. If the analysis is limited due to the age of the software, the authors may be asked to perform new analyzes with more updated versions."
+Very important,"Does this need to be a separate question, could the first not be 'report software and version number'?"
+Extremely important,Nevermind my previous comment
+Not at all important,The version improved over time mostly to fix errors and add features. Not related to the main functions.
+Moderately important,This is relevant due to changes across years (e.g. metan before Stata 16 and meta set routine from Stata 16).
+Very important,"This is only really important if there have been changes that impact the results/ introduce bias, so probably safer to include than not"
+Slightly important,"the version sometimes refers to specific features which may or may not be relevant. Actually it is not very important for the quality of the analysis as such, but as long as it is stated, it is sufficient. There does not need to be a specific explanation of the version."
+Very important,"Full development In addition to ""research ethics"", the presentation of statistical tools and data background is underpinned by a strong focus on systematizing research in order to share current knowledge as well as providing new challenges for pushing forward fresh knowledge."
+Extremely important,Data quality
+Slightly important,"As part of the methodology, authors should report the software version used to conduct the meta-analysis. But lack of reporting the version, as long as the software is reported should not penalize the quality of the reporting."
+Moderately important,"I think that reporting version numbers of specific packages may be more important. I am not sure how much difference there is between, say, R version 2.1 and R version 2.2, whereas statistical software packages may include calculation improvements etc. But I could be wrong."
+Very important,standard procedure
+Not at all important,No
+Very important,New versions have improvements or changes in the algorithms or the routines that can make differences.
+Very important,See my previous answer ;)
+Moderately important,"Need the version number for technical support and troubleshooting, if necessary."
+Extremely important,I believe this is indeed very important for repeatability purposes
+Moderately important,Same remark as before applies here.

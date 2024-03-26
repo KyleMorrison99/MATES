@@ -26,9 +26,19 @@ pacman::p_load(tidyverse,
 
 # Load data
 ```{r}
-# Load data set 
-dat <- read_csv(here("data", "MATES_results.csv"), skip = 0) 
-# 188 rows 60 columns 
+# Load data sets
+dat <- read_csv(here("data", "MATES_results.csv"), skip = 0)  # 188 rows 60 columns 
+
+task_wos1 <- read_csv(here("data", "MATES_task_WOS_1_to_1000.csv"), skip =0) # 1000 72
+
+task_wos2 <- read_csv(here("data", "MATES_task_WOS_1001_to_2000.csv"), skip =0) # 1000 72
+
+task_wos3 <- read_csv(here("data", "MATES_task_WOS_2001_to_3000.csv"), skip =0) # 1000 72
+
+task_wos4 <- read_csv(here("data", "MATES_task_WOS_3001_to_3301.csv"), skip =0) # 1000 72
+
+task_wos <- b
+
 ```
 
 
@@ -39,20 +49,24 @@ dat <-  select(dat, -c(StartDate, EndDate, Status, IPAddress, Progress, Duration
 dat <- dat[-c(1, 2), ]
 
 dat
+
+raf <- select(raf, Q1)
+
+raf <- raf[-c(1, 2), ]
+
+raf 
+
+vol <- select(vol, Q1)
+
+vol <- vol[-c(1,2), ]
+
+vol
+
 ```
 
 # Question 1 
 What is your current stage of career?
 ```{r}
-# Rename each item in column Q2 to the appropriate 
-dat$Q1 <- str_replace_all(dat$Q1, c("1" = "Senior career researcher", 
-                                    "2" = "Middle career researcher", 
-                                    "3" = "Early career researcher", 
-                                    "4" = "PhD student", 
-                                    "5" = "Masters/Honours student",
-                                    "6" = "Other",
-                                    "7" = "Prefer not to say"))
-
 # Seperate rows and count total 
 total_career_stage_count <- dat %>% 
   separate_rows(Q1, sep = ",\\s*") %>% 
@@ -75,7 +89,7 @@ MATES_theme <-  function(){
     axis.line.y = element_line(linewidth = 1.2),
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
-    axis.text.x = element_text(hjust = 1, size = 15, color = "#666666"),
+    axis.text.x = element_text(hjust = 1, size = 25, color = "#666666"),
     axis.text.y = element_text(size = 20, color = "#666666"),
     legend.position = "none"
   )
@@ -91,21 +105,16 @@ fig_Q1 <-  total_career_stage_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_career_stage_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 1", size = 15)
+  labs(tag = "Question 1", size = 25)
 
 fig_Q1
+
+# ggsave(here("survey_results", "fig_Q1.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120)
 ```
 
 # Question 2
 What is your current experience with meta-analyses?
 ```{r}
-# Rename each item in column Q2 to the appropiate name
-dat$Q2 <- str_replace_all(dat$Q2, c("1" = "Author", 
-                                    "2" = "Editor", 
-                                    "3" = "Reviewer", 
-                                    "4" = "Other", 
-                                    "5" = "Prefer not to say"))
-
 # Seperate rows and count total 
 total_ma_experience_count <- dat %>% 
   separate_rows(Q2, sep = ",\\s*") %>% 
@@ -128,18 +137,16 @@ fig_Q2 <-  total_ma_experience_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_ma_experience_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 2", size = 15)
+  labs(tag = "Question 2", size = 20)
 
 fig_Q2
+
+# ggsave(here("survey_results", "fig_Q2.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
 ```
 
 # Question 3 
 What is your experience with systematic review or meta-analyses appraisal tools?
 ```{r}
-# Rename each item in column Q3 to the appropiate name
-dat$Q3 <- str_replace_all(dat$Q3, c("1" = "Used", 
-                                    "2" = "Read", 
-                                    "3" = "No experience"))
 
 # Separate rows and count total 
 total_appraisal_tool_experience_count <- dat %>% 
@@ -167,30 +174,19 @@ fig_Q3 <-  total_appraisal_tool_experience_count %>%
 
 
 fig_Q3
+
+# ggsave(here("survey_results", "fig_Q3.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
-Function to rename the rest of the importance questions
 ```{r}
-# Define the function for single column
-replace_values_single <- function(column, replacements) {
-  map_chr(column, ~str_replace_all(.x, replacements))
-}
+df_Q3 <- dat %>% 
+  filter(!is.na(Q3_1_TEXT)) %>% 
+  select(Q3_1_TEXT)
 
+df_Q3
 
-# Define the replacements
-replacements <- c("1" = "Extremely Important", 
-                  "2" = "Very Important", 
-                  "3" = "Moderately Important",
-                  "4" = "Slightly Important",
-                  "5" = "Not important at all")
-
-# Columns to apply the function to (even Qs from Q4 to Q36)
-columns_to_modify <- paste0("Q", seq(4, 36, 2))
-
-# Apply the function to specified columns
-dat <- dat %>% 
-  mutate_at(vars(one_of(columns_to_modify)), ~replace_values_single(., replacements))
-
+# write_csv(df_Q3, file = here("survey_results", "df_Q3.csv"))
 ```
 
 # Question 4
@@ -219,10 +215,13 @@ fig_Q4 <-  total_software_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_software_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 4", size = 15)
+  labs(tag = "MATES item 1", size = 15)
 
 
 fig_Q4
+
+# ggsave(here("survey_results", "fig_Q4.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 5
@@ -233,6 +232,9 @@ df_Q5 <- dat %>%
   select(c(Q4,Q5))
 
 df_Q5
+
+# write_csv(df_Q5, file = here("survey_results", "df_Q5.csv"))
+
 ```
 
 
@@ -262,10 +264,13 @@ fig_Q6 <-  total_package_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_package_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 6", size = 15)
+  labs(tag = "MATES item 2", size = 15)
 
 
 fig_Q6
+
+# ggsave(here("survey_results", "fig_Q6.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 7
@@ -276,6 +281,9 @@ df_Q7 <- dat %>%
   select(c(Q6,Q7))
 
 df_Q7
+
+# write_csv(df_Q7, file = here("survey_results", "df_Q7.csv"))
+
 ```
 
 # Question 8
@@ -304,10 +312,13 @@ fig_Q8 <-  total_version_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_version_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 8", size = 15)
+  labs(tag = "MATES item 3", size = 15)
 
 
 fig_Q8
+
+# ggsave(here("survey_results", "fig_Q8.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 9
@@ -318,6 +329,9 @@ df_Q9 <- dat %>%
   select(c(Q8,Q9))
 
 df_Q9
+
+# write_csv(df_Q9, file = here("survey_results", "df_Q9.csv"))
+
 ```
 
 # Question 10
@@ -346,9 +360,12 @@ fig_Q10 <-  total_code_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_code_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 10", size = 15)
+  labs(tag = "MATES item 4", size = 15)
 
 fig_Q10
+
+# ggsave(here("survey_results", "fig_Q10.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 11 
@@ -359,6 +376,9 @@ df_Q11 <- dat %>%
   select(c(Q10,Q11))
 
 df_Q11
+
+# write_csv(df_Q11, file = here("survey_results", "df_Q11.csv"))
+
 ```
 
 # Question 12
@@ -387,9 +407,12 @@ fig_Q12 <-  total_model_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_model_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 12", size = 15)
+  labs(tag = "MATES item 5", size = 15)
 
 fig_Q12
+
+# ggsave(here("survey_results", "fig_Q12.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 13
@@ -400,6 +423,9 @@ df_Q13 <- dat %>%
   select(c(Q12,Q13))
 
 df_Q13
+
+# write_csv(df_Q13, file = here("survey_results", "df_Q13.csv"))
+
 ```
 
 # Question 14 
@@ -428,9 +454,11 @@ fig_Q14 <-  total_justification_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_justification_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 14", size = 15)
+  labs(tag = "MATES item 6", size = 15)
 
 fig_Q14
+
+# ggsave(here("survey_results", "fig_Q14.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
 ```
 
 # Question 15
@@ -441,6 +469,9 @@ df_Q15 <- dat %>%
   select(c(Q14,Q15))
 
 df_Q15
+
+# write_csv(df_Q15, file = here("survey_results", "df_Q15.csv"))
+
 ```
 
 # Question 16
@@ -469,9 +500,11 @@ fig_Q16 <-  total_weighting_scheme_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_weighting_scheme_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 16", size = 15)
+  labs(tag = "MATES item 7", size = 15)
 
 fig_Q16
+
+# ggsave(here("survey_results", "fig_Q16.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
 ``` 
 
 # Question 17 
@@ -482,6 +515,9 @@ df_Q17 <- dat %>%
   select(c(Q16,Q17))
 
 df_Q17
+
+# write_csv(df_Q17, file = here("survey_results", "df_Q17.csv"))
+
 ```
 
 # Question 18
@@ -510,9 +546,12 @@ fig_Q18 <-  total_non_independence_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_non_independence_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 18", size = 15)
+  labs(tag = "MATES item 8", size = 15)
 
 fig_Q18
+
+# ggsave(here("survey_results", "fig_Q18.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 19
@@ -522,7 +561,10 @@ df_Q19 <- dat %>%
   filter(!is.na(Q19)) %>% 
   select(c(Q18,Q19))
 
-df_Q18
+df_Q19
+
+# write_csv(df_Q19, file = here("survey_results", "df_Q19.csv"))
+
 ```
 
 
@@ -552,9 +594,12 @@ fig_Q20 <-  total_heterogeneity_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_heterogeneity_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 20", size = 15)
+  labs(tag = "MATES item 9", size = 15)
 
 fig_Q20
+
+# ggsave(here("survey_results", "fig_Q20.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 21
@@ -565,6 +610,9 @@ df_Q21 <- dat %>%
   select(c(Q20,Q21))
 
 df_Q21
+
+# write_csv(df_Q21, file = here("survey_results", "df_Q21.csv"))
+
 ```
 
 # Question 22
@@ -593,9 +641,12 @@ fig_Q22 <-  total_moderator_variables_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_moderator_variables_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 22", size = 15)
+  labs(tag = "MATES item 10", size = 15)
 
 fig_Q22
+
+# ggsave(here("survey_results", "fig_Q22.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 23
@@ -606,6 +657,9 @@ df_Q23 <- dat %>%
   select(c(Q22,Q23))
 
 df_Q23
+
+# write_csv(df_Q23, file = here("survey_results", "df_Q23.csv"))
+
 ```
 
 
@@ -635,9 +689,12 @@ fig_Q24 <-  total_publication_bias_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_publication_bias_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 24", size = 15)
+  labs(tag = "MATES item 11", size = 15)
 
 fig_Q24
+
+# ggsave(here("survey_results", "fig_Q24.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 25
@@ -648,6 +705,8 @@ df_Q25 <- dat %>%
   select(c(Q24,Q25))
 
 df_Q25
+# write_csv(df_Q25, file = here("survey_results", "df_Q25.csv"))
+
 ```
 
 # Question 26
@@ -676,9 +735,11 @@ fig_Q26 <-  total_sensitivity_analysis_importance_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_sensitivity_analysis_importance_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 26", size = 15)
+  labs(tag = "MATES item 12", size = 15)
 
 fig_Q26
+
+# ggsave(here("survey_results", "fig_Q26.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
@@ -690,6 +751,9 @@ df_Q27 <- dat %>%
   select(c(Q26,Q27))
 
 df_Q27
+
+# write_csv(df_Q27, file = here("survey_results", "df_Q27.csv"))
+
 ```
 
 # Question 28
@@ -718,9 +782,12 @@ fig_Q28 <-  total_studies_included_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_studies_included_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 28", size = 15)
+  labs(tag = "MATES item 13", size = 15)
 
 fig_Q28
+
+# ggsave(here("survey_results", "fig_Q28.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 29
@@ -731,6 +798,9 @@ df_Q29 <- dat %>%
   select(c(Q28,Q29))
 
 df_Q29
+
+# write_csv(df_Q29, file = here("survey_results", "df_Q29.csv"))
+
 ```
 
 
@@ -760,19 +830,25 @@ fig_Q30 <-  total_effect_size_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_effect_size_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 30", size = 15)
+  labs(tag = "MATES item 14", size = 15)
 
 fig_Q30
+
+# ggsave(here("survey_results", "fig_Q30.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 31
-Comments on MATES item 12 (e.g., potential improvements or a justification of response)
+Comments on MATES item 14 (e.g., potential improvements or a justification of response)
 ```{r}
 df_Q31 <- dat %>% 
   filter(!is.na(Q31)) %>% 
   select(c(Q30,Q31))
 
 df_Q31
+
+# write_csv(df_Q31, file = here("survey_results", "df_Q31.csv"))
+
 ```
 
 # Question 32
@@ -801,20 +877,25 @@ fig_Q32 <-  total_visualisation_report_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_visualisation_report_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 32", size = 15)
+  labs(tag = "MATES item 15", size = 15)
 
 fig_Q32
+
+# ggsave(here("survey_results", "fig_Q32.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
 # Question 33
-Comments on MATES item 13 (e.g., potential improvements or a justification of response)
+Comments on MATES item 15 (e.g., potential improvements or a justification of response)
 ```{r}
 df_Q33 <- dat %>% 
   filter(!is.na(Q33)) %>% 
   select(c(Q32,Q33))
 
 df_Q33
+
+# write_csv(df_Q33, file = here("survey_results", "df_Q33.csv"))
+
 ```
 
 # Question 34
@@ -843,9 +924,12 @@ fig_Q34 <-  total_data_extraction_report_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_extraction_report_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 34", size = 15)
+  labs(tag = "MATES item 16", size = 15)
 
 fig_Q34
+
+# ggsave(here("survey_results", "fig_Q34.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 35
@@ -856,12 +940,15 @@ df_Q35 <- dat %>%
   select(c(Q34,Q35))
 
 df_Q35
+
+# write_csv(df_Q35, file = here("survey_results", "df_Q35.csv"))
+
 ```
 
 # Question 36
 What is the importance of reporting the descriptions of data created in the meta-analysis to the quality of reporting?
 Referring to MATES item 17:
-Do the authors report descriptions of the data extracted from each eligible within the manuscript, supplementary material or external repository?
+Do the authors report descriptions of the data extracted from each eligible within the manuscript, supplementary material or external repository?#
 ```{r}
 # Separate rows and count total for Question 36
 total_data_description_report_count <- dat %>% 
@@ -884,9 +971,12 @@ fig_Q36 <-  total_data_description_report_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_description_report_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "Question 36", size = 15)
+  labs(tag = "MATES item 17", size = 15)
 
 fig_Q36
+
+# ggsave(here("survey_results", "fig_Q36.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+
 ```
 
 # Question 37
@@ -897,6 +987,9 @@ df_Q37 <- dat %>%
   select(c(Q36,Q37))
 
 df_Q37
+
+# write_csv(df_Q37, file = here("survey_results", "df_Q37.csv"))
+
 ```
 
 
@@ -908,15 +1001,21 @@ df_Q38 <- dat %>%
   select(Q38)
 
 df_Q38
+
+# write_csv(df_Q38, file = here("survey_results", "df_Q38.csv"))
+
 ```
 
 # Question 39
 Any final comments or feedback on MATES?
 ```{r}
-df_39 <- dat %>% 
+df_Q39 <- dat %>% 
   filter(!is.na(Q39)) %>% 
   select(Q39)
 
-df_39
+df_Q39
+
+# write_csv(df_Q39, file = here("survey_results", "df_Q39.csv"))
+
 ```
 
