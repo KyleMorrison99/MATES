@@ -1,0 +1,267 @@
+StartDate,EndDate,Status,IPAddress,Progress,Duration,Finished,RecordedDate,ResponseId,RecipientLastName,RecipientFirstName,RecipientEmail,ExternalReference,LocationLatitude,LocationLongitude,DistributionChannel,UserLanguage,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19,Q20,Q21,Q22,Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q_DataPolicyViolations
+Start Date,End Date,Response Type,IP Address,Progress,Duration,Finished,Recorded Date,Response ID,Recipient Last Name,Recipient First Name,Recipient Email,External Data Reference,Location Latitude,Location Longitude,Distribution Channel,User Language,"Add your full name (i.e., First and Surname)","Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 1: Software reporting
+
+Question
+Do the authors report the software or programming language used to conduct the analysis (i.e., the software or programming language used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Appliable’ option for MATES item 1.",How difficult was MATES item 1: Software reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 2: Code reporting
+
+Question
+Do the authors report any relevant code used to conduct the analysis (i.e., the code used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript, supplementary material, or external repository? 
+
+Criteria for ‘Yes’
+The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+The authors have used a GUI/click based software that does not produce a code. Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 1).",How difficult was MATES item 2: Code reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+ MATES item 3: Number of included primary studies reporting
+
+Question 
+Do the authors report the total number of primary studies (i.e., separate individual articles)  included in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies can be inferred from a screening flowchart (e.g., PRISMA flowchart), or the authors can state the number of studies per subgroup analysis. 
+
+Criteria for ‘No’
+The authors have not reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies cannot be inferred by counting from a forest plot, or from a provided dataset. 
+
+Criteria for ‘Not Applicable
+There is no ‘Not Applicable’ option for MATES item 3.",How difficult was MATES item 3: Number of included studies reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 4: Number of included effect sizes reporting
+
+Question
+Do the authors report the total number of effect size estimates synthesised in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the total number of effect sizes estimates synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘No’
+The authors have not reported the total number of effect sizes synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 4.",How difficult was MATES item 4: Number of included effect size reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 5: Effect size statistic formula reporting
+
+Question
+Do the authors report the formula (or reference for formula) for the effect size statistic/measure used (e.g., Zr, Hedge’s g, Cohen’s d, or lnRR) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 5.",How difficult was MATES item 5: Effect size statistic/measure reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 6: Model type reporting
+
+Question
+Do the authors report the type of the meta-analytic/meta-regression model (e.g., fixed, random, or multi-level model), either descriptively or in statistical notation in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable'
+There is no ‘Not Applicable’ option for MATES item 6.",How difficult was MATES item 6: Model type reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 7: Effect size weights reporting
+
+Question 
+Do the authors report the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘No’
+The authors have not reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+The authors have conducted a meta-analysis without weights (i.e., unweighted meta-analysis).",How difficult was MATES item 7: Effect size weights reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 8: Effect size dependence (non-independence) reporting
+
+
+Question
+Do the authors report the dependence (e.g., multiplicity or, repeated measure) of effect size estimates (e.g., acknowledge multiple effect sizes were taken from a single study) in the manuscript or supplementary material?
+
+
+Criteria for ‘Yes’
+The authors have reported whether there is dependence of effect size estimates in the manuscript or supplementary material. If a meta-analysis reports that effect size estimates are independent allocate ‘Yes’.
+
+
+Criteria for ‘No’
+The authors have not reported whether there is dependence of effect size estimates in the manuscript or supplementary material.
+
+
+Criteria for ‘Not Applicable’ 
+There is no ‘Not Applicable’ option for MATES item 8.",How difficult was MATES item 8: Effect size dependence (non-independence) reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 9: Overall mean effect reporting
+
+Question
+Do the authors report the overall mean effect of the meta-analyses/meta-regression using a plot, table or within text in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors reported the overall mean effect of the meta-analyses/meta-regression in the text, or within a plot or table in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the overall mean effect of the meta-analyses/meta-regression in the text, or within a plot or table in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 9.",How difficult was MATES item 9: Overall mean effect reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 10: Heterogeneity reporting
+
+Question
+Do the authors report an assessment of heterogeneity (e.g., I2, tau2, 𝜎2 or, Q-statistic) between effect size estimates in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported an assessment of heterogeneity between effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘No’
+The authors have not reported an assessment of heterogeneity between effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘Not Applicable'
+The study has stated that the analysis is unweighted.","How difficult was 
+MATES item 10: Heterogeneity reporting to implement?","Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 11: Publication bias reporting
+
+Question 
+Do the authors report an assessment of publication bias in the manuscript or supplementary material?
+
+Criteria for ‘Yes'
+The authors have reported an assessment of publication bias in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported an assessment of publication bias in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+The authors report an assessment of publication bias cannot be conducted.",How difficult was MATES item 11: Publication bias reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 12: Sensitivity analysis reporting
+
+Question 
+Do the authors report a sensitivity analysis or subgroup analysis (e.g., leave-one-out analysis, use of alternative model or within-study risk of bias assessment) in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors reported a sensitivity analysis in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported a sensitivity analysis in the manuscript or supplementary material. 
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 12.",How difficult was MATES item 12: Sensitivity analysis reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 13: Data reporting/archiving
+
+Question
+Do the authors report the data (i.e., used to calculate effect sizes and conduct the meta-analysis) extracted from each eligible primary study (i.e., research paper) in the manuscript, supplementary material, or external repository?
+
+Criteria for ‘Yes’
+The authors have reported the data extracted from each eligible primary in the manuscript, supplementary material, or external repository. In cases when the authors state the data is sensitive and cannot be shared allocate ‘Yes’. 
+
+Criteria for ‘No’
+The authors have not reported the data extracted from each eligible primary study the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 13.",How difficult was MATES item 13: Data reporting/archiving to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 14: Variable description reporting
+
+Question
+Do the authors report descriptions of the variables extracted (i.e., meta-data or columns in dataset) from each eligible study primary study (i.e., research paper) in the manuscript, supplementary material, or external repository?
+
+Criteria for ‘Yes'
+The authors have reported descriptions of the variables extracted from each eligible study primary study in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+The authors have not reported descriptions of the variables extracted from each eligible study primary study in the manuscript, supplementary material, or external repository. 
+
+Criteria for ‘Not Applicable’
+The authors have not reported the data extracted from each eligible primary study in the manuscript, supplementary material, or external repository (i.e., ‘No’ for MATES item 13) or the authors have reported that the data cannot be provided because the data is sensitive.","How difficult was MATES item 14: Variable description reporting
+to implement?","Provide overall comments on MATES (e.g. order of questions, structure of questions or on glossary of terms)",Q_DataPolicyViolations
+"{""ImportId"":""startDate"",""timeZone"":""Australia/Canberra""}","{""ImportId"":""endDate"",""timeZone"":""Australia/Canberra""}","{""ImportId"":""status""}","{""ImportId"":""ipAddress""}","{""ImportId"":""progress""}","{""ImportId"":""duration""}","{""ImportId"":""finished""}","{""ImportId"":""recordedDate"",""timeZone"":""Australia/Canberra""}","{""ImportId"":""_recordId""}","{""ImportId"":""recipientLastName""}","{""ImportId"":""recipientFirstName""}","{""ImportId"":""recipientEmail""}","{""ImportId"":""externalDataReference""}","{""ImportId"":""locationLatitude""}","{""ImportId"":""locationLongitude""}","{""ImportId"":""distributionChannel""}","{""ImportId"":""userLanguage""}","{""ImportId"":""QID20_TEXT""}","{""ImportId"":""QID22_TEXT""}","{""ImportId"":""QID36""}","{""ImportId"":""QID23_TEXT""}","{""ImportId"":""QID37""}","{""ImportId"":""QID24_TEXT""}","{""ImportId"":""QID38""}","{""ImportId"":""QID25_TEXT""}","{""ImportId"":""QID39""}","{""ImportId"":""QID26_TEXT""}","{""ImportId"":""QID40""}","{""ImportId"":""QID27_TEXT""}","{""ImportId"":""QID41""}","{""ImportId"":""QID28_TEXT""}","{""ImportId"":""QID42""}","{""ImportId"":""QID29_TEXT""}","{""ImportId"":""QID43""}","{""ImportId"":""QID30_TEXT""}","{""ImportId"":""QID44""}","{""ImportId"":""QID31_TEXT""}","{""ImportId"":""QID45""}","{""ImportId"":""QID32_TEXT""}","{""ImportId"":""QID46""}","{""ImportId"":""QID33_TEXT""}","{""ImportId"":""QID47""}","{""ImportId"":""QID34_TEXT""}","{""ImportId"":""QID48""}","{""ImportId"":""QID35_TEXT""}","{""ImportId"":""QID49""}","{""ImportId"":""QID50_TEXT""}","{""ImportId"":""Q_DataPolicyViolations""}"
+16/05/2024 7:09,16/05/2024 9:39,IP Address,101.115.68.159,100,8945,TRUE,16/05/2024 9:39,R_4ZJjjLSf3kykf4u,,,,,-33.8639,151.0866,anonymous,EN,ML,"unclear if ""report the software or programming language"" simple means that reporting the name is sufficient",Somewhat easy,"some of the GUI/click based software that does not produce a code per se but can produce the exact log of all procedures which can be used to recreate the analyses. In this case it would make sense to score as ""yes"". However, if you are not familiar wth siftware it might be hard to tell whether it produces a log.",Somewhat difficult,"the word ""studies"" is often used with different meanings - e.g. sometimes is number of articles, but sometimes experiments or even effect sizes, which makes it tricky. Maybe clarify what you mean by ""studies""?",Somewhat easy,"sometimes different terminology used which may be hard to interpret - e.g. samples, studies.",Somewhat easy,,Somewhat easy,"Unclear what you mean by ""structure"" - may need to explain that this means more than just stating that it was ""random"" or ""fixed""?",Somewhat easy,"Change the order of wuation parts to make it clearer and align with other: ""Do the authors report the strategy used to assign weights of effect size estimates (e.g. the sampling variance, sampling error or equivalent), in the manuscript or supplementary material?""",Somewhat easy,"Sometimes they explicitly state they assume they are independent even they know they are not - not clear if this means that ""If a meta-analysis reports that effect size estimates are independent"" or not",Somewhat easy,,Somewhat easy,,Somewhat easy,,Somewhat easy,Unclear if any subgroup analysis can be considered sensitivity analysis - often it actyually is the main analysis,Neither easy nor difficult,,Somewhat easy,"made mistake here a few times when the data was not reported selected ""no"" rather than ""NA"". My foult not reading carefully!",Somewhat easy,,
+14/05/2024 9:56,17/05/2024 15:05,IP Address,129.94.8.18,10,277785,FALSE,24/05/2024 15:05,R_4JaoOdsXMPapVYt,,,,,,,anonymous,EN,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+27/05/2024 14:56,27/05/2024 15:06,IP Address,129.78.56.132,100,608,TRUE,27/05/2024 15:06,R_4HtPK48ZKAWnXxv,,,,,-33.887,151.1919,anonymous,EN,Erin Macartney,,Extremely easy,,Extremely easy,,Extremely easy,,Somewhat easy,Some may use correlations or percentages etc where a formula isn't necessarily required,Somewhat easy,,Extremely easy,,Extremely easy,,Extremely easy,"Many studies don't report a global mean but report means for a series of moderators or sub-analyses. It wasn't clear if this would fall under the definition of ""overall mean"" as it might not make sense for the study to report an overall mean across all factors.",Somewhat difficult,,Extremely easy,Some say that they just report 'publication bias corrected models' so they don't necessarily report a measure of publication bias per se,Somewhat easy,"One study stated that it did sub-analyses as a form of sensitivity. Many studies do sub-analyses but don't call it a sensitivity analysis. Would this fall under ""use of alternative model""?",Somewhat easy,What about studies that say to contact author/available upon request? ,Somewhat easy,"Many studies list the types of data extracted but don't provide ""descriptions"" of the variables. The wording of this item was a bit confusing about what it was asking. Does it was explicit definitions or is a list of data items enough?",Somewhat difficult,"Overall easy to follow, but some items left room for some uncertainty ",
+27/05/2024 22:56,27/05/2024 22:59,IP Address,150.254.164.85,100,164,TRUE,27/05/2024 22:59,R_8ZYtaAEqO4xf2N3,,,,,52.2357,18.3014,anonymous,EN,Francesco Latterini,,Extremely easy,,Extremely easy,,Extremely easy,,Extremely easy,,Extremely easy,,Extremely easy,,Somewhat easy,,Extremely easy,,Extremely easy,,Extremely easy,,Extremely easy,,Extremely easy,,Somewhat easy,,Somewhat easy,"the tool is very well done, I don't have particular comments on how to improve it, the various items are clearly described and it is easy to understant the various points. I furthermore think that the needed aspects of a meta-analysis were properly included in MATES",
+03/06/2024 18:05,03/06/2024 19:17,IP Address,78.87.72.203,100,4329,TRUE,03/06/2024 19:17,R_8TIr2Mysu16Tqp3,,,,,37.9842,23.7353,anonymous,EN,Dakis-Yaoba Ouédraogo,,Somewhat easy,"* The information provided in the glossary - definition of the graphical user interface (GUI) - was essential in order to be able to respond correctly if software such as Stata was used.
+* What if the code is only partially reported?",Somewhat easy,,Extremely easy,"Sometimes the number of effect sizes corresponds to the number of primary studies, and the authors therefore do not explicitly report the number of effect sizes, but do explicitly cite the number of primary studies. Perhaps you could add a clarification to take account of these cases.",Somewhat difficult,,Extremely easy,"To be able to answer yes, does the model have to be specified (for example, in case of a random model how is the random part structured?) or is simply mentioning the type of model (fixed, random, ...) sufficient? ",Extremely easy,"Perhaps you should specify that the values are expected, because the weights can be reported graphically by differences in point size.",Somewhat easy,How to respond when independence is not explicitly stated but is obvious (because one effect size = one primary study)?,Somewhat easy,,Extremely easy,Can we answer yes if heterogeneity is assessed only during a subgroup analysis?,Somewhat easy,"*Perhaps you could clarify that graphic-only assessments (without any tests) are also valid?
+* What should be done when authors justify that it is not possible to assess publication bias (because of a too small number of studies)?",Extremely easy,"* In the question, what exactly do you mean by ""within-study risk of bias assessment""? 
+* If risk of bias levels of each studies are provided but the risk of bias assessment is not used in the meta-analysis, what should be done?
+* Can Cook's distance calculations or other outlier and influential case diagnostics be considered as a sensitivity analysis?
+* What should be done when the authors say they have carried out a sensitivity analysis but neither the method nor the results are reported?",Somewhat easy,"* What should be done if the data has been only partially reported? 
+* I would suggest to detail in the question ""Do the authors report the data (i.e. extracted data used to calculate effect sizes, calculated/transformed data used to conduct the meta-analysis (effect size estimate, variance))""",Somewhat easy,"* What should be done in case of partially reported data?
+* In the reporting of variables, I see two categories, variables that describe the scope of the meta-analysed literature (e.g. geography, year of publication) and variables that are used in the meta-analysis in subgroup analyses. The first category could be covered by item 14, but the second category would be covered by item 13 (‘data used to conduct the meta-analysis’). Items 13 and 14 could be merged (and the assessment would only concern the reporting of variables used in the meta-analysis) or these two categories of variables would have to be clarified in the description of the questions.",Somewhat difficult,Suggested order of questions (to better follow the flow of article reading): 5 - 6 - 8 - 1 - 2 - 3 - 4 - 9 - 7 - 10 - 11 - 12 - 13 - 14,
+02/06/2024 23:11,04/06/2024 19:01,IP Address,176.100.43.232,100,157790,TRUE,04/06/2024 19:01,R_6aPo6h6rO3ySxsB,,,,,49.2476,-123.1234,anonymous,EN,April Robin Martinig,,Extremely easy,,Extremely easy,,Extremely easy,,Somewhat easy,It was often hard to find this information.,Neither easy nor difficult,"Similar to #5, it was often hard to find this information.",Somewhat difficult,"This was quite confusing for me, especially the ""No"" versus ""NA"". I really couldn't tell the difference between these and when to select one over the other.",Extremely difficult,"Authors don't really seem to report this, so a lot of time is spent reading the paper and supplement trying to find out if this was done anywhere.",Extremely difficult,"I was never quite sure what was considered “enough” to count as an overall mean effect size. Again, this didn't seem to be done very often, so I had to make subjective judgement calls to implement this item. (Calls I was not confident about.)",Extremely difficult,,Somewhat easy,,Extremely easy,,Extremely easy,,Extremely easy,"I did have a case where they did this (item 14), but didn't do item 13 (no data provided).",Neither easy nor difficult,"I wish I would have been able to answer the questions in whatever order I wanted to. I often found the information for items 10, 11, 12, 13 before items 6-9. Having to do them in a strict order made it take me longer than it would have otherwise.",
+05/06/2024 9:20,05/06/2024 9:59,IP Address,204.47.149.19,100,2370,TRUE,05/06/2024 9:59,R_6vSjVhWncFTxyBX,,,,,39.1246,-84.4867,anonymous,EN,Brian Gallagher,,Extremely easy,"It might be helpful to specify which common GUI software does (Stata, SPSS) and does not (Comprehensive Meta-Analysis Software) produce syntax or a coding log that can be reported. This distinction was mostly clear to me after reading the MATES checklist and glossary, so perhaps some of that text could be included for the 'Not Applicable' category.",Somewhat easy,,Extremely easy,"I found the language for MATES item 4 to be well-defined reasonable, but there can be confusion when authors do not report results using the same words. For example, one paper that I reviewed (#35 - Rezaeian et al, 2023) appeared to report these as 'datasets' instead of 'effect sizes', which was ambiguous and led me to spend a lot of time trying to figure out what the authors MEANT instead of what they actually wrote. This may be an especially common issue for authors who are writing in a second or third language, but I also don't think it is easy to solve.",Somewhat easy,,Extremely easy,"The studies I reviewed varied widely in terms of the amount of detail provided for this item. I eventually decided to say 'Yes' if authors provide ANY mention of this, even if it is sometimes just a short sentence (e.g. ""We used a random effects model.""). This is a bit ambiguous though, and it is possible that some other MATES participants may disagree.",Somewhat easy,"I assumed this item was looking for authors to say something like ""we weighted effect sizes based on the inverse of their sampling variances"", rather than provide the actual weights in a data file. However, I feel the way this item is written could be interpreted either way - perhaps re-word it so that the ""strategy to assign weights"" is emphasized first, instead of ""reporting the sampling variance.""",Somewhat easy,"This is the item I had the most trouble with, especially because I found it difficult to separate from the item about model structure/random effects. Most studies that I reviewed used a random effects analysis, presumably to to deal with non-independence of effect sizes. I do understand the importance of explicitly recognizing non-independence in the text, but I think this item needs to be re-worded to some extent. ",Somewhat difficult,,Extremely easy,"One study I reviewed did not report heterogeneity statistics, but did test for the 'significance' of heterogeneity using Chi-squared tests and p-values. I did not consider that to be the same as reporting heterogeneity statistics, but perhaps it would be helpful to explicitly say whether or not these kinds of significance tests are acceptable.",Somewhat easy,,Extremely easy,"In my mind, sensitivity analysis is not the same as a subgroup analysis but I noticed the latter were much more common in the studies I reviewed. Perhaps make it clearer that both are acceptable, despite being different?",Somewhat easy,,Extremely easy,,Extremely easy,"I think this tool has immense promise overall - great work so far. However, some questions may need to be re-worded or have additional information added to aid users. Some explicit discussions with the larger MATES group about resolving ambiguity might also be helpful (e.g. exactly how much information needs to be reported to get a 'yes'?).",
+07/06/2024 18:20,07/06/2024 18:28,IP Address,82.34.33.192,100,454,TRUE,07/06/2024 18:28,R_2dNn45qbxceUVtT,,,,,51.5323,0.7101,anonymous,EN,Edward Purssell,"The question states software/language and models used, while the criteria only state software/language",Extremely easy,"I don't agree with the NA.  Code is either there or not, and for full transparency it should be.  Using a GUI does not mitigate that lack of transparency.",Extremely easy,,Extremely easy,,Extremely easy,,Extremely easy,,Somewhat easy,,Somewhat easy,Are we only expecting this if there is a risk of non-dependency?  A MA with say 6 studies with 6 author groups at 6 different times may not see the need to state this.,Neither easy nor difficult,,Extremely easy,,Somewhat easy,,Somewhat easy,,Somewhat easy,,Somewhat easy,,Neither easy nor difficult,"Just a few suggestions.  A lot of the latter information (ES, weighting, raw data etc.) should be in a forest plot.  In healthcare it would be rare for a MA not to have a forest plot.",
+08/06/2024 1:22,08/06/2024 2:00,IP Address,149.102.168.9,100,2293,TRUE,08/06/2024 2:00,R_8SxbL9CiPUxyhwg,,,,,51.9729,-2.906,anonymous,EN,Harriet Sleight,,Extremely easy,This was difficult to apply to studies which used a GUI which could provide a syntax or coding log but this has not been reported in the manuscript or SI. E.g where a study has used Stata and has not provided a syntax/coding log.  In these instances I answered 'No' but I was unsure whether this should be 'not applicable' as it us a GUI software rather than raw coding software,Somewhat difficult,Potentially this should also include a reference list of the included studies in the Supplementary material as it is useful to know which studies as well as how many ,Extremely easy,"I found this criteria difficult. 
+The sentence 'The total number of effect sizes cannot be inferred by counting and must be stated explicitly.' is included in both the 'Yes' and 'No' criteria.  I feel it would be easier to understand if the 'Yes' criteria was 'Total number of effect sizes are stated explicitly' and the 'No' criteria was changed to say 'Effect sizes are not stated, or can only be inferred by counting' ",Somewhat difficult,,Somewhat easy,,Somewhat easy,"I found this criteria difficult to apply.  This is either because none of the meta-analyses I reviewed reported the sampling variance, sampling error or equivalent, OR because I did not understand what would satisfy this criteria. ",Extremely difficult,"I found this criteria difficult to apply.  Similarly to MATES Item 7, I am unsure whether this is because none of the meta-analyses I reviewed included the dependence of effect size estimates OR because I wasn't sure what would satisfy this criteria. ",Extremely difficult,,Somewhat easy,,Somewhat easy,,Extremely easy,,Extremely easy,"There is a typo in the 'Criteria for 'Yes'' Section. 
+'The authors have reported the data extracted from each eligible primary **study?** in the manuscript......' 
+
+Mostly this criteria was easy to apply but it was not always obvious which data were used to calculate the effect sizes and conduct the meta-analysis, therefore it was not always obvious whether these had been included in the tables. ",Neither easy nor difficult,"This was difficult to apply in instances where the data were not described explicitly as such but were clear from Table column headings or similar.  In these instances I answered 'Yes' and commented in the justification box.
+
+Should a description of the variable also include a unit? ",Somewhat easy,"The questions could be presented in a different order e.g. I found that usually the first answer to appear in the text was referencing MATES Item 3 (number of primary studies), not the software used.
+
+Should the date of literature searches also be reported for gold-standard? e.g. 'Literature searches were conducted in May 2024'?
+
+I found MATES item 7 and 8 consistently difficult and am not confident in my responses for these criteria. 
+
+I think the studies included should be referenced (e.g. a reference list in the Supplementary material) alongside the total number included?
+
+A comprehensive description of the variables extracted could possibly include a unit where applicable?",
+11/06/2024 2:46,11/06/2024 3:13,IP Address,95.93.57.127,100,1660,TRUE,11/06/2024 3:13,R_2NQbzkfv8P9MlJD,,,,,40.2057,-8.4213,anonymous,EN,Verónica Ferreira,,Extremely easy,,Extremely easy,,Extremely easy,"I was a little confused with this item because I was not sure if you wanted the authors to state specifically the number of effect sizes or if it would be enough that they shown the effect sizes in the forest plots (from where we can see how many were used). However, because it is easy to count the number of effect sizes used in the forest plots I consired this as 'authors report the total number of effect size estimates synthesised'. Also, the term 'total' was a little confusing to me because maybe more important than the total number of effect sizes in a matrix is the number of effect sizes per moderator level because this is what directly affects the confidence we have in the result for that subgroup.",Somewhat easy,,Somewhat easy,,Somewhat easy,I considered that 95%CI associated with effect sizes (reported in the text or shown in forest plots) would be a measure of weight,Somewhat easy,"I considered that a study would did not 'report the dependence of effect size estimates' when it did not state that explicitly in the text. However it is quite easy to see if there is dependency of effect sizes from the diference in the number of studies and the number of effect sizes, or from the repetition of a study reference in a forest plot. Therefore, the item would probably be better stated as 'Do the authors ACKNOWLEDGE the dependence (e.g., multiplicity or, repeated measure) of effect size estimates...'",Somewhat easy,,Somewhat easy,,Somewhat easy,,Extremely easy,,Somewhat easy,,Extremely easy,,Somewhat easy,"Maybe rethink the phrasing of item 4 to focus on the number of effect sizes per subgroup instead of 'total number of effect size estimates' - for results interpretation it is more relevante to know the subgroup sample size than the total sample size.
+Maybe rethink the phrasing of item 8 to 'Do the authors acknowledge the dependence...' if the focus is to be on authors being aware of the implications of using multiple effect sizes per study.
+Maybe item 14 can also be made clear. I assumed that any list or table with moderators would qualify, but took me some time to process this item...
+
+",
+15/06/2024 18:58,15/06/2024 19:15,IP Address,1.9.114.22,100,1014,TRUE,15/06/2024 19:15,R_4MrJNNQ4b5Y31br,,,,,3.0081,101.7719,anonymous,EN,Kok Sin Woon,"We can use the keyword ""software"" to identify this question. It is suggested to provide a list of common software as example or for selection (i.e., STATA, Matlab, Python) ",Extremely easy,"I used the keywords like ""coding"", ""code"", ""programming"" to search the answer. However, it seems that most papers did not display the code. ",Somewhat easy,,Somewhat easy,,Somewhat easy,"Most information can be obtained in the methodology part. However, sometimes the authors did not provide the formula for the effect size reporting.",Somewhat easy,"Keywords like fixed, random, or multi-level model are used to search. ",Somewhat easy,,Somewhat easy,,Neither easy nor difficult,It can be checked via the tables/graphs produced by the authors.,Neither easy nor difficult,"Keyword ""heterogeneity"" is used.",Somewhat easy,"Publication bias is the keyword to be used. However, sometimes the authors tend to provide the results in the supplementary info. ",Neither easy nor difficult,Some sensitivity analyses are provided in the supplementary materials. Sometimes need to check the figures/tables drawn by the authors to identify whether sensitivity analysis is conducted.,Neither easy nor difficult,"The phrase ""report the data"" is a bit vague. Does it mean the authors have to provide the raw data or shall we tick ""yes"" if the authors have listed what kind of data is included?",Somewhat difficult,,Somewhat easy,"1. Can provide suggestions on what kind of common keywords can be used for the question search.
+2. Provide some guidelines to the users where can we normally find the relevant answers. For example, authors tend to provide sensitivity analysis and publication bias in the supplementary materials. ",
+17/06/2024 9:17,17/06/2024 9:54,IP Address,129.94.8.9,100,2275,TRUE,17/06/2024 9:54,R_4zjzm8MBlFmyL4R,,,,,-33.9076,151.225,anonymous,EN,Patrice Pottier,,Extremely easy,"It may be hard for some people to decide between ""No"" and ""NA"", because it requires knowledge on which software uses code vs. point-and-click. ",Somewhat easy,,Somewhat easy,"For studies using fixed-effect meta-analyses, the number of effect sizes estimates is often the number of studies. Maybe it's worth mentioning that the authors have to clearly specify how many effect sizes were taken from each study, and how to deal with studies mentioning ""fixed-effect"" without further details?",Somewhat easy,"Some studies would extract means of a given variable (arm-based meta-analysis), or effect sizes that were already calculated in primary studies. In the former, there is no formula needed and it is not technically an ""effect size"" sensu stricto; and in the latter, the effect sizes are already available and the formulas are likely in the original studies (and may vary between studies). I think it is relevant to have an ""NA"" category here for these cases. ",Somewhat difficult,"The authors almost always report the type of model they use, but the details of the model specifications are often unclear. For instance, some authors would state that they used a ""random-effect model"" only when ""they found heterogeneity"". Identifying which model is fixed or random is thus unclear and not transparent. It is also almost always unclear what random effect is used. I get that the definition of a ""random-effect"" model is clear for most people (i.e., study-level random effect), but I think this item would be more interesting if authors clearly reported which random effects were used, particularly for multi-level models. ",Somewhat easy,"I was a bit confused about the wording of this item. It is quite common for authors to report the % of weights taken by each study in their analyses, but not how these weights were calculated, or even how the sampling variance of the effect size was calculated. Also, what if authors say they used an ""inverse-variance model"", but do not provide the formula for calculating the sampling variance? How about cases where authors say they used a specific package (e.g., metafor) that automatically calculates sampling variance? I think this question needs to be very specific about what counts as ""yes"" or ""no"". ",Somewhat difficult,"This was a tricky one too. If the authors used a random-effect model, then in almost all cases it is to account for the non-independence of effect sizes among studies, but the authors do not necessarily mention non-independence directly. Also, what about cases when authors say that they extracted multiple effect sizes per study, but don't do anything about it? Or what if they say that they used a random-effect model because they extracted multiple effect sizes per study, but don't say that this generates a source of non-independence? 
+I think it would be relevant to require people to statistically account for effect size dependence, not just ""mention"" non-independence. ",Somewhat difficult,"I found that many studies do not have an ""overall effect"", because it is not necessarily relevant to their questions. Then it is really hard to determine what is an ""overall mean-effect"" for the ""meta-regression"". What if the authors did a variety of meta-regressions but it does not seem that one stands out as the ""overall"" or ""main"" objective? I think it will be hard to apply this item for some studies. Maybe one solution would be to have an ""NA"" category for studies that do not have an ""overall"" aim?",Somewhat difficult,"I found that authors sometimes mention that they assessed heterogeneity, but do not necessarily report the values of their heterogeneity assessment. What response should be used in this case? I also found a case where they only reported I2 for a small subgroup analysis in the supplement, but not for the main models. Does this count as ""yes"" or ""no""? I think we can be a bit more strict here, and require people to report heterogeneity values for their main analyses. ",Somewhat easy,,Extremely easy,,Somewhat easy,"I think it's worth noting that the data availability statement is sometimes only displayed in the online html version (not in the PDF). Also, what is referred to as ""the data"" needs to be more strictly defined as ""raw data"". It is very common for authors to present some data, or the data with the calculated effect sizes, but not the RAW data that was used to calculate the effect sizes. ",Somewhat easy,,Somewhat easy,"I think the tool is pretty easy to use overall, but it would be helpful to have more examples or a small FAQ for each question. The description of each item is quite short and it leaves some gaps for interpretation. 
+For instance, items 10-12 say that authors have to ""report"" publication bias/heterogeneity/sensitivity analyses. What if the authors say they did, but don't report the results of these assessments? What if the authors' objective is not to calculate an overall effect because it hardly makes sense for their study in Item 9?
+I really think a more thorough description of each item + a FAQ could help answer most questions people would have, and ensure the tool is fully reproducible. 
+I also think that Item 6 is too vague, because the type of model does not tell much about the actual model structure. At the end of the day, I see this tool not just as an assessment of already published studies, but also as a guide people can use to design and report their study. If people see that only suggesting the model type is proposed in this tool, then it suggests it is part of best/recommended practices. However, this is clearly not enough in practice, and I think making the tool stricter overall (e.g., recommending reporting the whole model specification)can really push forward practices and make sure people report things more thoroughly. ",
+18/06/2024 1:10,18/06/2024 1:37,IP Address,194.199.235.78,100,1624,TRUE,18/06/2024 1:37,R_8kpkmU7ltUNqh93,,,,,43.6107,3.8809,anonymous,EN,Beillouin Damien,"
+I would say that the software is not the most important; what matters is the details of the models used. If possible, include details such as the estimator of tau2 (DerSimonian, others), how the confidence intervals are calculated (parametric, non-parametric, etc.). This will have a much greater impact on the results than the software used, I believe.",Extremely easy,"Good question to evaluate the transparency and reproducibility of studies. But very rarely done.
+
+
+
+
+
+
+",Somewhat easy,"In my opinion, it's not a very discriminative question. For reproducibility, what is important, in my view, is the list of rejected studies along with the criteria",Extremely easy,"
+To my surprise, it's more difficult than I thought, especially for medical studies. For certain setups (cohorts, etc.), in my opinion, there's no need to distinguish between studies and effect sizes (?). When there is a classic forest plot, you just need to count the number of lines in the forest plot, right?",Somewhat difficult,"Do we systematically need a formula when synthesizing information extracted directly from primary studies (i.e., when the authors have not done any recalculations or other modifications)?",Neither easy nor difficult,"
+See my previous remark. Saying that a random-effects model was used is not enough in my opinion; more details are needed (especially about the structure of the random model, etc.)",Neither easy nor difficult,"The question may not be very clear. Do we want to know if and how the authors weighted the studies (and therefore that the text states this clearly), or do we want information on the precision of individual effect sizes?",Neither easy nor difficult,"Good question, but should we evaluate the strategies used by the authors? Pooling, exclusion, ... Some are recommended, others are not...",Neither easy nor difficult,Is it just going to be yeses? How do you present a meta-analysis without including the overall mean effect?,Extremely easy,,Somewhat easy,Should we assess the quality of publication bias analysis? The fail-safe N number is not as powerful as Bayesian workflows that directly account for publication bias (ROBMA).,Somewhat easy,There are many possible types of sensitivity analyses. Should we specify or clarify which one is being used?,Neither easy nor difficult,"I often find this information in forest plots, does it count?",Neither easy nor difficult,"
+I'm not entirely sure I understood this question well. Should authors describe in the text the variables they are interested in? Should this description be exhaustive? Authors often mention some variables, but are they comprehensive? Or should we have access to them (e.g., in their database)?",Somewhat difficult,"I'm not sure if questions as formulated can 1. sufficiently discriminate between meta-analyses (for example, those that conduct a thorough publication bias analysis versus those that do it quickly) 2. Allow judgment of methodological reproducibility (for this, we need more details on the models; there are no questions on the number of databases used, the search string, ...).",
+18/06/2024 6:29,18/06/2024 7:06,IP Address,142.244.5.13,100,2215,TRUE,18/06/2024 7:06,R_1gMCRggdBBZtBZQ,,,,,53.52,-113.5319,anonymous,EN,Ayumi Mizuno,,Extremely easy,"I sometimes struggle to decide between 'No' and 'Not Applicable'. While I am familiar with some statistical languages and software, I cannot distinguish if unfamiliar programs are code-based or GUI/click-based.",Neither easy nor difficult,,Somewhat easy,,Neither easy nor difficult,,Neither easy nor difficult,,Neither easy nor difficult,"Some papers seemed to be weighted in the results, although the authors did not explicitly state this",Neither easy nor difficult,,Neither easy nor difficult,,Neither easy nor difficult,,Somewhat easy,,Somewhat easy,,Neither easy nor difficult,,Neither easy nor difficult,,Neither easy nor difficult,,
+19/06/2024 0:39,19/06/2024 0:52,IP Address,213.89.57.201,100,776,TRUE,19/06/2024 0:52,R_2vZxoHZ7bRmRCM1,,,,,58.4016,15.6462,anonymous,EN,Betina Kozlowsky Suzuki,,Extremely easy,,Somewhat difficult,,Extremely easy,,Neither easy nor difficult,,Somewhat easy,,Somewhat easy,,Somewhat easy,,Somewhat easy,,Extremely easy,,Somewhat easy,,Somewhat easy,,Somewhat easy,,Somewhat difficult,,Somewhat difficult,"Perhaps include an item evaluating if a Quality Assessment was undertaken. 
+Item 2 or in the Glossary: provide a list of GUI softwares.
+Item 7: I would suggest also to include confidence intervals, or relative weight.
+Item 9: I would suggest also to include the respective lower and upper confidence intervals.
+Item 14: Sometimes although the extracted raw data is not reported, the authors describe the types of variables they extracted. Consider YES, even when the previous item was scored with a NO?
+In the glossary: pooled effect i.e., overall effect.  
+",

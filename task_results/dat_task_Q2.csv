@@ -1,0 +1,6 @@
+Q2
+"unclear if ""report the software or programming language"" simple means that reporting the name is sufficient"
+"The question states software/language and models used, while the criteria only state software/language"
+"We can use the keyword ""software"" to identify this question. It is suggested to provide a list of common software as example or for selection (i.e., STATA, Matlab, Python)"
+"
+I would say that the software is not the most important; what matters is the details of the models used. If possible, include details such as the estimator of tau2 (DerSimonian, others), how the confidence intervals are calculated (parametric, non-parametric, etc.). This will have a much greater impact on the results than the software used, I believe."

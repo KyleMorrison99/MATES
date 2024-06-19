@@ -1,0 +1,2078 @@
+---
+title: "MATES_results_analysis"
+author: "Kyle Morrison"
+date: "latest update: `r format(Sys.time(), '%d %B %Y')`"
+output:
+   html_document:
+    toc: true
+    toc_float: true
+    code_folding: show
+    code_download: true
+    theme: readable   # Options: cerulean, journal, flatly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, yeti
+    highlight: kate  # Options: default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, textmate
+editor_options: 
+  chunk_output_type: console
+---
+# **Set up **
+
+## knitr set up 
+```{r setup, include = FALSE}
+rm(list = ls())
+# knitr setting
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  cache = TRUE,
+  echo=TRUE
+)
+```
+
+## Load packages
+```{r}
+pacman::p_load(tidyverse,
+               here,
+               stringr,
+               purrr,
+               kableExtra)
+```
+
+## Load data
+```{r}
+# Load data sets
+MATES_survey_part <- read_csv(here("data", "survey", "MATES_participant_paper_list.csv"), skip = 0) # 4757 8 
+
+dat <- read_csv(here("data", "survey",  "MATES_survey_results.csv"), skip = 0)  # 188 rows 60 columns 
+
+task_vol <- read_csv(here("data", "task",  "MATES_coauthor_details.csv"), skip = 0) # 30 rows 4 columns
+
+task_pap <- read_csv(here("data", "task", "MATES_task_papers.csv"), skip = 0) # 50 rows 1 column
+
+# MATES_task_results 
+
+dat_task <- read_csv(here("data", "task", "MATES_task_feedback.csv"), skip = 0) # 17 rows 48 column
+
+```
+
+# **MATES survey **
+
+## Extracting Survey Participants
+```{r}
+# Create a new column with the email address
+MATES_survey_part_modified <- MATES_survey_part %>%
+  mutate(Email = str_extract_all(correspondence_address, "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b")) %>%
+  unnest(Email, keep_empty = TRUE)
+
+MATES_survey_part_modified_distinct <- distinct(MATES_survey_part_modified, Email, .keep_all = TRUE) # select records with unique titles (removes exact duplicates)
+dim(MATES_survey_part_modified_distinct) # 3969 9
+
+# Number of rows in the data frame
+total_rows <- nrow(MATES_survey_part_modified_distinct)
+
+# Number of rows per chunk
+chunk_size <- 400
+
+# Calculate the number of chunks needed
+num_chunks <- ceiling(total_rows / chunk_size)
+
+# Loop to create each chunk
+for (i in 1:num_chunks) {
+  start_row <- ((i - 1) * chunk_size) + 1
+  end_row <- min(i * chunk_size, total_rows)
+  
+  # Subset the data frame
+  MATES_survey_part_modified_distinct_subset <- MATES_survey_part_modified_distinct[start_row:end_row, ]
+  
+  # Create the file name
+  file_name <- paste("MATES_survey_participants_", start_row, "_to_", end_row, ".csv", sep = "")
+  
+  # Write the CSV file to the directory
+  write.csv(MATES_survey_part_modified_distinct_subset, here("data", "survey", file_name))
+}
+
+  
+```
+
+Select required columns & rows for the plots 
+```{r}
+dat <-  select(dat, -c(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished, RecordedDate, ResponseId, RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude, DistributionChannel, UserLanguage))
+
+dat <- dat[-c(1, 2), ]
+
+# Table of the data
+ kable(dat, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+```
+
+## Survey Question 1 
+What is your current stage of career?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_career_stage_count <- dat %>% 
+  separate_rows(Q1, sep = ",\\s*") %>% 
+  filter(!is.na(Q1)) %>%
+  count(Q1) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_career_stage_percentage <-  total_career_stage_count %>% 
+  mutate(proportion = n/sum(total_career_stage_count$n),
+         percentage = proportion*100)
+
+# Theme for all MATES plots 
+MATES_theme <-  function(){ 
+  theme_bw() +
+  theme(
+    panel.grid.major.y = element_line(color = "gray", linetype = "dashed"),
+    panel.grid.minor.y = element_blank(),
+    axis.line.x = element_line(linewidth = 1.2),
+    axis.line.y = element_line(linewidth = 1.2),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(hjust = 1, size = 25, color = "#666666"),
+    axis.text.y = element_text(size = 20, color = "#666666"),
+    legend.position = "none",
+    plot.caption = element_text(size = 20, face = "italic")
+  )
+  }
+
+# Plot for survey question 1 
+fig_Q1 <-  total_career_stage_count %>% 
+  ggplot(aes(x = n, y =reorder(Q1, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 ,y = reorder(Q1,n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = total_career_stage_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_career_stage_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "Survey Question 1\nThe value in each bar is the total number of participants")
+
+fig_Q1
+
+# ggsave(here("survey_results", "fig_Q1.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
+```
+
+## Survey Question 2
+What is your current experience with meta-analyses?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_ma_experience_count <- dat %>% 
+  separate_rows(Q2, sep = ",\\s*") %>% 
+  filter(!is.na(Q2)) %>%
+  count(Q2) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_ma_experience_percentage <-  total_ma_experience_count %>% 
+  mutate(proportion = n/sum(total_ma_experience_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 2 
+fig_Q2 <-  total_ma_experience_count %>% 
+  ggplot(aes(x = n, y =reorder(Q2, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 ,y = reorder(Q2,n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = total_ma_experience_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_ma_experience_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "Survey Question 2\nThe value in each bar is the total number of participants")
+
+fig_Q2
+
+# ggsave(here("survey_results", "fig_Q2.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 3 
+What is your experience with systematic review or meta-analyses appraisal tools?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_appraisal_tool_experience_count <- dat %>% 
+  separate_rows(Q3, sep = ",\\s*") %>% 
+  filter(!is.na(Q3)) %>%
+  count(Q3) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_appraisal_tool_experience_percentage <-  total_appraisal_tool_experience_count %>% 
+  mutate(proportion = n/sum(total_appraisal_tool_experience_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 3
+fig_Q3 <-  total_appraisal_tool_experience_count %>% 
+  ggplot(aes(x = n, y =reorder(Q3, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 ,y = reorder(Q3,n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = total_appraisal_tool_experience_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_appraisal_tool_experience_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "Survey Question 3\nThe value in each bar is the total number of participants")
+
+
+fig_Q3
+
+# ggsave(here("survey_results", "fig_Q3.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+```{r}
+df_Q3 <- dat %>% 
+  filter(!is.na(Q3_1_TEXT)) %>% 
+  select(Q3_1_TEXT)
+
+# Table of the Q3
+ kable(df_Q3, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+ 
+# write_csv(df_Q3, file = here("survey_results", "df_Q3.csv"))
+
+```
+
+## Question 4
+What is the importance of reporting the software used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 1:
+Do the authors report the software used to conduct the analysis within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_software_importance_count <- dat %>% 
+  filter(!is.na(Q4)) %>%
+  count(Q4) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_software_importance_percentage <-  total_software_importance_count %>% 
+  mutate(proportion = n/sum(total_software_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 4
+fig_Q4 <-  total_software_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q4, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q4,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_software_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_software_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 1\nThe value in each bar is the total number of participants")
+
+
+fig_Q4
+
+# ggsave(here("survey_results", "fig_Q4.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 5
+Comments on MATES item 1 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q5 <- dat %>% 
+  filter(!is.na(Q5)) %>% 
+  select(c(Q4,Q5))
+
+# Table of the Q5
+ kable(df_Q5, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q5, file = here("survey_results", "df_Q5.csv"))
+
+```
+
+
+## Question 6
+What is the importance of reporting the packages used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 2:
+Do the authors report the packages used to conduct the analysis within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_package_importance_count <- dat %>% 
+  filter(!is.na(Q6)) %>%
+  count(Q6) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_package_importance_percentage <-  total_package_importance_count %>% 
+  mutate(proportion = n/sum(total_package_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 6
+fig_Q6 <-  total_package_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q6, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q6,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_package_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_package_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 2\nThe value in each bar is the total number of participants")
+
+
+fig_Q6
+
+# ggsave(here("survey_results", "fig_Q6.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 7
+Comments on MATES item 2 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q7 <- dat %>% 
+  filter(!is.na(Q7)) %>% 
+  select(c(Q6,Q7))
+
+# Table of the Q7
+ kable(df_Q7, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q7, file = here("survey_results", "df_Q7.csv"))
+ 
+```
+
+## Question 8
+What is the importance of reporting the version numbers of the software used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 3:
+Do the authors report the version numbers of the software used within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_version_importance_count <- dat %>% 
+  filter(!is.na(Q8)) %>%
+  count(Q8) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_version_importance_percentage <-  total_version_importance_count %>% 
+  mutate(proportion = n/sum(total_version_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 8
+fig_Q8 <-  total_version_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q8, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q8,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_version_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_version_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 3\nThe value in each bar is the total number of participants")
+
+
+fig_Q8
+
+# ggsave(here("survey_results", "fig_Q8.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 9
+Comments on MATES item 3 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q9 <- dat %>% 
+  filter(!is.na(Q9)) %>% 
+  select(c(Q8,Q9))
+
+# Table of the Q9
+ kable(df_Q9, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q9, file = here("survey_results", "df_Q9.csv"))
+
+```
+
+## Question 10
+What is the importance of reporting the code used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 4:
+Do the authors report the relevant code to conduct the analysis within the manuscript, supplementary material or an attached repository?
+```{r,fig.width=16, fig.height=8}
+# Seperate rows and count total 
+total_code_importance_count <- dat %>% 
+  filter(!is.na(Q10)) %>%
+  count(Q10) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_code_importance_percentage <-  total_code_importance_count %>% 
+  mutate(proportion = n/sum(total_code_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 10
+fig_Q10 <-  total_code_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q10, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q10,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_code_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_code_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 4\nThe value in each bar is the total number of participants")
+
+fig_Q10
+
+# ggsave(here("survey_results", "fig_Q10.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 11 
+Comments on MATES item 4 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q11 <- dat %>% 
+  filter(!is.na(Q11)) %>% 
+  select(c(Q10,Q11))
+
+# Table of the Q11
+ kable(df_Q11, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q11, file = here("survey_results", "df_Q11.csv"))
+ 
+```
+
+## Question 12
+What is the importance of reporting the primary model (or first model) used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 5:
+Do the authors report the primary model (or first model) used, either as word or statistical notation within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total 
+total_model_importance_count <- dat %>% 
+  filter(!is.na(Q12)) %>%
+  count(Q12) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_model_importance_percentage <-  total_model_importance_count %>% 
+  mutate(proportion = n/sum(total_model_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 12
+fig_Q12 <-  total_model_importance_count %>% 
+  ggplot(aes(x = n, y =reorder(Q12, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q12,n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_model_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_model_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 5\nThe value in each bar is the total number of participants")
+
+fig_Q12
+
+# ggsave(here("survey_results", "fig_Q12.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 13
+Comments on MATES item 5 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q13 <- dat %>% 
+  filter(!is.na(Q13)) %>% 
+  select(c(Q12,Q13))
+
+# Table of the Q13
+ kable(df_Q13, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q13, file = here("survey_results", "df_Q13.csv"))
+
+```
+
+## Question 14 
+What is the importance of reporting a justification of the primary model (or first model) used to conduct the meta-analysis to the quality of reporting?
+Referring to MATES item 6:
+Do the authors report a justification for the primary model (or first model) used to conduct the analysis within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total
+total_justification_importance_count <- dat %>% 
+  filter(!is.na(Q14)) %>%
+  count(Q14) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_justification_importance_percentage <-  total_justification_importance_count %>% 
+  mutate(proportion = n/sum(total_justification_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 14
+fig_Q14 <-  total_justification_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q14, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q14, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_justification_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_justification_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 6\nThe value in each bar is the total number of participants")
+
+fig_Q14
+
+# ggsave(here("survey_results", "fig_Q14.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 15
+Comments on MATES item 6 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q15 <- dat %>% 
+  filter(!is.na(Q15)) %>% 
+  select(c(Q14,Q15))
+
+# Table of the Q15
+ kable(df_Q15, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q15, file = here("survey_results", "df_Q15.csv"))
+
+```
+
+## Question 16
+What is the importance of reporting a weighting scheme for effect size estimates in a meta-analysis to the quality of reporting?
+Referring to MATES item 7:
+Do the authors report a weighting scheme for effect size estimates within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total
+total_weighting_scheme_importance_count <- dat %>% 
+  filter(!is.na(Q16)) %>%
+  count(Q16) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_weighting_scheme_importance_percentage <-  total_weighting_scheme_importance_count %>% 
+  mutate(proportion = n/sum(total_weighting_scheme_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 16
+fig_Q16 <-  total_weighting_scheme_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q16, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q16, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_weighting_scheme_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_weighting_scheme_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 7\nThe value in each bar is the total number of participants")
+
+fig_Q16
+
+# ggsave(here("survey_results", "fig_Q16.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+``` 
+
+## Question 17 
+Comments on MATES item 7 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q17 <- dat %>% 
+  filter(!is.na(Q17)) %>% 
+  select(c(Q16,Q17))
+
+# Table of the Q17
+ kable(df_Q17, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q17, file = here("survey_results", "df_Q17.csv"))
+
+```
+
+## Question 18
+What is the importance of reporting a consideration of non-independence of effect size estimates in a meta-analysis to the quality of reporting?
+Referring to MATES item 8:
+Do the authors report whether there is non-independence of effect size estimates within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total
+total_non_independence_importance_count <- dat %>% 
+  filter(!is.na(Q18)) %>%
+  count(Q18) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_non_independence_importance_percentage <-  total_non_independence_importance_count %>% 
+  mutate(proportion = n/sum(total_non_independence_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 18
+fig_Q18 <-  total_non_independence_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q18, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q18, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_non_independence_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_non_independence_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 8\nThe value in each bar is the total number of participants")
+
+fig_Q18
+
+# ggsave(here("survey_results", "fig_Q18.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 19
+Comments on MATES item 8 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q19 <- dat %>% 
+  filter(!is.na(Q19)) %>% 
+  select(c(Q18,Q19))
+
+# Table of the Q19
+ kable(df_Q19, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+ 
+# write_csv(df_Q19, file = here("survey_results", "df_Q19.csv"))
+
+```
+
+
+## Question 20
+What is the importance of reporting a measure of heterogeneity between effect size estimates in a meta-analysis to the quality of reporting?
+Referring to MATES item 9:
+Do the authors report a measure of heterogeneity between effect size estimates within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total for Question 20
+total_heterogeneity_importance_count <- dat %>% 
+  filter(!is.na(Q20)) %>%
+  count(Q20) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_heterogeneity_importance_percentage <-  total_heterogeneity_importance_count %>% 
+  mutate(proportion = n/sum(total_heterogeneity_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 20
+fig_Q20 <-  total_heterogeneity_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q20, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q20, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_heterogeneity_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_heterogeneity_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 9\nThe value in each bar is the total number of participants")
+
+fig_Q20
+
+# ggsave(here("survey_results", "fig_Q20.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 21
+Comments on MATES item 9 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q21 <- dat %>% 
+  filter(!is.na(Q21)) %>% 
+  select(c(Q20,Q21))
+
+# Table of the Q21
+ kable(df_Q21, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+ 
+# write_csv(df_Q21, file = here("survey_results", "df_Q21.csv"))
+
+```
+
+## Question 22
+What is the importance of reporting the moderator variables included in a meta-regression in a meta-analysis to the quality of reporting?
+Referring to MATES item 10:
+Do the authors report the moderator variables included in a meta-regression within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total for Question 22
+total_moderator_variables_importance_count <- dat %>% 
+  filter(!is.na(Q22)) %>%
+  count(Q22) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_moderator_variables_importance_percentage <-  total_moderator_variables_importance_count %>% 
+  mutate(proportion = n/sum(total_moderator_variables_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 22
+fig_Q22 <-  total_moderator_variables_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q22, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q22, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_moderator_variables_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_moderator_variables_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 10\nThe value in each bar is the total number of participants")
+
+fig_Q22
+
+# ggsave(here("survey_results", "fig_Q22.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 23
+Comments on MATES item 10 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q23 <- dat %>% 
+  filter(!is.na(Q23)) %>% 
+  select(c(Q22,Q23))
+
+# Table of the Q23
+ kable(df_Q23, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q23, file = here("survey_results", "df_Q23.csv"))
+
+```
+
+
+## Question 24
+What is the importance of reporting a test or measure of publication bias in a meta-analysis to the quality of reporting?
+Referring to MATES item 11: 
+Do the authors report a test or measure of publication bias within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total for Question 24
+total_publication_bias_importance_count <- dat %>% 
+  filter(!is.na(Q24)) %>%
+  count(Q24) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_publication_bias_importance_percentage <-  total_publication_bias_importance_count %>% 
+  mutate(proportion = n/sum(total_publication_bias_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 24
+fig_Q24 <-  total_publication_bias_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q24, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q24, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_publication_bias_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_publication_bias_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 11\nThe value in each bar is the total number of participants")
+
+fig_Q24
+
+# ggsave(here("survey_results", "fig_Q24.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 25
+Comments on MATES item 11 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q25 <- dat %>% 
+  filter(!is.na(Q25)) %>% 
+  select(c(Q24,Q25))
+
+# Table of the Q25
+ kable(df_Q25, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q25, file = here("survey_results", "df_Q25.csv"))
+
+```
+
+## Question 26
+What is the importance of reporting a sensitivity analysis in a meta-analysis to the quality of reporting?
+Referring to MATES items 12:
+Do the authors report a sensitivity analysis in addition to a publication bias test within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total for Question 26
+total_sensitivity_analysis_importance_count <- dat %>% 
+  filter(!is.na(Q26)) %>%
+  count(Q26) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_sensitivity_analysis_importance_percentage <-  total_sensitivity_analysis_importance_count %>% 
+  mutate(proportion = n/sum(total_sensitivity_analysis_importance_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 26
+fig_Q26 <-  total_sensitivity_analysis_importance_count %>% 
+  ggplot(aes(x = n, y = reorder(Q26, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q26, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_sensitivity_analysis_importance_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_sensitivity_analysis_importance_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 12\nThe value in each bar is the total number of participants")
+
+fig_Q26
+
+# ggsave(here("survey_results", "fig_Q26.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 27
+Comments on MATES item 12 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q27 <- dat %>% 
+  filter(!is.na(Q27)) %>% 
+  select(c(Q26,Q27))
+
+# Table of the Q27
+ kable(df_Q27, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "150%", height = "400px")
+
+# write_csv(df_Q27, file = here("survey_results", "df_Q27.csv"))
+ 
+```
+
+## Question 28
+What is the importance of reporting the total number of studies included in the meta-analysis to the quality of reporting?
+Referring to MATES item 13:
+Do the authors report the total number of studies within the manuscript or supplementary material?
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total for Question 28
+total_studies_included_count <- dat %>% 
+  filter(!is.na(Q28)) %>%
+  count(Q28) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_studies_included_percentage <-  total_studies_included_count %>% 
+  mutate(proportion = n/sum(total_studies_included_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 28
+fig_Q28 <-  total_studies_included_count %>% 
+  ggplot(aes(x = n, y = reorder(Q28, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q28, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_studies_included_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_studies_included_count$n*1.3))) +
+  MATES_theme() +
+  labs(caption = "MATES item 13\nThe value in each bar is the total number of participants")
+
+fig_Q28
+
+# ggsave(here("survey_results", "fig_Q28.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 29
+Comments on MATES item 13 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q29 <- dat %>% 
+  filter(!is.na(Q29)) %>% 
+  select(c(Q28,Q29))
+
+# Table of the Q29
+ kable(df_Q29, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q29, file = here("survey_results", "df_Q29.csv"))
+
+```
+
+
+## Question 30
+What is the importance of reporting the total number of effect size estimates included in the meta-analysis to the quality of reporting?
+Referring to MATES item 14:
+Do the authors report the total number of effect sizes within the manuscript or supplementary material?
+```{r,fig.width=10, fig.height=5}
+# Separate rows and count total for Question 30
+total_effect_size_count <- dat %>% 
+  filter(!is.na(Q30)) %>%
+  count(Q30) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_effect_size_percentage <-  total_effect_size_count %>% 
+  mutate(proportion = n/sum(total_effect_size_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 30
+fig_Q30 <-  total_effect_size_count %>% 
+  ggplot(aes(x = n, y = reorder(Q30, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q30, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_effect_size_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_effect_size_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 14", size = 15)
+
+fig_Q30
+
+# ggsave(here("survey_results", "fig_Q30.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 31
+Comments on MATES item 14 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q31 <- dat %>% 
+  filter(!is.na(Q31)) %>% 
+  select(c(Q30,Q31))
+
+# Table of the Q31
+ kable(df_Q31, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q31, file = here("survey_results", "df_Q31.csv"))
+
+```
+
+## Question 32
+What is the importance of reporting the results using a visualisation in a meta-analysis to the quality of reporting?
+Referring to MATES item 15:
+Do the authors report the results using a visualisation in the manuscript or supplementary material?
+```{r,fig.width=10, fig.height=5}
+# Separate rows and count total for Question 32
+total_visualisation_report_count <- dat %>% 
+  filter(!is.na(Q32)) %>%
+  count(Q32) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_visualisation_report_percentage <-  total_visualisation_report_count %>% 
+  mutate(proportion = n/sum(total_visualisation_report_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 32
+fig_Q32 <-  total_visualisation_report_count %>% 
+  ggplot(aes(x = n, y = reorder(Q32, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q32, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_visualisation_report_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_visualisation_report_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 15", size = 15)
+
+fig_Q32
+
+# ggsave(here("survey_results", "fig_Q32.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 33
+Comments on MATES item 15 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q33 <- dat %>% 
+  filter(!is.na(Q33)) %>% 
+  select(c(Q32,Q33))
+
+# Table of the Q33
+ kable(df_Q33, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q33, file = here("survey_results", "df_Q33.csv"))
+
+```
+
+## Question 34
+What is the importance of reporting the data extracted in the meta-analysis to the quality of reporting?
+Referring to MATES item 16:
+Do the authors report the data extracted from each eligible primary study within the manuscript, supplementary material or external repository?
+```{r,fig.width=10, fig.height=5}
+# Separate rows and count total for Question 34
+total_data_extraction_report_count <- dat %>% 
+  filter(!is.na(Q34)) %>%
+  count(Q34) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_data_extraction_report_percentage <-  total_data_extraction_report_count %>% 
+  mutate(proportion = n/sum(total_data_extraction_report_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 34
+fig_Q34 <-  total_data_extraction_report_count %>% 
+  ggplot(aes(x = n, y = reorder(Q34, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q34, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_data_extraction_report_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_extraction_report_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 16", size = 15)
+
+fig_Q34
+
+# ggsave(here("survey_results", "fig_Q34.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 35
+Comments on MATES item 16 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q35 <- dat %>% 
+  filter(!is.na(Q35)) %>% 
+  select(c(Q34,Q35))
+
+# Table of the Q35
+ kable(df_Q35, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q35, file = here("survey_results", "df_Q35.csv"))
+
+```
+
+## Question 36
+What is the importance of reporting the descriptions of data created in the meta-analysis to the quality of reporting?
+Referring to MATES item 17:
+Do the authors report descriptions of the data extracted from each eligible within the manuscript, supplementary material or external repository?
+```{r,fig.width=10, fig.height=5}
+# Separate rows and count total for Question 36
+total_data_description_report_count <- dat %>% 
+  filter(!is.na(Q36)) %>%
+  count(Q36) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+total_data_description_report_percentage <-  total_data_description_report_count %>% 
+  mutate(proportion = n/sum(total_data_description_report_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 36
+fig_Q36 <-  total_data_description_report_count %>% 
+  ggplot(aes(x = n, y = reorder(Q36, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q36, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = total_data_description_report_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_description_report_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 17", size = 15)
+
+fig_Q36
+
+# ggsave(here("survey_results", "fig_Q36.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 37
+Comments on MATES item 17 (e.g., potential improvements or a justification of response)
+```{r}
+df_Q37 <- dat %>% 
+  filter(!is.na(Q37)) %>% 
+  select(c(Q36,Q37))
+
+# Table of the Q37
+ kable(df_Q37, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q37, file = here("survey_results", "df_Q37.csv"))
+
+
+```
+
+## Question 38
+Are there any elements of meta-analyses that are considered important to reporting quality that are not currently included in MATES?
+```{r}
+df_Q38 <- dat %>% 
+  filter(!is.na(Q38)) %>% 
+  select(Q38)
+
+# Table of the Q38
+ kable(df_Q38, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q38, file = here("survey_results", "df_Q38.csv"))
+
+```
+
+## Question 39
+Any final comments or feedback on MATES?
+```{r}
+df_Q39 <- dat %>% 
+  filter(!is.na(Q39)) %>% 
+  select(Q39)
+
+# Table of the Q39
+ kable(df_Q39, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(df_Q39, file = here("survey_results", "df_Q39.csv"))
+
+```
+
+# **MATES task**
+
+## Task study allocation
+```{r}
+# Set seed for reproducibility
+set.seed(42)
+
+# Combine the expanded papers with the repeated author names
+task_pap_assigned <- task_pap %>%
+  slice(rep(1:n(), each = 4)) %>%
+  mutate(Name = rep(task_vol$Name, length.out = n())) %>%
+  left_join(task_vol %>% 
+  select(Name, Email), by = "Name") %>%
+  arrange(Name)
+
+# write.csv(task_pap_assigned, file.path(here("data", "task"),"MATES_task_pap_assigned.csv"))
+
+```
+
+## MATES task feedback
+
+Select required columns & rows for the feedback plots 
+```{r}
+dat_task <-  select(dat_task, -c(StartDate, EndDate, Status, IPAddress, Progress, Duration, Finished, RecordedDate, ResponseId, RecipientLastName, RecipientFirstName, RecipientEmail, ExternalReference, LocationLatitude, LocationLongitude, DistributionChannel, UserLanguage))
+
+dat_task <- dat_task[-c(1, 2), ]
+
+dat_task
+
+```
+
+### Question 2
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 1:
+
+**MATES item 1: Software reporting**
+
+Question
+o	Do the authors report the software or programming language used to conduct the analysis (i.e., the software or programming language used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+o	The authors have reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘No’
+o	The authors have not reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 1.
+
+```{r}
+dat_task_Q2 <- dat_task %>% 
+  select(c(Q3, Q2))
+
+# Table of the Q39
+ kable(dat_task_Q2, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q2, file = here("task_results", "dat_task_Q2.csv"))
+
+```
+
+## Question 3
+How difficult was MATES item 1: Software reporting to implement?
+```{r,fig.width=10, fig.height=5}
+# Separate rows and count total for Task Question 3
+software_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q3)) %>%
+  count(Q3) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+software_difficulty_percentage <-  software_difficulty_count %>% 
+  mutate(proportion = n/sum(software_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 36
+fig_task_Q3 <-  software_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q3, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q3, n)), hjust = 0.5, size = 8, color = "white") +
+ geom_text(data = software_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(software_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 1", size = 15)
+
+fig_task_Q3
+
+# ggsave(here("survey_results", "fig_task_Q3.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+
+```
+
+## Question 4
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 2:
+
+**MATES item 2: Code reporting**
+
+Question 
+o	Do the authors report any relevant code used to conduct the analysis (i.e., the code used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript, supplementary material, or external repository? 
+
+Criteria for ‘Yes’
+o	The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+o	The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+o	The authors have used a GUI/click based software that does not produce a code or syntax. Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 1).
+
+```{r}
+dat_task_Q4 <- dat_task %>% 
+  select(c(Q5,Q4))
+
+# Table of the Q39
+ kable(dat_task_Q4, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+
+```
+
+
+## Question 5 
+How difficult was MATES item 2: Code reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 5 (Code Reporting Difficulty)
+code_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q5)) %>%
+  count(Q5) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+code_difficulty_percentage <-  code_difficulty_count %>% 
+  mutate(proportion = n/sum(code_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 5
+fig_task_Q5 <-  code_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q5, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q5, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = code_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(code_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 2: Code Reporting", size = 15)
+
+fig_task_Q5
+
+# ggsave(here("survey_results", "fig_task_Q5.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+
+```
+
+## Question 6
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 3:
+
+**MATES item 3: Number of included primary studies reporting**
+
+Question 
+o	Do the authors report the total number of primary studies (i.e., separate individual articles) included in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+o	The authors have reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies can be inferred from a screening flowchart (e.g., PRISMA flowchart), or the authors can state the number of studies per subgroup analysis. 
+
+Criteria for ‘No’
+o	The authors have not reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies cannot be inferred by counting from a forest plot, or from a provided dataset. 
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 3.
+
+```{r}
+dat_task_Q6 <- dat_task %>% 
+  select(c(Q7,Q6))
+
+# Table of the Q39
+ kable(dat_task_Q6, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+
+```
+
+
+## Question 7
+How difficult was MATES item 3: Number of included primary studies reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 6 (Number of Included Studies Reporting Difficulty)
+study_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q7)) %>%
+  count(Q7) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+study_difficulty_percentage <- study_difficulty_count %>% 
+  mutate(proportion = n/sum(study_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 6
+fig_task_Q7 <- study_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q7, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q7, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = study_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(study_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 3: Number of Included Studies Reporting", size = 15)
+
+fig_task_Q7
+
+# ggsave(here("survey_results", "fig_task_Q7.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 8
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 4:
+
+**MATES item 4: Number of included effect sizes reporting**
+
+Question 
+o	Do the authors report the total number of effect size estimates synthesised in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+o	The authors have reported the total number of effect sizes estimates synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘No’
+o	The authors have not reported the total number of effect sizes synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 4.
+
+
+```{r}
+dat_task_Q8 <- dat_task %>% 
+  select(c(Q9,Q8))
+
+# Table of the Q39
+ kable(dat_task_Q6, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+
+```
+
+
+## Question 9
+How difficult was MATES item 3: Number of included primary studies reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 6 (Number of Included Studies Reporting Difficulty)
+effectsize_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q9)) %>%
+  count(Q9) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+effectsize_difficulty_percentage <- effectsize_difficulty_count %>% 
+  mutate(proportion = n/sum(effectsize_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 6
+fig_task_Q9 <- effectsize_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q9, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q9, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = effectsize_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(effectsize_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 3: Number of Included Studies Reporting", size = 15)
+
+fig_task_Q9
+
+# ggsave(here("survey_results", "fig_task_Q9.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 10
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 5:
+
+**MATES item 5: Effect size statistic formula reporting**
+
+Question 
+o	Do the authors report the formula (or reference for formula) for the effect size statistic/measure used (e.g., Zr, Hedge’s g, Cohen’s d, or lnRR) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+o	The authors have reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘No’
+o	The authors have not reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 5.
+
+```{r}
+dat_task_Q10 <- dat_task %>% 
+  select(c(Q11,Q10))
+
+# Table of the Q39
+ kable(dat_task_Q10, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q10.csv"))
+
+```
+
+## Question 11
+How difficult was MATES item 5: Effect size statistic/measure reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 11 (Effect Size Statistic/Measure Reporting Difficulty)
+effectsize_formula_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q11)) %>%
+  count(Q11) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+effectsize_formula_difficulty_percentage <- effectsize_formula_difficulty_count %>% 
+  mutate(proportion = n/sum(effectsize_formula_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 11
+fig_task_Q11 <- effectsize_formula_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q11, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q11, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = effectsize_formula_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(effectsize_formula_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 5: Effect Size Statistic/Measure Reporting", size = 15)
+
+fig_task_Q11
+
+# ggsave(here("survey_results", "fig_task_Q11.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 12
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 6:
+
+**MATES item 6: Model type reporting**
+
+Question 
+o	Do the authors report the type of the meta-analytic/meta-regression model (e.g., fixed, random, or multi-level models), either descriptively or in statistical notation in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+o	The authors have reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘No’
+o	The authors have not reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 6.
+
+```{r}
+dat_task_Q12 <- dat_task %>% 
+  select(c(Q13,Q12))
+
+# Table of the Q39
+ kable(dat_task_Q12, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q10.csv"))
+
+```
+
+## Question 13
+How difficult was MATES item 6: Model type reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 13 (Model Type Reporting Difficulty)
+model_type_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q13)) %>%
+  count(Q13) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+model_type_difficulty_percentage <- model_type_difficulty_count %>% 
+  mutate(proportion = n/sum(model_type_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 13
+fig_task_Q13 <- model_type_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q13, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q13, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = model_type_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(model_type_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 6: Model Type Reporting", size = 15)
+
+fig_task_Q13
+
+# ggsave(here("survey_results", "fig_task_Q13.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 14
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 7:
+
+**MATES item 7: Effect size weights reporting**
+
+Question 
+o	Do the authors report the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material? 	
+
+Criteria for ‘Yes’
+o	The authors have reported the sampling variance, sampling error or equivalent of effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘No’
+o	The authors have not reported the sampling variance, sampling error or equivalent of effect size estimates in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	The authors have conducted a meta-analysis without weights (i.e., unweighted meta-analysis).
+
+```{r}
+dat_task_Q14 <- dat_task %>% 
+  select(c(Q15,Q14))
+
+# Table of the Q39
+ kable(dat_task_Q14, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 15
+How difficult was MATES item 7: Effect size weights reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 15 (Effect Size Weights Reporting Difficulty)
+effect_size_weights_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q15)) %>%
+  count(Q15) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+effect_size_weights_difficulty_percentage <- effect_size_weights_difficulty_count %>% 
+  mutate(proportion = n/sum(effect_size_weights_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 15
+fig_task_Q15 <- effect_size_weights_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q15, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q15, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = effect_size_weights_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(effect_size_weights_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 7: Effect Size Weights Reporting", size = 15)
+
+fig_task_Q15
+
+# ggsave(here("survey_results", "fig_task_Q15.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 16
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 8:
+
+**MATES item 8: Effect size dependence (non-independence) reporting**
+
+Question 
+o	Do the authors report the dependence (e.g., multiplicity or, repeated measure) of effect size estimates (e.g., acknowledge multiple effect sizes were taken from a single study) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+o	The authors have reported whether there is dependence of effect size estimates in the manuscript or supplementary material. If a meta-analysis reports that effect size estimates are independent allocate ‘Yes’.
+
+Criteria for ‘No’
+o	The authors have not reported whether there is dependence of effect size estimates in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 8.
+
+```{r}
+dat_task_Q16 <- dat_task %>% 
+  select(c(Q17,Q16))
+
+# Table of the Q39
+ kable(dat_task_Q16, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 17
+How difficult was MATES item 8: Effect size dependence (non-independence) reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 17 (Effect Size Dependence Reporting Difficulty)
+effect_size_dependence_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q17)) %>%
+  count(Q17) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+effect_size_dependence_difficulty_percentage <- effect_size_dependence_difficulty_count %>% 
+  mutate(proportion = n/sum(effect_size_dependence_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 17
+fig_task_Q17 <- effect_size_dependence_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q17, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q17, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = effect_size_dependence_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(effect_size_dependence_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 8: Effect Size Dependence Reporting", size = 15)
+
+fig_task_Q17
+
+# ggsave(here("survey_results", "fig_task_Q17.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 18
+
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 9:
+
+**MATES item 9: Overall mean effect reporting**
+
+Question 
+o	Do the authors report the overall mean effect of the meta-analyses/meta-regression using a plot, table or within text in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+o	The authors reported the overall mean effect of the meta-analyses/meta-regression in the text, or within a plot or table in the manuscript or supplementary material.
+
+Criteria for ‘No’
+o	The authors have not reported the overall mean effect of the meta-analyses/meta-regression in the text, or within a plot or table in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 9.
+
+```{r}
+dat_task_Q18 <- dat_task %>% 
+  select(c(Q19,Q18))
+
+# Table of the Q39
+ kable(dat_task_Q18, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 19 
+How difficult was MATES item 9: Overall mean effect reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 19 (Overall Mean Effect Reporting Difficulty)
+mean_effect_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q19)) %>%
+  count(Q19) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+mean_effect_difficulty_percentage <- mean_effect_difficulty_count %>% 
+  mutate(proportion = n/sum(mean_effect_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 19
+fig_task_Q19 <- mean_effect_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q19, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q19, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = mean_effect_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(mean_effect_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 9: Overall Mean Effect Reporting", size = 15)
+
+fig_task_Q19
+
+# ggsave(here("survey_results", "fig_task_Q19.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 20
+
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 10:
+
+**MATES item 10: Heterogeneity reporting**
+
+Question 
+o	Do the authors report an assessment of heterogeneity (e.g., I2, tau2, 𝜎 2 or, Q-statistic) between effect size estimates in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+o	The authors have reported an assessment of heterogeneity between effect size estimates in the manuscript or supplementary material. 	
+
+Criteria for ‘No’
+o	The authors have not reported an assessment of heterogeneity between effect size estimates in the manuscript or supplementary material. 	
+
+Criteria for ‘Not Applicable’
+o	The study has stated that the analysis is unweighted. 
+
+```{r}
+dat_task_Q20 <- dat_task %>% 
+  select(c(Q21,Q20))
+
+# Table of the Q39
+ kable(dat_task_Q20, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 21
+"How difficult was MATES item 10: Heterogeneity reporting to implement?"
+```{r}
+# Separate rows and count total for Task Question 21 (Heterogeneity Reporting Difficulty)
+heterogeneity_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q21)) %>%
+  count(Q21) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+heterogeneity_difficulty_percentage <- heterogeneity_difficulty_count %>% 
+  mutate(proportion = n/sum(heterogeneity_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 21
+fig_task_Q21 <- heterogeneity_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q21, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q21, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = heterogeneity_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(heterogeneity_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 10: Heterogeneity Reporting", size = 15)
+
+fig_task_Q21
+
+# ggsave(here("survey_results", "fig_task_Q21.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 22
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 11:
+
+**MATES item 11: Publication bias reporting**
+
+Question 
+o	Do the authors report an assessment of publication bias in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+o	The authors have reported an assessment of publication bias in the manuscript or supplementary material.
+
+Criteria for ‘No’
+o	The authors have not reported an assessment of publication bias in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+o	The authors report that an assessment of publication bias cannot be conducted.
+
+```{r}
+dat_task_Q22 <- dat_task %>% 
+  select(c(Q23,Q22))
+
+# Table of the Q39
+ kable(dat_task_Q22, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 23
+How difficult was MATES item 11: Publication bias reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 23 (Publication Bias Reporting Difficulty)
+publication_bias_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q23)) %>%
+  count(Q23) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+publication_bias_difficulty_percentage <- publication_bias_difficulty_count %>% 
+  mutate(proportion = n/sum(publication_bias_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 23
+fig_task_Q23 <- publication_bias_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q23, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q23, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = publication_bias_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(publication_bias_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 11: Publication Bias Reporting", size = 15)
+
+fig_task_Q23
+
+# ggsave(here("survey_results", "fig_task_Q23.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 24
+
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 12:
+
+**MATES item 12: Sensitivity analysis reporting**
+
+Question 
+o	Do the authors report a sensitivity analysis or subset analysis in addition to the publication bias assessment (e.g., leave-one-out analysis, use of alternative model or within-study risk of bias assessment) in the manuscript or supplementary material?   
+
+Criteria for ‘Yes’
+o	The authors reported a sensitivity analysis in addition to the publication bias assessment in the manuscript or supplementary material.  
+
+Criteria for ‘No’
+o	The authors have not reported a sensitivity analysis in addition to the publication bias assessment   in the manuscript or supplementary material. 
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 12.
+
+```{r}
+dat_task_Q24 <- dat_task %>% 
+  select(c(Q25,Q24))
+
+# Table of the Q39
+ kable(dat_task_Q24, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 25
+How difficult was MATES item 12: Sensitivity analysis reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 25 (Sensitivity Analysis Reporting Difficulty)
+sensitivity_analysis_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q25)) %>%
+  count(Q25) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+sensitivity_analysis_difficulty_percentage <- sensitivity_analysis_difficulty_count %>% 
+  mutate(proportion = n/sum(sensitivity_analysis_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 25
+fig_task_Q25 <- sensitivity_analysis_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q25, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q25, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = sensitivity_analysis_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(sensitivity_analysis_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 12: Sensitivity Analysis Reporting", size = 15)
+
+fig_task_Q25
+
+# ggsave(here("survey_results", "fig_task_Q25.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 26
+
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 13:
+
+**MATES item 13: Data reporting/archiving**
+
+Question 
+o	Do the authors report the data (i.e., used to calculate effect sizes and conduct the meta-analysis) extracted from each eligible primary study (i.e., research paper) in the manuscript, supplementary material, or external repository?
+
+Criteria for ‘Yes’
+o	The authors have reported the data extracted from each eligible primary in the manuscript, supplementary material, or external repository. In cases when the authors state the data is sensitive and cannot be shared allocate ‘Yes’. 
+
+Criteria for ‘No’
+o	The authors have not reported the data extracted from each eligible primary study the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+o	There is no ‘Not Applicable’ option for MATES item 13.
+
+
+```{r}
+dat_task_Q26 <- dat_task %>% 
+  select(c(Q27,Q26))
+
+# Table of the Q39
+ kable(dat_task_Q26, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 27
+How difficult was MATES item 13: Data reporting/archiving to implement?
+```{r}
+# Separate rows and count total for Task Question 27 (Data Reporting/Archiving Difficulty)
+data_archiving_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q27)) %>%
+  count(Q27) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+data_archiving_difficulty_percentage <- data_archiving_difficulty_count %>% 
+  mutate(proportion = n/sum(data_archiving_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 27
+fig_task_Q27 <- data_archiving_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q27, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q27, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = data_archiving_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(data_archiving_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 13: Data Reporting/Archiving", size = 15)
+
+fig_task_Q27
+
+# ggsave(here("survey_results", "fig_task_Q27.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 28
+Provide feedback and suggest rewording of the following item (if necessary):
+
+Referring to MATES item 14:
+
+**MATES item 14: Variable description reporting/archiving**
+
+Question 
+o	Do the authors report descriptions of the variables extracted (i.e., meta-data or columns in dataset) from each eligible study primary study (i.e., research paper) in the manuscript, supplementary material, or external repository?
+
+Criteria for ‘Yes’
+o	The authors have reported descriptions of the variables extracted from each eligible study primary study in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+o	The authors have not reported descriptions of the variables extracted from each eligible study primary study in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+o	The authors have not reported the data extracted from each eligible primary study in the manuscript, supplementary material, or external repository (i.e., ‘No’ for MATES item 13) or the authors have reported that the data cannot be provided because the data is sensitive.
+
+
+```{r}
+dat_task_Q26 <- dat_task %>% 
+  select(c(Q29,Q28))
+
+# Table of the Q39
+ kable(dat_task_Q26, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
+
+## Question 29
+How difficult was MATES item 14: Variable description reporting to implement?
+```{r}
+# Separate rows and count total for Task Question 29 (Variable Description Reporting Difficulty)
+variable_description_difficulty_count <- dat_task %>% 
+  filter(!is.na(Q29)) %>%
+  count(Q29) %>% 
+  arrange(desc(n))
+
+# Calculate count as a percentage
+variable_description_difficulty_percentage <- variable_description_difficulty_count %>% 
+  mutate(proportion = n/sum(variable_description_difficulty_count$n),
+         percentage = proportion*100)
+
+# Plot for survey question 29
+fig_task_Q29 <- variable_description_difficulty_count %>% 
+  ggplot(aes(x = n, y = reorder(Q29, n)), hjust = 0.5) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = n, x = n/2 , y = reorder(Q29, n)), hjust = 0.5, size = 8, color = "white") +
+  geom_text(data = variable_description_difficulty_percentage, aes(label = paste0("(", round(percentage, 1), "%)"), x = n), 
+            hjust = -0.1, size = 8, color = "black", fontface = "bold") +
+  scale_fill_identity(guide = "none") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, max(variable_description_difficulty_count$n*1.3))) +
+  MATES_theme() +
+  labs(tag = "MATES item 14: Variable Description Reporting", size = 15)
+
+fig_task_Q29
+
+# ggsave(here("survey_results", "fig_task_Q29.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+
+```
+
+## Question 30
+Provide overall comments on MATES (e.g. order of questions, structure of questions or on glossary of terms)
+```{r}
+dat_task_Q30 <- dat_task %>% 
+  select(Q30)
+
+# Table of the Q39
+ kable(dat_task_Q30, "html") %>%
+    kable_styling("bordered", position = "left") %>%
+    scroll_box(width = "250%", height = "800px")
+
+# write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
+
+```
