@@ -1,24 +1,4 @@
 Q17,Q16
-How difficult was MATES item 8: Effect size dependence (non-independence) reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
-
-MATES item 8: Effect size dependence (non-independence) reporting
-
-
-Question
-Do the authors report the dependence (e.g., multiplicity or, repeated measure) of effect size estimates (e.g., acknowledge multiple effect sizes were taken from a single study) in the manuscript or supplementary material?
-
-
-Criteria for ‘Yes’
-The authors have reported whether there is dependence of effect size estimates in the manuscript or supplementary material. If a meta-analysis reports that effect size estimates are independent allocate ‘Yes’.
-
-
-Criteria for ‘No’
-The authors have not reported whether there is dependence of effect size estimates in the manuscript or supplementary material.
-
-
-Criteria for ‘Not Applicable’ 
-There is no ‘Not Applicable’ option for MATES item 8."
-"{""ImportId"":""QID43""}","{""ImportId"":""QID29_TEXT""}"
 Somewhat easy,"Sometimes they explicitly state they assume they are independent even they know they are not - not clear if this means that ""If a meta-analysis reports that effect size estimates are independent"" or not"
 NA,NA
 Extremely easy,NA

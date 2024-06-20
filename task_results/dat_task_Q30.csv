@@ -1,0 +1,38 @@
+Q30
+NA
+NA
+"Overall easy to follow, but some items left room for some uncertainty"
+"the tool is very well done, I don't have particular comments on how to improve it, the various items are clearly described and it is easy to understant the various points. I furthermore think that the needed aspects of a meta-analysis were properly included in MATES"
+Suggested order of questions (to better follow the flow of article reading): 5 - 6 - 8 - 1 - 2 - 3 - 4 - 9 - 7 - 10 - 11 - 12 - 13 - 14
+"I wish I would have been able to answer the questions in whatever order I wanted to. I often found the information for items 10, 11, 12, 13 before items 6-9. Having to do them in a strict order made it take me longer than it would have otherwise."
+"I think this tool has immense promise overall - great work so far. However, some questions may need to be re-worded or have additional information added to aid users. Some explicit discussions with the larger MATES group about resolving ambiguity might also be helpful (e.g. exactly how much information needs to be reported to get a 'yes'?)."
+"Just a few suggestions.  A lot of the latter information (ES, weighting, raw data etc.) should be in a forest plot.  In healthcare it would be rare for a MA not to have a forest plot."
+"The questions could be presented in a different order e.g. I found that usually the first answer to appear in the text was referencing MATES Item 3 (number of primary studies), not the software used.
+
+Should the date of literature searches also be reported for gold-standard? e.g. 'Literature searches were conducted in May 2024'?
+
+I found MATES item 7 and 8 consistently difficult and am not confident in my responses for these criteria. 
+
+I think the studies included should be referenced (e.g. a reference list in the Supplementary material) alongside the total number included?
+
+A comprehensive description of the variables extracted could possibly include a unit where applicable?"
+"Maybe rethink the phrasing of item 4 to focus on the number of effect sizes per subgroup instead of 'total number of effect size estimates' - for results interpretation it is more relevante to know the subgroup sample size than the total sample size.
+Maybe rethink the phrasing of item 8 to 'Do the authors acknowledge the dependence...' if the focus is to be on authors being aware of the implications of using multiple effect sizes per study.
+Maybe item 14 can also be made clear. I assumed that any list or table with moderators would qualify, but took me some time to process this item...
+
+"
+"1. Can provide suggestions on what kind of common keywords can be used for the question search.
+2. Provide some guidelines to the users where can we normally find the relevant answers. For example, authors tend to provide sensitivity analysis and publication bias in the supplementary materials."
+"I think the tool is pretty easy to use overall, but it would be helpful to have more examples or a small FAQ for each question. The description of each item is quite short and it leaves some gaps for interpretation. 
+For instance, items 10-12 say that authors have to ""report"" publication bias/heterogeneity/sensitivity analyses. What if the authors say they did, but don't report the results of these assessments? What if the authors' objective is not to calculate an overall effect because it hardly makes sense for their study in Item 9?
+I really think a more thorough description of each item + a FAQ could help answer most questions people would have, and ensure the tool is fully reproducible. 
+I also think that Item 6 is too vague, because the type of model does not tell much about the actual model structure. At the end of the day, I see this tool not just as an assessment of already published studies, but also as a guide people can use to design and report their study. If people see that only suggesting the model type is proposed in this tool, then it suggests it is part of best/recommended practices. However, this is clearly not enough in practice, and I think making the tool stricter overall (e.g., recommending reporting the whole model specification)can really push forward practices and make sure people report things more thoroughly."
+"I'm not sure if questions as formulated can 1. sufficiently discriminate between meta-analyses (for example, those that conduct a thorough publication bias analysis versus those that do it quickly) 2. Allow judgment of methodological reproducibility (for this, we need more details on the models; there are no questions on the number of databases used, the search string, ...)."
+NA
+"Perhaps include an item evaluating if a Quality Assessment was undertaken. 
+Item 2 or in the Glossary: provide a list of GUI softwares.
+Item 7: I would suggest also to include confidence intervals, or relative weight.
+Item 9: I would suggest also to include the respective lower and upper confidence intervals.
+Item 14: Sometimes although the extracted raw data is not reported, the authors describe the types of variables they extracted. Consider YES, even when the previous item was scored with a NO?
+In the glossary: pooled effect i.e., overall effect.  
+"
