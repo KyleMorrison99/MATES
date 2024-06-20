@@ -1,0 +1,34 @@
+Q9,Q8
+How difficult was MATES item 4: Number of included effect size reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 4: Number of included effect sizes reporting
+
+Question
+Do the authors report the total number of effect size estimates synthesised in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the total number of effect sizes estimates synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘No’
+The authors have not reported the total number of effect sizes synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 4."
+"{""ImportId"":""QID39""}","{""ImportId"":""QID25_TEXT""}"
+Somewhat easy,"sometimes different terminology used which may be hard to interpret - e.g. samples, studies."
+NA,NA
+Somewhat easy,NA
+Extremely easy,NA
+Somewhat difficult,"Sometimes the number of effect sizes corresponds to the number of primary studies, and the authors therefore do not explicitly report the number of effect sizes, but do explicitly cite the number of primary studies. Perhaps you could add a clarification to take account of these cases."
+Somewhat easy,NA
+Somewhat easy,"I found the language for MATES item 4 to be well-defined reasonable, but there can be confusion when authors do not report results using the same words. For example, one paper that I reviewed (#35 - Rezaeian et al, 2023) appeared to report these as 'datasets' instead of 'effect sizes', which was ambiguous and led me to spend a lot of time trying to figure out what the authors MEANT instead of what they actually wrote. This may be an especially common issue for authors who are writing in a second or third language, but I also don't think it is easy to solve."
+Extremely easy,NA
+Somewhat difficult,"I found this criteria difficult. 
+The sentence 'The total number of effect sizes cannot be inferred by counting and must be stated explicitly.' is included in both the 'Yes' and 'No' criteria.  I feel it would be easier to understand if the 'Yes' criteria was 'Total number of effect sizes are stated explicitly' and the 'No' criteria was changed to say 'Effect sizes are not stated, or can only be inferred by counting'"
+Somewhat easy,"I was a little confused with this item because I was not sure if you wanted the authors to state specifically the number of effect sizes or if it would be enough that they shown the effect sizes in the forest plots (from where we can see how many were used). However, because it is easy to count the number of effect sizes used in the forest plots I consired this as 'authors report the total number of effect size estimates synthesised'. Also, the term 'total' was a little confusing to me because maybe more important than the total number of effect sizes in a matrix is the number of effect sizes per moderator level because this is what directly affects the confidence we have in the result for that subgroup."
+Somewhat easy,NA
+Somewhat easy,"For studies using fixed-effect meta-analyses, the number of effect sizes estimates is often the number of studies. Maybe it's worth mentioning that the authors have to clearly specify how many effect sizes were taken from each study, and how to deal with studies mentioning ""fixed-effect"" without further details?"
+Somewhat difficult,"
+To my surprise, it's more difficult than I thought, especially for medical studies. For certain setups (cohorts, etc.), in my opinion, there's no need to distinguish between studies and effect sizes (?). When there is a classic forest plot, you just need to count the number of lines in the forest plot, right?"
+Neither easy nor difficult,NA
+Neither easy nor difficult,NA

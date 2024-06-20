@@ -1,0 +1,40 @@
+Q5,Q4
+How difficult was MATES item 2: Code reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 2: Code reporting
+
+Question
+Do the authors report any relevant code used to conduct the analysis (i.e., the code used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript, supplementary material, or external repository? 
+
+Criteria for ‘Yes’
+The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+The authors have used a GUI/click based software that does not produce a code. Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 1)."
+"{""ImportId"":""QID37""}","{""ImportId"":""QID23_TEXT""}"
+Somewhat difficult,"some of the GUI/click based software that does not produce a code per se but can produce the exact log of all procedures which can be used to recreate the analyses. In this case it would make sense to score as ""yes"". However, if you are not familiar wth siftware it might be hard to tell whether it produces a log."
+NA,NA
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,"* The information provided in the glossary - definition of the graphical user interface (GUI) - was essential in order to be able to respond correctly if software such as Stata was used.
+* What if the code is only partially reported?"
+Extremely easy,NA
+Somewhat easy,"It might be helpful to specify which common GUI software does (Stata, SPSS) and does not (Comprehensive Meta-Analysis Software) produce syntax or a coding log that can be reported. This distinction was mostly clear to me after reading the MATES checklist and glossary, so perhaps some of that text could be included for the 'Not Applicable' category."
+Extremely easy,"I don't agree with the NA.  Code is either there or not, and for full transparency it should be.  Using a GUI does not mitigate that lack of transparency."
+Somewhat difficult,This was difficult to apply to studies which used a GUI which could provide a syntax or coding log but this has not been reported in the manuscript or SI. E.g where a study has used Stata and has not provided a syntax/coding log.  In these instances I answered 'No' but I was unsure whether this should be 'not applicable' as it us a GUI software rather than raw coding software
+Extremely easy,NA
+Somewhat easy,"I used the keywords like ""coding"", ""code"", ""programming"" to search the answer. However, it seems that most papers did not display the code."
+Somewhat easy,"It may be hard for some people to decide between ""No"" and ""NA"", because it requires knowledge on which software uses code vs. point-and-click."
+Somewhat easy,"Good question to evaluate the transparency and reproducibility of studies. But very rarely done.
+
+
+
+
+
+
+"
+Neither easy nor difficult,"I sometimes struggle to decide between 'No' and 'Not Applicable'. While I am familiar with some statistical languages and software, I cannot distinguish if unfamiliar programs are code-based or GUI/click-based."
+Somewhat difficult,NA

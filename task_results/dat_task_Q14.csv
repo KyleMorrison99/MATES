@@ -1,0 +1,32 @@
+Q15,Q14
+How difficult was MATES item 7: Effect size weights reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 7: Effect size weights reporting
+
+Question 
+Do the authors report the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘No’
+The authors have not reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+The authors have conducted a meta-analysis without weights (i.e., unweighted meta-analysis)."
+"{""ImportId"":""QID42""}","{""ImportId"":""QID28_TEXT""}"
+Somewhat easy,"Change the order of wuation parts to make it clearer and align with other: ""Do the authors report the strategy used to assign weights of effect size estimates (e.g. the sampling variance, sampling error or equivalent), in the manuscript or supplementary material?"""
+NA,NA
+Extremely easy,NA
+Somewhat easy,NA
+Somewhat easy,"Perhaps you should specify that the values are expected, because the weights can be reported graphically by differences in point size."
+Extremely difficult,"This was quite confusing for me, especially the ""No"" versus ""NA"". I really couldn't tell the difference between these and when to select one over the other."
+Somewhat easy,"I assumed this item was looking for authors to say something like ""we weighted effect sizes based on the inverse of their sampling variances"", rather than provide the actual weights in a data file. However, I feel the way this item is written could be interpreted either way - perhaps re-word it so that the ""strategy to assign weights"" is emphasized first, instead of ""reporting the sampling variance."""
+Somewhat easy,NA
+Extremely difficult,"I found this criteria difficult to apply.  This is either because none of the meta-analyses I reviewed reported the sampling variance, sampling error or equivalent, OR because I did not understand what would satisfy this criteria."
+Somewhat easy,I considered that 95%CI associated with effect sizes (reported in the text or shown in forest plots) would be a measure of weight
+Somewhat easy,NA
+Somewhat difficult,"I was a bit confused about the wording of this item. It is quite common for authors to report the % of weights taken by each study in their analyses, but not how these weights were calculated, or even how the sampling variance of the effect size was calculated. Also, what if authors say they used an ""inverse-variance model"", but do not provide the formula for calculating the sampling variance? How about cases where authors say they used a specific package (e.g., metafor) that automatically calculates sampling variance? I think this question needs to be very specific about what counts as ""yes"" or ""no""."
+Neither easy nor difficult,"The question may not be very clear. Do we want to know if and how the authors weighted the studies (and therefore that the text states this clearly), or do we want information on the precision of individual effect sizes?"
+Neither easy nor difficult,"Some papers seemed to be weighted in the results, although the authors did not explicitly state this"
+Somewhat easy,NA

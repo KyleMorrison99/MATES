@@ -1,0 +1,33 @@
+Q13,Q12
+How difficult was MATES item 6: Model type reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 6: Model type reporting
+
+Question
+Do the authors report the type of the meta-analytic/meta-regression model (e.g., fixed, random, or multi-level model), either descriptively or in statistical notation in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable'
+There is no ‘Not Applicable’ option for MATES item 6."
+"{""ImportId"":""QID41""}","{""ImportId"":""QID27_TEXT""}"
+Somewhat easy,"Unclear what you mean by ""structure"" - may need to explain that this means more than just stating that it was ""random"" or ""fixed""?"
+NA,NA
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,"To be able to answer yes, does the model have to be specified (for example, in case of a random model how is the random part structured?) or is simply mentioning the type of model (fixed, random, ...) sufficient?"
+Somewhat difficult,"Similar to #5, it was often hard to find this information."
+Somewhat easy,"The studies I reviewed varied widely in terms of the amount of detail provided for this item. I eventually decided to say 'Yes' if authors provide ANY mention of this, even if it is sometimes just a short sentence (e.g. ""We used a random effects model.""). This is a bit ambiguous though, and it is possible that some other MATES participants may disagree."
+Somewhat easy,NA
+Somewhat easy,NA
+Somewhat easy,NA
+Somewhat easy,"Keywords like fixed, random, or multi-level model are used to search."
+Somewhat easy,"The authors almost always report the type of model they use, but the details of the model specifications are often unclear. For instance, some authors would state that they used a ""random-effect model"" only when ""they found heterogeneity"". Identifying which model is fixed or random is thus unclear and not transparent. It is also almost always unclear what random effect is used. I get that the definition of a ""random-effect"" model is clear for most people (i.e., study-level random effect), but I think this item would be more interesting if authors clearly reported which random effects were used, particularly for multi-level models."
+Neither easy nor difficult,"
+See my previous remark. Saying that a random-effects model was used is not enough in my opinion; more details are needed (especially about the structure of the random model, etc.)"
+Neither easy nor difficult,NA
+Somewhat easy,NA

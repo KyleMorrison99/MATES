@@ -884,7 +884,7 @@ df_Q29 <- dat %>%
 # Table of the Q29
  kable(df_Q29, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q29, file = here("survey_results", "df_Q29.csv"))
 
@@ -895,7 +895,7 @@ df_Q29 <- dat %>%
 What is the importance of reporting the total number of effect size estimates included in the meta-analysis to the quality of reporting?
 Referring to MATES item 14:
 Do the authors report the total number of effect sizes within the manuscript or supplementary material?
-```{r,fig.width=10, fig.height=5}
+```{r,fig.width=16, fig.height=8}
 # Separate rows and count total for Question 30
 total_effect_size_count <- dat %>% 
   filter(!is.na(Q30)) %>%
@@ -917,11 +917,11 @@ fig_Q30 <-  total_effect_size_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_effect_size_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 14", size = 15)
+  labs(caption = "MATES item 14\nThe value in each bar is the total number of participants")
 
 fig_Q30
 
-# ggsave(here("survey_results", "fig_Q30.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+# ggsave(here("survey_results", "fig_Q30.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
@@ -935,7 +935,7 @@ df_Q31 <- dat %>%
 # Table of the Q31
  kable(df_Q31, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q31, file = here("survey_results", "df_Q31.csv"))
 
@@ -945,7 +945,7 @@ df_Q31 <- dat %>%
 What is the importance of reporting the results using a visualisation in a meta-analysis to the quality of reporting?
 Referring to MATES item 15:
 Do the authors report the results using a visualisation in the manuscript or supplementary material?
-```{r,fig.width=10, fig.height=5}
+```{r,fig.width=16, fig.height=8}
 # Separate rows and count total for Question 32
 total_visualisation_report_count <- dat %>% 
   filter(!is.na(Q32)) %>%
@@ -967,11 +967,11 @@ fig_Q32 <-  total_visualisation_report_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_visualisation_report_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 15", size = 15)
+  labs(caption = "MATES item 15\nThe value in each bar is the total number of participants")
 
 fig_Q32
 
-# ggsave(here("survey_results", "fig_Q32.jpg"),  width = 18, height = 10, units = "cm", scale = 2, dpi = 120 )
+# ggsave(here("survey_results", "fig_Q32.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
@@ -985,7 +985,7 @@ df_Q33 <- dat %>%
 # Table of the Q33
  kable(df_Q33, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q33, file = here("survey_results", "df_Q33.csv"))
 
@@ -995,7 +995,7 @@ df_Q33 <- dat %>%
 What is the importance of reporting the data extracted in the meta-analysis to the quality of reporting?
 Referring to MATES item 16:
 Do the authors report the data extracted from each eligible primary study within the manuscript, supplementary material or external repository?
-```{r,fig.width=10, fig.height=5}
+```{r,fig.width=16, fig.height=8}
 # Separate rows and count total for Question 34
 total_data_extraction_report_count <- dat %>% 
   filter(!is.na(Q34)) %>%
@@ -1017,11 +1017,11 @@ fig_Q34 <-  total_data_extraction_report_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_extraction_report_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 16", size = 15)
+  labs(caption = "MATES item 16\nThe value in each bar is the total number of participants")
 
 fig_Q34
 
-# ggsave(here("survey_results", "fig_Q34.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+# ggsave(here("survey_results", "fig_Q34.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
@@ -1035,7 +1035,7 @@ df_Q35 <- dat %>%
 # Table of the Q35
  kable(df_Q35, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q35, file = here("survey_results", "df_Q35.csv"))
 
@@ -1045,7 +1045,7 @@ df_Q35 <- dat %>%
 What is the importance of reporting the descriptions of data created in the meta-analysis to the quality of reporting?
 Referring to MATES item 17:
 Do the authors report descriptions of the data extracted from each eligible within the manuscript, supplementary material or external repository?
-```{r,fig.width=10, fig.height=5}
+```{r,fig.width=16, fig.height=8}
 # Separate rows and count total for Question 36
 total_data_description_report_count <- dat %>% 
   filter(!is.na(Q36)) %>%
@@ -1067,11 +1067,11 @@ fig_Q36 <-  total_data_description_report_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(total_data_description_report_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 17", size = 15)
+  labs(caption = "MATES item 17\nThe value in each bar is the total number of participants")
 
 fig_Q36
 
-# ggsave(here("survey_results", "fig_Q36.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+# ggsave(here("survey_results", "fig_Q36.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
@@ -1085,7 +1085,7 @@ df_Q37 <- dat %>%
 # Table of the Q37
  kable(df_Q37, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q37, file = here("survey_results", "df_Q37.csv"))
 
@@ -1102,7 +1102,7 @@ df_Q38 <- dat %>%
 # Table of the Q38
  kable(df_Q38, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q38, file = here("survey_results", "df_Q38.csv"))
 
@@ -1118,7 +1118,7 @@ df_Q39 <- dat %>%
 # Table of the Q39
  kable(df_Q39, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(df_Q39, file = here("survey_results", "df_Q39.csv"))
 
@@ -1181,7 +1181,7 @@ dat_task_Q2 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q2, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(dat_task_Q2, file = here("task_results", "dat_task_Q2.csv"))
 
@@ -1189,8 +1189,8 @@ dat_task_Q2 <- dat_task %>%
 
 ## Question 3
 How difficult was MATES item 1: Software reporting to implement?
-```{r,fig.width=10, fig.height=5}
-# Separate rows and count total for Task Question 3
+```{r,fig.width=16, fig.height=8}
+# Separate rows and count total for Task Question 5 (Software Reporting Difficulty)
 software_difficulty_count <- dat_task %>% 
   filter(!is.na(Q3)) %>%
   count(Q3) %>% 
@@ -1211,11 +1211,11 @@ fig_task_Q3 <-  software_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(software_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 1", size = 15)
+  labs(caption = "MATES item 1\nThe value in each bar is the total number of participants")
 
 fig_task_Q3
 
-# ggsave(here("survey_results", "fig_task_Q3.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120 )
+# ggsave(here("task_results", "fig_task_Q3.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120 )
 
 ```
 
@@ -1245,12 +1245,11 @@ dat_task_Q4 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q4, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
-# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+#  write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
 
 ```
-
 
 ## Question 5 
 How difficult was MATES item 2: Code reporting to implement?
@@ -1276,12 +1275,11 @@ fig_task_Q5 <-  code_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(code_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 2: Code Reporting", size = 15)
+  labs(caption = "MATES item 2\nThe value in each bar is the total number of participants")
 
 fig_task_Q5
 
-# ggsave(here("survey_results", "fig_task_Q5.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
-
+# ggsave(here("task_results", "fig_task_Q5.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
 
 ```
 
@@ -1311,12 +1309,11 @@ dat_task_Q6 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q6, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
-# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+# write_csv(dat_task_Q6, file = here("task_results", "dat_task_Q6.csv"))
 
 ```
-
 
 ## Question 7
 How difficult was MATES item 3: Number of included primary studies reporting to implement?
@@ -1332,7 +1329,7 @@ study_difficulty_percentage <- study_difficulty_count %>%
   mutate(proportion = n/sum(study_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 6
+# Plot for survey question 7
 fig_task_Q7 <- study_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q7, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1342,11 +1339,11 @@ fig_task_Q7 <- study_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(study_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 3: Number of Included Studies Reporting", size = 15)
+  labs(caption = "MATES item 3\nThe value in each bar is the total number of participants")
 
 fig_task_Q7
 
-# ggsave(here("survey_results", "fig_task_Q7.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+# ggsave(here("task_results", "fig_task_Q7.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
 
 ```
 
@@ -1369,7 +1366,6 @@ o	The authors have not reported the total number of effect sizes synthesised in 
 Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 4.
 
-
 ```{r}
 dat_task_Q8 <- dat_task %>% 
   select(c(Q9,Q8))
@@ -1377,15 +1373,14 @@ dat_task_Q8 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q6, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
-# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+# write_csv(dat_task_Q8, file = here("task_results", "dat_task_Q8.csv"))
 
 ```
 
-
 ## Question 9
-How difficult was MATES item 3: Number of included primary studies reporting to implement?
+How difficult was MATES item 4: Number of included effect size reporting to implement?
 ```{r}
 # Separate rows and count total for Task Question 6 (Number of Included Studies Reporting Difficulty)
 effectsize_difficulty_count <- dat_task %>% 
@@ -1408,7 +1403,7 @@ fig_task_Q9 <- effectsize_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(effectsize_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 3: Number of Included Studies Reporting", size = 15)
+  labs(caption = "MATES item 4\nThe value in each bar is the total number of participants")
 
 fig_task_Q9
 
@@ -1442,9 +1437,9 @@ dat_task_Q10 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q10, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
-# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q10.csv"))
+# write_csv(dat_task_Q10, file = here("task_results", "dat_task_Q10.csv"))
 
 ```
 
@@ -1476,7 +1471,7 @@ fig_task_Q11 <- effectsize_formula_difficulty_count %>%
 
 fig_task_Q11
 
-# ggsave(here("survey_results", "fig_task_Q11.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+# ggsave(here("task_results", "fig_task_Q11.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
 
 ```
 
@@ -1506,9 +1501,9 @@ dat_task_Q12 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q12, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
-# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q10.csv"))
+# write_csv(dat_task_Q12, file = here("task_results", "dat_task_Q12.csv"))
 
 ```
 
@@ -1536,11 +1531,11 @@ fig_task_Q13 <- model_type_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(model_type_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 6: Model Type Reporting", size = 15)
+  labs(caption = "MATES item 6\nThe value in each bar is the total number of participants")
 
 fig_task_Q13
 
-# ggsave(here("survey_results", "fig_task_Q13.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+# ggsave(here("task_results", "fig_task_Q13.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
 
 ```
 
@@ -1570,7 +1565,7 @@ dat_task_Q14 <- dat_task %>%
 # Table of the Q39
  kable(dat_task_Q14, "html") %>%
     kable_styling("bordered", position = "left") %>%
-    scroll_box(width = "250%", height = "800px")
+    scroll_box(width = "150%", height = "400px")
 
 # write_csv(dat_task_Q14, file = here("task_results", "dat_task_Q14.csv"))
 
@@ -1600,11 +1595,11 @@ fig_task_Q15 <- effect_size_weights_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(effect_size_weights_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 7: Effect Size Weights Reporting", size = 15)
+  labs(caption = "MATES item 7\nThe value in each bar is the total number of participants")
 
 fig_task_Q15
 
-# ggsave(here("survey_results", "fig_task_Q15.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+# ggsave(here("task_results", "fig_task_Q15.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
 
 ```
 

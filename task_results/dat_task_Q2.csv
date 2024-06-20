@@ -1,6 +1,33 @@
-Q2
-"unclear if ""report the software or programming language"" simple means that reporting the name is sufficient"
-"The question states software/language and models used, while the criteria only state software/language"
-"We can use the keyword ""software"" to identify this question. It is suggested to provide a list of common software as example or for selection (i.e., STATA, Matlab, Python)"
-"
+Q3,Q2
+How difficult was MATES item 1: Software reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 1: Software reporting
+
+Question
+Do the authors report the software or programming language used to conduct the analysis (i.e., the software or programming language used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Appliable’ option for MATES item 1."
+"{""ImportId"":""QID36""}","{""ImportId"":""QID22_TEXT""}"
+Somewhat easy,"unclear if ""report the software or programming language"" simple means that reporting the name is sufficient"
+NA,NA
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,"The question states software/language and models used, while the criteria only state software/language"
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,"We can use the keyword ""software"" to identify this question. It is suggested to provide a list of common software as example or for selection (i.e., STATA, Matlab, Python)"
+Extremely easy,NA
+Extremely easy,"
 I would say that the software is not the most important; what matters is the details of the models used. If possible, include details such as the estimator of tau2 (DerSimonian, others), how the confidence intervals are calculated (parametric, non-parametric, etc.). This will have a much greater impact on the results than the software used, I believe."
+Extremely easy,NA
+Extremely easy,NA

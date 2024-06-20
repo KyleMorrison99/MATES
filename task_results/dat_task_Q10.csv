@@ -1,0 +1,32 @@
+Q11,Q10
+How difficult was MATES item 5: Effect size statistic/measure reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 5: Effect size statistic formula reporting
+
+Question
+Do the authors report the formula (or reference for formula) for the effect size statistic/measure used (e.g., Zr, Hedge’s g, Cohen’s d, or lnRR) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 5."
+"{""ImportId"":""QID40""}","{""ImportId"":""QID26_TEXT""}"
+Somewhat easy,NA
+NA,NA
+Somewhat easy,Some may use correlations or percentages etc where a formula isn't necessarily required
+Extremely easy,NA
+Extremely easy,NA
+Neither easy nor difficult,It was often hard to find this information.
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,NA
+Somewhat easy,NA
+Somewhat easy,"Most information can be obtained in the methodology part. However, sometimes the authors did not provide the formula for the effect size reporting."
+Somewhat difficult,"Some studies would extract means of a given variable (arm-based meta-analysis), or effect sizes that were already calculated in primary studies. In the former, there is no formula needed and it is not technically an ""effect size"" sensu stricto; and in the latter, the effect sizes are already available and the formulas are likely in the original studies (and may vary between studies). I think it is relevant to have an ""NA"" category here for these cases."
+Neither easy nor difficult,"Do we systematically need a formula when synthesizing information extracted directly from primary studies (i.e., when the authors have not done any recalculations or other modifications)?"
+Neither easy nor difficult,NA
+Somewhat easy,NA

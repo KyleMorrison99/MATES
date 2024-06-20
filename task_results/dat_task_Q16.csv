@@ -1,0 +1,37 @@
+Q17,Q16
+How difficult was MATES item 8: Effect size dependence (non-independence) reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 8: Effect size dependence (non-independence) reporting
+
+
+Question
+Do the authors report the dependence (e.g., multiplicity or, repeated measure) of effect size estimates (e.g., acknowledge multiple effect sizes were taken from a single study) in the manuscript or supplementary material?
+
+
+Criteria for ‘Yes’
+The authors have reported whether there is dependence of effect size estimates in the manuscript or supplementary material. If a meta-analysis reports that effect size estimates are independent allocate ‘Yes’.
+
+
+Criteria for ‘No’
+The authors have not reported whether there is dependence of effect size estimates in the manuscript or supplementary material.
+
+
+Criteria for ‘Not Applicable’ 
+There is no ‘Not Applicable’ option for MATES item 8."
+"{""ImportId"":""QID43""}","{""ImportId"":""QID29_TEXT""}"
+Somewhat easy,"Sometimes they explicitly state they assume they are independent even they know they are not - not clear if this means that ""If a meta-analysis reports that effect size estimates are independent"" or not"
+NA,NA
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,How to respond when independence is not explicitly stated but is obvious (because one effect size = one primary study)?
+Extremely difficult,"Authors don't really seem to report this, so a lot of time is spent reading the paper and supplement trying to find out if this was done anywhere."
+Somewhat difficult,"This is the item I had the most trouble with, especially because I found it difficult to separate from the item about model structure/random effects. Most studies that I reviewed used a random effects analysis, presumably to to deal with non-independence of effect sizes. I do understand the importance of explicitly recognizing non-independence in the text, but I think this item needs to be re-worded to some extent."
+Neither easy nor difficult,Are we only expecting this if there is a risk of non-dependency?  A MA with say 6 studies with 6 author groups at 6 different times may not see the need to state this.
+Extremely difficult,"I found this criteria difficult to apply.  Similarly to MATES Item 7, I am unsure whether this is because none of the meta-analyses I reviewed included the dependence of effect size estimates OR because I wasn't sure what would satisfy this criteria."
+Somewhat easy,"I considered that a study would did not 'report the dependence of effect size estimates' when it did not state that explicitly in the text. However it is quite easy to see if there is dependency of effect sizes from the diference in the number of studies and the number of effect sizes, or from the repetition of a study reference in a forest plot. Therefore, the item would probably be better stated as 'Do the authors ACKNOWLEDGE the dependence (e.g., multiplicity or, repeated measure) of effect size estimates...'"
+Neither easy nor difficult,NA
+Somewhat difficult,"This was a tricky one too. If the authors used a random-effect model, then in almost all cases it is to account for the non-independence of effect sizes among studies, but the authors do not necessarily mention non-independence directly. Also, what about cases when authors say that they extracted multiple effect sizes per study, but don't do anything about it? Or what if they say that they used a random-effect model because they extracted multiple effect sizes per study, but don't say that this generates a source of non-independence? 
+I think it would be relevant to require people to statistically account for effect size dependence, not just ""mention"" non-independence."
+Neither easy nor difficult,"Good question, but should we evaluate the strategies used by the authors? Pooling, exclusion, ... Some are recommended, others are not..."
+Neither easy nor difficult,NA
+Somewhat easy,NA
