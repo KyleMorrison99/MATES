@@ -1,20 +1,4 @@
 Q15,Q14
-How difficult was MATES item 7: Effect size weights reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
-
-MATES item 7: Effect size weights reporting
-
-Question 
-Do the authors report the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material? 
-
-Criteria for ‘Yes’
-The authors have reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material. 
-
-Criteria for ‘No’
-The authors have not reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material.
-
-Criteria for ‘Not Applicable’
-The authors have conducted a meta-analysis without weights (i.e., unweighted meta-analysis)."
-"{""ImportId"":""QID42""}","{""ImportId"":""QID28_TEXT""}"
 Somewhat easy,"Change the order of wuation parts to make it clearer and align with other: ""Do the authors report the strategy used to assign weights of effect size estimates (e.g. the sampling variance, sampling error or equivalent), in the manuscript or supplementary material?"""
 NA,NA
 Extremely easy,NA

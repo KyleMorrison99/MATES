@@ -1,20 +1,4 @@
 Q5,Q4
-How difficult was MATES item 2: Code reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
-
-MATES item 2: Code reporting
-
-Question
-Do the authors report any relevant code used to conduct the analysis (i.e., the code used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript, supplementary material, or external repository? 
-
-Criteria for ‘Yes’
-The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
-
-Criteria for ‘No’
-The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
-
-Criteria for ‘Not Applicable’
-The authors have used a GUI/click based software that does not produce a code. Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 1)."
-"{""ImportId"":""QID37""}","{""ImportId"":""QID23_TEXT""}"
 Somewhat difficult,"some of the GUI/click based software that does not produce a code per se but can produce the exact log of all procedures which can be used to recreate the analyses. In this case it would make sense to score as ""yes"". However, if you are not familiar wth siftware it might be hard to tell whether it produces a log."
 NA,NA
 Extremely easy,NA

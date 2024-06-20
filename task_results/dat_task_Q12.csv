@@ -1,20 +1,4 @@
 Q13,Q12
-How difficult was MATES item 6: Model type reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
-
-MATES item 6: Model type reporting
-
-Question
-Do the authors report the type of the meta-analytic/meta-regression model (e.g., fixed, random, or multi-level model), either descriptively or in statistical notation in the manuscript or supplementary material?
-
-Criteria for ‘Yes’
-The authors have reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
-
-Criteria for ‘No’
-The authors have not reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
-
-Criteria for ‘Not Applicable'
-There is no ‘Not Applicable’ option for MATES item 6."
-"{""ImportId"":""QID41""}","{""ImportId"":""QID27_TEXT""}"
 Somewhat easy,"Unclear what you mean by ""structure"" - may need to explain that this means more than just stating that it was ""random"" or ""fixed""?"
 NA,NA
 Extremely easy,NA

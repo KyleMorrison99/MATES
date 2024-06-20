@@ -1,20 +1,4 @@
 Q7,Q6
-How difficult was MATES item 3: Number of included studies reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
-
- MATES item 3: Number of included primary studies reporting
-
-Question 
-Do the authors report the total number of primary studies (i.e., separate individual articles)  included in the meta-analysis in the manuscript or supplementary material? 
-
-Criteria for ‘Yes’
-The authors have reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies can be inferred from a screening flowchart (e.g., PRISMA flowchart), or the authors can state the number of studies per subgroup analysis. 
-
-Criteria for ‘No’
-The authors have not reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies cannot be inferred by counting from a forest plot, or from a provided dataset. 
-
-Criteria for ‘Not Applicable
-There is no ‘Not Applicable’ option for MATES item 3."
-"{""ImportId"":""QID38""}","{""ImportId"":""QID24_TEXT""}"
 Somewhat easy,"the word ""studies"" is often used with different meanings - e.g. sometimes is number of articles, but sometimes experiments or even effect sizes, which makes it tricky. Maybe clarify what you mean by ""studies""?"
 NA,NA
 Extremely easy,NA
