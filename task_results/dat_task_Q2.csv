@@ -15,3 +15,5 @@ Extremely easy,"
 I would say that the software is not the most important; what matters is the details of the models used. If possible, include details such as the estimator of tau2 (DerSimonian, others), how the confidence intervals are calculated (parametric, non-parametric, etc.). This will have a much greater impact on the results than the software used, I believe."
 Extremely easy,NA
 Extremely easy,NA
+Extremely easy,NA
+Neither easy nor difficult,"Unclear how specific the information needs to be. In a few instances, authors reported the use of R but without details on the packages used."
