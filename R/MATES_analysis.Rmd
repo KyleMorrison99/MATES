@@ -293,7 +293,7 @@ df_Q5 <- dat %>%
 
 ## Question 6
 What is the importance of reporting the packages used to conduct the meta-analysis to the quality of reporting?
-
+ma
 Referring to MATES item 2:
 
 Do the authors report the packages used to conduct the analysis within the manuscript or supplementary material?
@@ -1229,11 +1229,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 1.
 
 ```{r}
-# Filter for task question 2
+# Filter for Task Question 2
 dat_task_Q2 <- dat_task %>% 
   select(c(Q3, Q2))
 
-# Table for task question 2
+# Table for Task Question 2
  kable(dat_task_Q2, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1242,7 +1242,7 @@ dat_task_Q2 <- dat_task %>%
 
 ```
 
-## Question 3
+## Task Question 3
 How difficult was MATES item 1: Software reporting to implement?
 ```{r,fig.width=16, fig.height=8}
 # Separate rows and count total for Task Question 5 (Software Reporting Difficulty)
@@ -1266,7 +1266,7 @@ fig_task_Q3 <-  software_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(software_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 1\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 1:Software reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q3
 
@@ -1307,7 +1307,7 @@ dat_task_Q4 <- dat_task %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
 
-# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+#  write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
 
 ```
 
@@ -1335,7 +1335,7 @@ fig_task_Q5 <-  code_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(code_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 2\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 2:Code reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q5
 
@@ -1367,11 +1367,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 3.
 
 ```{r}
-# Filter for task question 6
+# Filter for Task Question 6
 dat_task_Q6 <- dat_task %>% 
   select(c(Q7,Q6))
 
-# Table for table question 6
+# Table for Task Question 6
  kable(dat_task_Q6, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1383,7 +1383,7 @@ dat_task_Q6 <- dat_task %>%
 ## Question 7
 How difficult was MATES item 3: Number of included primary studies reporting to implement?
 ```{r,fig.width=16, fig.height=8}
-# Separate rows and count total for Task Question 6 (Number of Included Studies Reporting Difficulty)
+# Separate rows and count total for Task Question 7 (Number of Included Studies Reporting Difficulty)
 study_difficulty_count <- dat_task %>% 
   filter(!is.na(Q7)) %>%
   count(Q7) %>% 
@@ -1394,7 +1394,7 @@ study_difficulty_percentage <- study_difficulty_count %>%
   mutate(proportion = n/sum(study_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 7
+# Plot for Task Question 7
 fig_task_Q7 <- study_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q7, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1404,7 +1404,7 @@ fig_task_Q7 <- study_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(study_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 3\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 3:Number of included primary studies reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q7
 
@@ -1436,11 +1436,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 4.
 
 ```{r}
-# Filter for task question 8
+# Filter for Task Question 8
 dat_task_Q8 <- dat_task %>% 
   select(c(Q9,Q8))
 
-# Table for task question 6
+# Table for Task Question 8
  kable(dat_task_Q6, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1452,7 +1452,7 @@ dat_task_Q8 <- dat_task %>%
 ## Question 9
 How difficult was MATES item 4: Number of included effect size reporting to implement?
 ```{r,fig.width=16, fig.height=8}
-# Separate rows and count total for Task Question 6 (Number of Included Studies Reporting Difficulty)
+# Separate rows and count total for Task Question 9 (Number of Included Studies Reporting Difficulty)
 effectsize_difficulty_count <- dat_task %>% 
   filter(!is.na(Q9)) %>%
   count(Q9) %>% 
@@ -1463,7 +1463,7 @@ effectsize_difficulty_percentage <- effectsize_difficulty_count %>%
   mutate(proportion = n/sum(effectsize_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 6
+# Plot for Task Question 9
 fig_task_Q9 <- effectsize_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q9, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1473,11 +1473,11 @@ fig_task_Q9 <- effectsize_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(effectsize_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 4\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 4:Number of included effect sizes reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q9
 
-# ggsave(here("survey_results", "fig_task_Q9.jpg"),  width = 16, height = 10, units = "cm", scale = 2, dpi = 120)
+# ggsave(here("task_results", "fig_task_Q9.jpg"),  width = 16, height = 8, units = "cm", scale = 2, dpi = 120)
 
 ```
 
@@ -1505,11 +1505,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 5.
 
 ```{r}
-# Filter for task question 10
+# Filter for Task Question 10
 dat_task_Q10 <- dat_task %>% 
   select(c(Q11,Q10))
 
-# Table for task question 10
+# Table for Task Question 10
  kable(dat_task_Q10, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1532,7 +1532,7 @@ effectsize_formula_difficulty_percentage <- effectsize_formula_difficulty_count 
   mutate(proportion = n/sum(effectsize_formula_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 11
+# Plot for Task Question 11
 fig_task_Q11 <- effectsize_formula_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q11, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1542,7 +1542,7 @@ fig_task_Q11 <- effectsize_formula_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(effectsize_formula_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 5\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 5:Effect size statistic measure reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q11
 
@@ -1574,11 +1574,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 6.
 
 ```{r}
-# Filter for task question 12
+# Filter for Task Question 12
 dat_task_Q12 <- dat_task %>% 
   select(c(Q13,Q12))
 
-# Table for task question 12
+# Table for Task Question 12
  kable(dat_task_Q12, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1601,7 +1601,7 @@ model_type_difficulty_percentage <- model_type_difficulty_count %>%
   mutate(proportion = n/sum(model_type_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 13
+# Plot for Task Question 13
 fig_task_Q13 <- model_type_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q13, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1611,7 +1611,7 @@ fig_task_Q13 <- model_type_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(model_type_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 6\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 6:Model type reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q13
 
@@ -1643,11 +1643,11 @@ Criteria for ‘Not Applicable’
 o	The authors have conducted a meta-analysis without weights (i.e., unweighted meta-analysis).
 
 ```{r}
-# Filter for task question 14
+# Filter for Task Question 14
 dat_task_Q14 <- dat_task %>% 
   select(c(Q15,Q14))
 
-# Table for task question 14
+# Table for Task Question 14
  kable(dat_task_Q14, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1670,7 +1670,7 @@ effect_size_weights_difficulty_percentage <- effect_size_weights_difficulty_coun
   mutate(proportion = n/sum(effect_size_weights_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 15
+# Plot for Task Question 15
 fig_task_Q15 <- effect_size_weights_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q15, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1680,7 +1680,7 @@ fig_task_Q15 <- effect_size_weights_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(effect_size_weights_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 7\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 7:Effect size weights reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q15
 
@@ -1712,11 +1712,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 8.
 
 ```{r}
-# Filter for task question 16
+# Filter for Task Question 16
 dat_task_Q16 <- dat_task %>% 
   select(c(Q17,Q16))
 
-# Table for task question 16
+# Table for Task Question 16
  kable(dat_task_Q16, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1749,7 +1749,7 @@ fig_task_Q17 <- effect_size_dependence_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(effect_size_dependence_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 8\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 8:Effect size dependence reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q17
 
@@ -1782,11 +1782,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 9.
 
 ```{r}
-# Filter for task question 18
+# Filter for Task Question 18
 dat_task_Q18 <- dat_task %>% 
   select(c(Q19,Q18))
 
-# Table for task question 18
+# Table for Task Question 18
  kable(dat_task_Q18, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1809,7 +1809,7 @@ mean_effect_difficulty_percentage <- mean_effect_difficulty_count %>%
   mutate(proportion = n/sum(mean_effect_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 19
+# Plot for Task Question 19
 fig_task_Q19 <- mean_effect_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q19, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1819,7 +1819,7 @@ fig_task_Q19 <- mean_effect_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(mean_effect_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(caption = "MATES item 9\nThe value in each bar is the total number of participants")
+  labs(caption = "MATES item 9:Overall mean effect reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q19
 
@@ -1852,11 +1852,11 @@ Criteria for ‘Not Applicable’
 o	The study has stated that the analysis is unweighted. 
 
 ```{r}
-# Filter for task question 20
+# Filter for Task Question 20
 dat_task_Q20 <- dat_task %>% 
   select(c(Q21,Q20))
 
-# Table for task question 20
+# Table for Task Question 20
  kable(dat_task_Q20, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1879,7 +1879,7 @@ heterogeneity_difficulty_percentage <- heterogeneity_difficulty_count %>%
   mutate(proportion = n/sum(heterogeneity_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 21
+# Plot for Task Question 21
 fig_task_Q21 <- heterogeneity_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q21, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1889,7 +1889,7 @@ fig_task_Q21 <- heterogeneity_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(heterogeneity_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 10: Heterogeneity Reporting", size = 15)
+  labs(caption = "MATES item 10:Heterogeneity reporitng\nThe value in each bar is the total number of participants")
 
 fig_task_Q21
 
@@ -1921,11 +1921,11 @@ Criteria for ‘Not Applicable’
 o	The authors report that an assessment of publication bias cannot be conducted.
 
 ```{r}
-# Filter for task question 22
+# Filter for Task Question 22
 dat_task_Q22 <- dat_task %>% 
   select(c(Q23,Q22))
 
-# Table for task question 22
+# Table for Task Question 22
  kable(dat_task_Q22, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -1948,7 +1948,7 @@ publication_bias_difficulty_percentage <- publication_bias_difficulty_count %>%
   mutate(proportion = n/sum(publication_bias_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 23
+# Plot for Task Question 23
 fig_task_Q23 <- publication_bias_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q23, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -1958,7 +1958,7 @@ fig_task_Q23 <- publication_bias_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(publication_bias_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 11: Publication Bias Reporting", size = 15)
+  labs(caption = "MATES item 11:Publication bias reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q23
 
@@ -1991,11 +1991,11 @@ Criteria for ‘Not Applicable’
 o	There is no ‘Not Applicable’ option for MATES item 12.
 
 ```{r}
-# Filter for task question 24
+# Filter for Task Question 24
 dat_task_Q24 <- dat_task %>% 
   select(c(Q25,Q24))
 
-# Table for task question 24
+# Table for Task Question 24
  kable(dat_task_Q24, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -2018,7 +2018,7 @@ sensitivity_analysis_difficulty_percentage <- sensitivity_analysis_difficulty_co
   mutate(proportion = n/sum(sensitivity_analysis_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 25
+# Plot for Task Question 25
 fig_task_Q25 <- sensitivity_analysis_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q25, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -2028,7 +2028,7 @@ fig_task_Q25 <- sensitivity_analysis_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(sensitivity_analysis_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 12: Sensitivity Analysis Reporting", size = 15)
+  labs(caption = "MATES item 12:Sensitivity analysis\nThe value in each bar is the total number of participants")
 
 fig_task_Q25
 
@@ -2062,11 +2062,11 @@ o	There is no ‘Not Applicable’ option for MATES item 13.
 
 
 ```{r}
-# Filter for task question 26
+# Filter for Task Question 26
 dat_task_Q26 <- dat_task %>% 
   select(c(Q27,Q26))
 
-# Table for task question 26
+# Table for Task Question 26
  kable(dat_task_Q26, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -2089,7 +2089,7 @@ data_archiving_difficulty_percentage <- data_archiving_difficulty_count %>%
   mutate(proportion = n/sum(data_archiving_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 27
+# Plot for Task Question 27
 fig_task_Q27 <- data_archiving_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q27, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -2099,7 +2099,7 @@ fig_task_Q27 <- data_archiving_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(data_archiving_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 13: Data Reporting/Archiving", size = 15)
+  labs(caption = "MATES item 13:Data reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q27
 
@@ -2131,11 +2131,11 @@ Criteria for ‘Not Applicable’
 o	The authors have not reported the data extracted from each eligible primary study in the manuscript, supplementary material, or external repository (i.e., ‘No’ for MATES item 13) or the authors have reported that the data cannot be provided because the data is sensitive.
 
 ```{r}
-# Filter for task question 28
+# Filter for Task Question 28
 dat_task_Q28 <- dat_task %>% 
   select(c(Q29,Q28))
 
-# Table for task question 28
+# Table for Task Question 28
  kable(dat_task_Q28, "html") %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
@@ -2158,7 +2158,7 @@ variable_description_difficulty_percentage <- variable_description_difficulty_co
   mutate(proportion = n/sum(variable_description_difficulty_count$n),
          percentage = proportion*100)
 
-# Plot for survey question 29
+# Plot for Task Question 29
 fig_task_Q29 <- variable_description_difficulty_count %>% 
   ggplot(aes(x = n, y = reorder(Q29, n)), hjust = 0.5) +
   geom_bar(stat = "identity") +
@@ -2168,7 +2168,7 @@ fig_task_Q29 <- variable_description_difficulty_count %>%
   scale_fill_identity(guide = "none") +
   scale_x_continuous(expand = c(0,0), limits = c(0, max(variable_description_difficulty_count$n*1.3))) +
   MATES_theme() +
-  labs(tag = "MATES item 14: Variable Description Reporting", size = 15)
+  labs(caption = "MATES item 14: Variable description reporting\nThe value in each bar is the total number of participants")
 
 fig_task_Q29
 
