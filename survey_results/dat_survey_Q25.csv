@@ -1,0 +1,46 @@
+Q24,Q25
+Moderately important,"In theory, I think this is important. But I don't think it does its job. I've read a number of papers that state something like 'we found evidence of publication bias, but we don't think it's much so we are just going to ignore it, cool, cool, cool'. 
+
+So, in reality, it doesn't seem to change how authors, reviewers, editors or readers view the paper. That diminishes the importance of reporting it. There needs to be a clear expectation of what should be done when there is publication bias, and how papers with evidence of a publication bias should be framed and interpreted."
+Very important,This information is important for evaluating the results.
+Moderately important,"People should consider them for sure, I am less impressed by the actual measures.  I would say have they considered publication bias, with a test if appropriate."
+Very important,"Reporting a sensitivity analysis in a meta-analysis is important because it allows other researchers to assess the robustness of the results to different assumptions and decisions. By reporting a sensitivity analysis, other researchers can be confident that the results of the meta-analysis are not simply due to the specific choices that were made in the analysis."
+Slightly important,"Commonly done as part of the meta-analysis, but I am not sure how important it is. The tools available for testing publication bias are limited and not able to detect publication bias in many cases."
+Very important,Check the robustness of the study
+Very important,"Yes, But not sufficient.
+If there is a publication biais. What do we do?? I would propose to better handle publication biais directly in the model(e.g. New method (e.g. robust bayesian meta-analysis;), and not analysing it after and say just yes/no. 
+And I often do not totally trust the authors that say that there is no publication biais using visual analysis of funnel plot,...."
+Moderately important,"I think this is one aspect that many authors still struggle with, and I think better explanations of how to include this in common statistical packages are needed"
+Very important,Consideration of publication bias is a key indicator of the quality of the review
+Very important,Limitations and interpretation of publication bias tests should be discussed.  Funnel plot asymmetry and assoicated test can be due to other factors in addition to small sample size
+Slightly important,"I don't think this is very important as it is very difficult to assess publication bias with any degree of certainty. Surely all the information on the actual meta-analyses, the statistical models, the independence of studies etc is more of interest."
+Extremely important,To ensure validity of the meta-analysis
+Extremely important,"Publication bias is a hughe problem, because non-significant resutls are rarely published, as well as results which do not match the scientists hypothesis."
+Extremely important,it should be methodology for publication bias and estimated size of bias.
+Not at all important,"I've never been convinced this is a very valuable exercise.  Publication bias surely exists, as does system selection, etc."
+Extremely important,Assuming this includes visual assessments
+Extremely important,Different studies with different methods are already a bias for a meta-analysis and the latter should be used in a set of studies with the best quality and not only the ones with the best results.
+Moderately important,"i am not sure how well they generally work, but i guess better than nothing"
+Moderately important,"I did some meta-analyses where the variables that we were concerned with were just a few of dozens that were typically reported in the studies. They were rarely a principal item of interest to the authors of the original studies, and therefore it was implausible that the outcomes for these variables would have much influence on whether material was published- these were a set of studies that just pretty much reported a ton of stuff whether it showed a pattern or didn't. So I never thought publication bias was much of an issue with these meta-analyses; I'd include them if reviewers were concerned, cause why not? So to some extent, perhaps with most or all the questions in this instrument, I think something like: ""Do the authors report a test or measure of publication bias within the manuscript or supplementary material, or provide a clear explanation of why this was not done?"" might be appropriate. All these steps shouldn't just be taken without throught."
+Very important,"The last time I checked, this is quite hard to achieve for models with moderators and non-independence"
+Extremely important,this should also include a justification if this is not possible (e.g. small sample size)
+Extremely important,"Does this mean that the answer will be ""no"" for articles reporting only a visual assessment of publication bias? It would be a good idea to clarify this point for future assessors."
+Moderately important,"I view all research as biased in some way, we can't help it, so publication bias is sneaking around in virtually any meta-analysis. But I also don't think it's that straightforward to suss out and funnel plots/Eggers tests can't do it all. I'm mixed on this one...
+Suggest at least relaxing the ""test or measure"" part as it's not that easily quantified; in its place, some effort to ""discuss or acknowledge"" the publication bias risk and its possible effect on the inferences of the meta-analysis (which is most important of all)."
+Extremely important,Essential; no further comment.
+Extremely important,"This activity is key to assessing the validity and reliability of the results, as publication bias can significantly alter conclusions. It provides transparency and demonstrates methodological rigor, allowing readers and other researchers to understand the potential limitations of the study. Addressing this bias increases confidence that the conclusions reflect a fair and unbiased synthesis of the evidence. Additionally, identifying publication bias may indicate the need for further research in potentially biased or incomplete areas. Authors should report the techniques used to assess this bias, such as funnel plots, Egger's tests, or sensitivity analyses, in the manuscript or supplementary material. This practice not only improves the quality of the report but also strengthens the integrity and robustness of the research."
+Moderately important,"Often a narrative discussion of this is more important, as the tests of PB are not the greatest.  A lot of MA are really too small for any meaningful tests anyway.  I would say 'test or measure (if appropriate), or narrative discussion of...'"
+Extremely important,"At least of main analyses, not all sensitivity and stratified analyses."
+Very important,Important bias for the meta-analysis that should be considered
+Very important,is part of the critical evaluation process
+Extremely important,when studies with significant results are more likely to be published than non-significant findings – has dangerous consequences for meta-analyses.
+Very important,"I think the ideal situation is that publication bias is reported. But, in my opinion, it is also valid to mention in the paper that the authors are aware of publication bias, and that the analysis is done on significant test results (which are most often reported), even if no formal bias analysis is conducted."
+Very important,"would seem important to report biases of single studies (e.g. confounding, measurement bias, etc.) and assess their influences on meta-estimates of association;
+
+would also seem important to document if single studies assess non linearity of association before polling estimates of primary studies;
+
+would also seem important to document unexplained inconsistency between estimates of association from different studies;"
+Extremely important,"Again, if this refers to biased data handling (e.g. not stratifying data by things like age of people, or nutrition of plants, or experimental conditions such as indoor vs outdoor etc.) this is key."
+Very important,"Although it is important to report a test or measure of publication bias, it is as important to keep in mind that it is quite hard to test for publication bias and that all those measures may be interpreted in different ways."
+Moderately important,Publication bias provides additional information (and potentially interesting insights into trends in the literature). If such trends are present they should be included in the analyses (as with any other confounding variable that can influence the validity of the inferences).
+Extremely important,"Yep, this too is important. I sometimes feel researchers include this but they don't really understand or interpret the measure properly. In fairness, interpretation of many pub bias tests are inherently tricky. But there are new approaches/methods that help. So I guess the question is whether it is simply enough that they do something to test pub bias but should it be necessary that they also justify their choice of test or measure?"

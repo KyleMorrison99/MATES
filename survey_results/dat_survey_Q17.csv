@@ -1,0 +1,40 @@
+Q16,Q17
+Extremely important,Essential information.
+Moderately important,It is really only important if they are dong something different.
+Extremely important,If there is one sure
+Extremely important,Reporting a weighting scheme for effect size estimates in a meta-analysis is important because it allows other researchers to understand how the different studies in the meta-analysis were weighted relative to each other. This information is essential for interpreting the results of the meta-analysis.
+Very important,"If there was any weighing, it must also be reported together with the model description."
+Very important,Understand more about the assumptions and limitations of the study
+Very important,"The hypotheses for unweighted meta-analyses are very strong. Numerous publications demonstrate the potential biais using this method, so yes, weighting are of primary importance. + Now some tools/methods exist to exctarct, recalculate or estimate the missing sd-> need for a really strong justification for not using it (if we want to perform a good meta-analysis)"
+Extremely important,"Very important, as this can obviously completely change the results"
+Extremely important,this may not be present in many papers
+Very important,Full understanding of the weighting scheme for effect size is critical for understanding the context of the review and assessing its quality
+NA,Perhaps be more specific about what is meant by a weighting scheme
+Extremely important,This is very basic information.
+Extremely important,"Results will vary depending on this, so it must be reported."
+Extremely important,To clear potential Bias
+Very important,This can swing results so is important to know.
+Extremely important,The more use of weighting for effect size estimates in a meta-analysis the more rubust is the analysis and interpretation of data
+Extremely important,"I dont really understand the question. If the authors feel a weighting scheme is appropriate, it should be justified. But I think there are circumstances when weighting isnt appropriate, but this should also be justified and stated."
+Extremely important,"One certainly should include the weighting scheme, though the wording of this suggests that if an unweighted scheme is chosen (e.g. due to limitations in the reporting of the original studies) this is inappropriate. Could this be: 
+
+Do the authors report the weighting scheme used for effect size estimates within the manuscript or supplementary material?"
+Extremely important,"There should be an NA option, which is when no weighting scheme was implemented"
+Extremely important,"not all meta-analyses are centred around effect sizes, but in any case, weighting is important"
+Very important,"Perhaps include ""...weighting scheme for effect size estimates *or otherwise account for such weights within the analysis*...""
+My thinking is that it might not always be necessary to weight the effect size (i.e. before the statistical model) when you can incorporate the weight into the model itself (e.g. as a measurement error or as an actual weight)."
+Extremely important,"Some authors, and I would agree with this definition, would only consider a study a ""meta-analysis"" if effect sizes are weighted; so it is indeed important. 
+However, I feel like the phrasing of this item is slightly unclear. More details about what ""weighting scheme"" refers to would be important for people less familiar with these concepts. Phrasing this as ""have authors claimed to weight effect sizes estimates?"" would be clearer too. It might also be important to add the code as a potential place in which we can find this information."
+Extremely important,"Reporting the weighting scheme in a meta-analysis is relevant for the quality of the scientific report. This ensures accurate estimations of the effect size, taking into account the variability and sample size of the studies. It facilitates transparency and reproducibility, allowing other researchers to understand and replicate the analysis. Additionally, it helps to manage heterogeneity among studies and is vital for correctly interpreting the results. Detailed disclosure of the weighting scheme in the manuscript and supplementary material allows for critical evaluation and contributes to methodological improvement in the field, strengthening the credibility and robustness of the study."
+Extremely important,"I think this one is pretty basic, and journal editors generally won't allow it to be published if it's not there."
+Moderately important,In reality this is unusually going to be the default inverse variance.  I would like to see authors noting differences between weighting in fixed/common-effects models and random effects.
+Extremely important,"At least of main analysis, they should be reported in order to adequate compare them"
+Extremely important,Potential for bias and important for repeatability
+Very important,"Meta-analyses can provide more accurate effect size estimates for power analyses, and correctly reporting effect size estimates can facilitate ."
+Extremely important,Readers should understand the reasoning behind the weighting scheme applied to the models.
+Moderately important,it is not relevant to all meta analyses.
+Extremely important,"If this is not reported and one were to repeat the analysis, the results would be different."
+Extremely important,"If weighing is supposed to indicate the weight of certain frame conditions he data are nested in, this is super important. To give you an example: An analysis for the influence of CO2 on plant growth is completely worthless unless the concurrent nutrition of plants is accounted for in a trustworthy, educated manner."
+Moderately important,This criteria seems more study-specific than the previous metrics
+Very important,"In addition to reporting the weighting, the authors must declare the criteria with which they established the weights of each response to make them comparable between the different studies analyzed."
+Extremely important,For understanding the sources of heterogeneity and for future reference.
