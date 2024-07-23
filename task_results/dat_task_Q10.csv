@@ -1,6 +1,5 @@
 Q11,Q10
 Somewhat easy,NA
-NA,NA
 Somewhat easy,Some may use correlations or percentages etc where a formula isn't necessarily required
 Extremely easy,NA
 Extremely easy,NA
@@ -16,3 +15,10 @@ Neither easy nor difficult,NA
 Somewhat easy,NA
 Somewhat easy,NA
 Neither easy nor difficult,Unclear what the reference can be.
+Somewhat easy,"Can remove the 'or' in the 2nd parenthetical.
+Some meta-analyses seem to assume that the reader would know what the effect size means (e.g., some just stated odds ratio like it was common) -- maybe that makes sense in their field. Just something to comment on."
+Neither easy nor difficult,"This question has left me wondering if I expected as an answer just to identify the ""type of test"" used or if I expected the statistical formula to be explicitly written? In my case, I considered that mentioning the type of test was enough, since they are automatically executed within the software."
+Somewhat easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Neither easy nor difficult,"Some specified it very clearly, which was easy to find. Others were confusing. I found that in high-quality meta-analyses this and other pieces of information were very easy to find, but it took longer time to get some of the information the lower the quality."

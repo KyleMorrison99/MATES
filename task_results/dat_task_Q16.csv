@@ -1,6 +1,5 @@
 Q17,Q16
 Somewhat easy,"Sometimes they explicitly state they assume they are independent even they know they are not - not clear if this means that ""If a meta-analysis reports that effect size estimates are independent"" or not"
-NA,NA
 Extremely easy,NA
 Extremely easy,NA
 Somewhat easy,How to respond when independence is not explicitly stated but is obvious (because one effect size = one primary study)?
@@ -17,3 +16,9 @@ Neither easy nor difficult,NA
 Somewhat easy,NA
 Neither easy nor difficult,NA
 Extremely easy,NA
+Neither easy nor difficult,"This question could be made clearer. Do authors merely need to acknowledge that some studies contained multiple responses / effect sizes? Do they need to quantify or discuss the within-study dependence somehow? If they include a random effect at the study level, does that address the question?"
+Extremely difficult,NA
+Neither easy nor difficult,"Again something that is not commonly reported, is this because it is not commonly performed?"
+Neither easy nor difficult,NA
+Extremely easy,NA
+Somewhat difficult,"In multi-level studies this was easy to find, but generally not reported in meta-analyses that had a single effect size per study"

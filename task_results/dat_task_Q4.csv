@@ -1,6 +1,5 @@
 Q5,Q4
 Somewhat difficult,"some of the GUI/click based software that does not produce a code per se but can produce the exact log of all procedures which can be used to recreate the analyses. In this case it would make sense to score as ""yes"". However, if you are not familiar wth siftware it might be hard to tell whether it produces a log."
-NA,NA
 Extremely easy,NA
 Extremely easy,NA
 Somewhat easy,"* The information provided in the glossary - definition of the graphical user interface (GUI) - was essential in order to be able to respond correctly if software such as Stata was used.
@@ -24,3 +23,13 @@ Neither easy nor difficult,"I sometimes struggle to decide between 'No' and 'Not
 Somewhat difficult,NA
 Somewhat easy,NA
 Extremely easy,Most times authors do not mention this.
+Somewhat easy,"You could make this clearer if the objective here is reproducibility (""relevant code"" could be taken as ambiguous and authors would wiggle off the hook).
+To make this item easier, it could help to list out some known, relevant software where this applies (e.g., R, Stata, SAS?, Python, whatever) as some may not know -- I had to look up a few of the software. IMO, it'd be nice to encourage reproducible software rather than whatever CMA and others do."
+Neither easy nor difficult,"I got a bit confused with question 2. I understand that it is about finding that there is the detail of the analysis developed in some programming language that is useful to replicate? (i.e. I mean, you would like to see all the detail in R for example?). 
+While only one article mentions a reference where a code could be seen (which I have not reviewed and am not sure if it details it) in no other case have I seen instructions being added in a coding language. 
+
+I am left wondering to what extent this question is important for assessing the methodological quality of the article in terms of meta-analysis?"
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,"In some cases, I had to search for the software to see of what type it was."

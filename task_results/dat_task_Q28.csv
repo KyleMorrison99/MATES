@@ -1,6 +1,5 @@
 Q29,Q28
 Somewhat easy,"made mistake here a few times when the data was not reported selected ""no"" rather than ""NA"". My foult not reading carefully!"
-NA,NA
 Somewhat difficult,"Many studies list the types of data extracted but don't provide ""descriptions"" of the variables. The wording of this item was a bit confusing about what it was asking. Does it was explicit definitions or is a list of data items enough?"
 Somewhat easy,NA
 Somewhat difficult,"* What should be done in case of partially reported data?
@@ -20,3 +19,13 @@ Neither easy nor difficult,NA
 Somewhat difficult,NA
 Extremely easy,NA
 Neither easy nor difficult,It is uclear whether data provided in a well formatted table with descriptive variables need metadata.
+Somewhat easy,"Extra ""study"" in ""from each eligible study primary study""
+I'm confused here as answering 'no' to item 13 qualifies this item for 'not applicable'. Even if authors don't make the collated dataset available, they should still describe the variables extracted, no? Or do you mean, did the authors also supply the additional variables with their dataset? (I'd count that as part of item 13.)
+Also, the question could confuse some as it sounds like you'd have to describe the variable for ""each eligible study"", but the description should just apply across the meta-analysis broadly.
+In some cases, the detail on what is reported can be sparse -- but that gets into subjective territory."
+Neither easy nor difficult,"I find it a bit confusing to identify up to what type of metadata authors are expected to report. While it is mentioned to review ""metadata"", however, the word metadata does not have an exclusive definition, since there are several expressions by which it is known. I have taken as a criterion the fact that the primary studies are cited with the authors' surname and their doi reference, but I do not know if anything else was expected."
+Somewhat difficult,"This was a tricky one as I was not sure to what extend it is expected to present the descriptions. Additionally, I feel there is some overlapping in items 13 and 14"
+Neither easy nor difficult,NA
+Extremely easy,NA
+Neither easy nor difficult,"In some case I found that the full dataset was not provided but the variables were indeed indicated for each study, which questions the criterion specified for NA in this question.
+On the other hand, I found it hard to answer the Question posed here because of the word ""descriptions"". Some m-a's indicate the variables measured in each retrieved study but don't describe them. In some cases the variable is self-explanatory. How much description of the individual variables is necessary to give a ""yes"" here? Is it not enough if the variables are simply ""indicated""?"

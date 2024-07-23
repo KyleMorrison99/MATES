@@ -1,6 +1,5 @@
 Q19,Q18
 Somewhat easy,NA
-NA,NA
 Somewhat difficult,"Many studies don't report a global mean but report means for a series of moderators or sub-analyses. It wasn't clear if this would fall under the definition of ""overall mean"" as it might not make sense for the study to report an overall mean across all factors."
 Extremely easy,NA
 Extremely easy,NA
@@ -16,3 +15,9 @@ Neither easy nor difficult,NA
 Extremely easy,NA
 Somewhat easy,Does this include meta-analysis of sub-groups? I assumed as the questions says meta-analyseS.
 Neither easy nor difficult,"Unclear whether mean effect sizes for subgroup analyses or analyses with moderators are sufficient, or a global mean effect size is required."
+Extremely easy,"The question is clear. I just don't think it's necessary. If a weather forecaster told you the expected rainfall for a whole continent (overall mean), would that be useful at all? Obviously depends on the scientific question. This can totally make sense if the meta-analytic question is something like ""does drug X improve health outcome Y in adults?"" (although any question probably should consider moderators). But in the environmental sciences, I think less of our questions are of this nature. Moderators, by default in my opinion, need to be factored in."
+Somewhat easy,NA
+Extremely easy,I am wondering whether it is worth to provide some measures used to present overall mean effect as examples (i.e. within brackets)
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,Generally easy to find in a figure or text

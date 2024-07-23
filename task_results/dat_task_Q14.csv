@@ -1,6 +1,5 @@
 Q15,Q14
 Somewhat easy,"Change the order of wuation parts to make it clearer and align with other: ""Do the authors report the strategy used to assign weights of effect size estimates (e.g. the sampling variance, sampling error or equivalent), in the manuscript or supplementary material?"""
-NA,NA
 Extremely easy,NA
 Somewhat easy,NA
 Somewhat easy,"Perhaps you should specify that the values are expected, because the weights can be reported graphically by differences in point size."
@@ -16,3 +15,9 @@ Neither easy nor difficult,"Some papers seemed to be weighted in the results, al
 Somewhat easy,NA
 Somewhat difficult,"I found this not straightforward to assess, maybe examples would be useful. For example, based on the answers from item 6 can be answer this quickly? Or any other words in the text we could be looking for? I guess inverse variance etc"
 Somewhat easy,NA
+Neither easy nor difficult,"I struggled a bit here as it wasn't clear if the question is if those stats themselves are reported or if the authors had a ""strategy to assign weights"" in general. Most meta-analyses usually did something in this vein, but they may not actually show the weights calculated."
+Somewhat difficult,NA
+Somewhat easy,Most of the studies assign and report weighting to individual effect size estimates but strategy to assign weight is missing in some. Is it worth asking these two separately?
+Somewhat easy,NA
+Extremely easy,NA
+Somewhat difficult,"Often hard to find. In some cases this information was in the methods, sometimes in results and sometimes in a table or image. Many studies did not indicate anything."

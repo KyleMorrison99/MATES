@@ -1,6 +1,5 @@
 Q21,Q20
 Somewhat easy,NA
-NA,NA
 Extremely easy,NA
 Extremely easy,NA
 Somewhat easy,Can we answer yes if heterogeneity is assessed only during a subgroup analysis?
@@ -16,3 +15,10 @@ Somewhat easy,NA
 Somewhat easy,NA
 Extremely easy,"For items 10, 11 and 13 I wondered if it was enough if the authors say they intend to do the assessment (in methods). It is quick to check in methods, but I didn't go check the results every time to see if they had actually reported the 'results' of the assessment. Maybe this can be clarified."
 Extremely easy,NA
+Somewhat easy,"The question is stated fine. I'd also acknowledge that study-level varying ('random') effects in a multilevel model are another way to quantify this 'heterogeneity'.
+I personally don't find these cited statistics interesting or useful, and so would protest against enforcing them. I assume heterogeneity by default. The study level varying effect estimated through a model could be quite different from the I^2 and so on because the model can condition on other predictors."
+Extremely easy,NA
+Extremely easy,It may be clearer to mention 'heterogeneity between primary/included studies'
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,Generally easy to find

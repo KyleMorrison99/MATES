@@ -1,6 +1,5 @@
 Q9,Q8
 Somewhat easy,"sometimes different terminology used which may be hard to interpret - e.g. samples, studies."
-NA,NA
 Somewhat easy,NA
 Extremely easy,NA
 Somewhat difficult,"Sometimes the number of effect sizes corresponds to the number of primary studies, and the authors therefore do not explicitly report the number of effect sizes, but do explicitly cite the number of primary studies. Perhaps you could add a clarification to take account of these cases."
@@ -18,3 +17,9 @@ Neither easy nor difficult,NA
 Neither easy nor difficult,NA
 Neither easy nor difficult,NA
 Neither easy nor difficult,"In cases in which authors do not report this number, it is possible that each study provides a single effect size, so authors might think reporting only the number of studies is enough."
+Neither easy nor difficult,This may need to be clearer. Some effect sizes / responses are whole study-level and authors just imply this in the text (e.g. a clinical trial with N participants giving just the one odds ratio; authors don't really state that one study = one effect size). Other meta-analyses can use multiple paired observations per study (e.g. logRR) and they usually are more explicit about that. Some of this is due to the field of study or common conventions.
+Somewhat easy,NA
+Somewhat easy,The item in the checklist is clear but I felt most of the articles do not explicitly state the number
+Neither easy nor difficult,NA
+Somewhat difficult,Most of the studies does not report effect sizes
+Somewhat difficult,"The studies that only had one effect size per paper did not report this, so it was hard to clearly identify the number of effect sizes in some cases. Others reported the number of subjects in each study although there was only one effect size."

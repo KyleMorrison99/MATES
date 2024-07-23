@@ -1,6 +1,5 @@
 Q25,Q24
 Neither easy nor difficult,Unclear if any subgroup analysis can be considered sensitivity analysis - often it actyually is the main analysis
-NA,NA
 Somewhat easy,"One study stated that it did sub-analyses as a form of sensitivity. Many studies do sub-analyses but don't call it a sensitivity analysis. Would this fall under ""use of alternative model""?"
 Extremely easy,NA
 Somewhat easy,"* In the question, what exactly do you mean by ""within-study risk of bias assessment""? 
@@ -19,3 +18,9 @@ Neither easy nor difficult,NA
 Somewhat easy,NA
 Somewhat easy,NA
 Neither easy nor difficult,Clarify whether subgroup analyses or use of moderators counts for sensitivity analyses.
+Somewhat easy,"'Subgroup analysis' confuses me here. Does that mean breaking down the response by various categories (subgroups)? That should be part of testing moderators, no? (Rather than a test of sensitivity.)"
+Extremely easy,NA
+Somewhat easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Neither easy nor difficult,My response is the same as in the publication bias. In some studies it is very clear that they either reported or did not report the sensitivity analysis. But sometimes the reporting is poor and I hesitated to say y/n

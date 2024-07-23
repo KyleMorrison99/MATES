@@ -1,6 +1,5 @@
 Q13,Q12
 Somewhat easy,"Unclear what you mean by ""structure"" - may need to explain that this means more than just stating that it was ""random"" or ""fixed""?"
-NA,NA
 Extremely easy,NA
 Extremely easy,NA
 Extremely easy,"To be able to answer yes, does the model have to be specified (for example, in case of a random model how is the random part structured?) or is simply mentioning the type of model (fixed, random, ...) sufficient?"
@@ -17,3 +16,10 @@ Neither easy nor difficult,NA
 Somewhat easy,NA
 Somewhat easy,I am wondering now if I misinterpreted this question - does the full model need to be reported? Should we assess also what exactly is in the model like the moderators etc
 Extremely easy,NA
+Somewhat easy,"I think a statistician could edit this question better than I can. ""Type"" may not be the right term. Authors should make clear what their model *is* (or *are* if multiple models, which should be encouraged to test competing hypotheses). Models encode assumptions about the data-generating process -- I think that's the key you're after here, what did the authors assume?
+Many meta-analyses state ""random effects model"" but I'm not so sure the authors really know what that means."
+Neither easy nor difficult,NA
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Somewhat easy,This was generally indicated and easy to find with key words

@@ -1,6 +1,5 @@
 Q23,Q22
 Somewhat easy,NA
-NA,NA
 Somewhat easy,Some say that they just report 'publication bias corrected models' so they don't necessarily report a measure of publication bias per se
 Extremely easy,NA
 Extremely easy,"*Perhaps you could clarify that graphic-only assessments (without any tests) are also valid?
@@ -17,3 +16,10 @@ Somewhat easy,NA
 Somewhat easy,NA
 Extremely easy,NA
 Extremely easy,NA
+Somewhat easy,"The question is stated well. You could brief to ""Do the authors assess publication bias...""
+I'll note that not all meta-analysis topics lend themselves to things like Egger's tests and such. I'd argue that discussion within the text itself could suffice, which provides flexibility in cases where publication bias isn't really a factor. An example: I just listened to a seminar on a meta-analysis in progress about the drawdown of soil phosphorus over time. The goal is to understand more broadly how quickly drawdown occurs. Publication bias doesn't really make sense here (authors wouldn't censor studies that didn't show a change in soil phosphorus over time, and often the primary studies weren't focused on this specific question anyways). Of course they can assess publication bias anyways, it just feels odd."
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Neither easy nor difficult,Here MATES could be more specific in how clear the reporting should be. Is it enough if a m-a indicates that they made funnel plots and found no publication bias?

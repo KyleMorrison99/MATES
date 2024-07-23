@@ -1,6 +1,5 @@
 Q3,Q2
 Somewhat easy,"unclear if ""report the software or programming language"" simple means that reporting the name is sufficient"
-NA,NA
 Extremely easy,NA
 Extremely easy,NA
 Somewhat easy,NA
@@ -17,3 +16,9 @@ Extremely easy,NA
 Extremely easy,NA
 Extremely easy,NA
 Neither easy nor difficult,"Unclear how specific the information needs to be. In a few instances, authors reported the use of R but without details on the packages used."
+Extremely easy,"You could brief the parenthetical as it refers to 'analysis': ""(i.e., computations, statistical modeling, and inferences comprising the meta-analysis)"""
+Somewhat easy,"In some cases, different softwares are used according to the analysis performed, and I would like to know if this information was important to discriminate it, since I have mostly surveyed one of them and not all of them."
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,NA
+Extremely easy,It is generally very easy to identify software in the statistical sections
