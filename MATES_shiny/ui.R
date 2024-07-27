@@ -34,7 +34,66 @@ ui <- fluidPage(
         margin: 0;
         padding: 0;
       }
-      
+   .center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 8vw; /* Adjusted padding to control the space from the left and right edges */
+}
+
+.centered-row, .bottom-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.centered-button, .translation-button {
+    margin: 10px 30px; /* Adjusted margin to set buttons a bit more apart */
+    font-size: 24px;
+    width: 300px; /* Fixed width for all buttons */
+    height: 100px; /* Increased height for taller buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center text alignment */
+    line-height: normal; /* Ensure normal line height for text wrapping */
+}
+
+.bottom-row {
+    margin-top: 50px; /* Added margin to move the bottom row further down */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.translation-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.translation-button {
+    color: #EAEAEA; /* Light grey text color */
+    background-color: #222222; /* Dark background color */
+    border: none;
+    cursor: pointer;
+}
+
+.translation-button:hover {
+    border: 3px solid red;
+    background-color: #333333;
+}
+
+
+      .top-button {
+        margin: 10px 40px; /* Adjusted margin for the top buttons */
+        font-size: 24px;
+      }
     
       /* Button styles */
       .btn-custom {
@@ -43,13 +102,10 @@ ui <- fluidPage(
         border: none;
       }
       .btn-custom:hover {
-        background-color: #1a1a1a; /* Slightly lighter dark color on hover */
-        color: #FFFFFF; /* White text color on hover */
+         border: 3px solid red;
+        background-color: #333333;
       }
-      .btn-selected {
-        background-color: #444444; /* Highlight color for selected button */
-        color: #FFFFFF; /* White text color */
-      }
+      
       /* Footer styles */
       .footer {
         background-color: #333333;
@@ -87,7 +143,15 @@ ui <- fluidPage(
         position: absolute;
         bottom: 15px;
         right: 15px;
+        
+        
       }
+      
+      .btn-submit:hover {
+      border: 3px solid red;
+      background-color: #333333; 
+      }
+     
       .result-box {
         margin-left: 15px;
         font-weight: bold;
@@ -154,6 +218,7 @@ ui <- fluidPage(
       
       .footer .btn:hover {
           background-color: #333333;
+          border: 3px solid red;
       }
       
       .sidebar-panel .btn {
@@ -168,6 +233,7 @@ ui <- fluidPage(
       
       .sidebar-panel .btn:hover {
           background-color: #333333;
+          border: 3px solid red;
       }
       
     
@@ -192,6 +258,47 @@ ui <- fluidPage(
           font-size: 1.75em;
           font-weight: bold;
       }
+       .center-container {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                padding: 0 8vw;
+                              }
+                              .centered-row {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                margin-bottom: 20px;
+                              }
+                              .top-button {
+                                height: 300px;
+                                width: 350px;
+                                white-space: normal;
+                                margin: 10px 30px;
+                                font-size: 16px;
+                              }
+                              .bottom-row {
+                                margin-top: 50px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                              }
+                              .bottom-button {
+                                height: 300px;
+                                width: 350px;
+                                white-space: normal;
+                                font-size: 16px;
+                                margin: 0 30px;
+                              }
+                              .shiny-button:hover {
+                                border: 3px solid red;
+                                background-color: #333333;
+
+                              }
       
         
       '))
@@ -214,8 +321,8 @@ ui <- fluidPage(
                               class = "main-panel",
                               h1("MATES: Meta-analysis Appraisal Tool for Environmental Sciences"),
                               tags$br(),
-                              p("MATES is a community-developed appraisal tool designed to evaluate the reporting quality of meta-analyses. It consists of 14 appraisal items proposed and assessed by the meta-analysis community within environmental sciences. The assessment with MATES is binary, indicating whether each item is present in the manuscript."),
-                              p("The primary users of MATES are researchers, editors, and reviewers who aim to assess the reporting quality of meta-analyses. Although MATES was primarily developed by environmental scientists, it is applicable across various disciplines where meta-analysis is employed."),
+                              p("MATES is a community-developed appraisal tool designed to evaluate the reporting quality of meta-analyses. The MATES checklist consists of 14 appraisal items developed with invlovement from the meta-analysis community in environmental sciences."),
+                              p("The primary target audiences for MATES are researchers, editors and reviewers who aim to assess the reporting quality of meta-analyses. Although MATES was developed primarily by environmental scientists we pose that the checklist is widely applicable to other scientific disciplines."),
                               tags$br(),
                               h2("The MATES Shiny app contains four primary sections:"),
                               tags$ul(
@@ -229,59 +336,74 @@ ui <- fluidPage(
                       ),
                       tags$footer(
                         div(class = "footer",
-                            p("Contact us: email@example.com | Phone: 123-456-7890 | Address: 123 Main St, City, Country"),
-                            actionButton("aboutButton1", "About & Citation Info", class = "btn btn-primary")
-                        )
-                      )
-             ),
-             tabPanel("About", "This panel is intentionally left blank",
-                      tags$footer(
-                        div(class = "footer",
-                            p("Contact us: email@example.com | Phone: 123-456-7890 | Address: 123 Main St, City, Country"),
-                            actionButton("aboutButton2", "About & Citation Info", class = "btn btn-primary")
-                        )
-                      )
-             ),
-             tabPanel("Translations",
-                      div(class = "content-area",
-                          mainPanel(
-                            class = "main-panel-custom",
-                            h1("MATES Translations"),
-                            h3(style = "font-size: 20px; color: #CCCCCC; margin-bottom: 30px;", 
-                               HTML('Several translations of the MATES checklist are available. These have been translated by kind volunteers and are freely available below. If you are interested in translating a MATES checklist or other document, please email the lead author at <a href="mailto:kyle.morrison@unsw.edu.au">kyle.morrison@unsw.edu.au</a>.')
+                            p(
+                              "Contact us: ", 
+                              a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), 
+                              " | ", 
+                              a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES")
                             ),
-                            h2("MATES Translation Links"),
-                            div(class = "translation-links",
-                                tags$style(HTML('
-              .translation-links a {
-                display: block;
-                font-size: 20px; /* Increase font size */
-                margin: 10px 0; /* Add space between links */
-                text-decoration: none; /* Remove underline */
-                color: #00BFFF; /* Link color */
-              }
-              .translation-links a:hover {
-                color: #FFFFFF; /* White text color on hover */
-              }
-            ')),
-                                a(href = "#", "Chinese (Simplified) Checklist"),
-                                a(href = "#", "Chinese (Traditional) Checklist"),
-                                a(href = "#", "French Checklist"),
-                                a(href = "#", "Japanese Checklist"),
-                                a(href = "#", "Italian Checklist"),
-                                a(href = "#", "Polish Checklist"),
-                                a(href = "#", "Russian Checklist"),
-                                a(href = "#", "Spanish Checklist")
-                            )
+                            actionButton("aboutButton1", "About & Citation Info", class = "btn btn-primary")
+                        ))
+                      ),
+                      
+             tabPanel("Development",
+                      div(class = "center-container",
+                          div(class = "centered-row",
+                              actionButton("workshop1", HTML("<b><u>Workshop 1</u></b><br>Develop MATES initial items"), 
+                                           class = "top-button shiny-button"),
+                              actionButton("survey", HTML("<b><u>Survey</u></b><br>Evaluate MATES initial items"), 
+                                           class = "top-button shiny-button"),
+                              actionButton("workshop2", HTML("<b><u>Workshop 2</u></b><br>Interpret survey results and confirm MATES items for task"), 
+                                           class = "top-button shiny-button")
+                          ),
+                          div(class = "bottom-row",
+                              actionButton("task", HTML("<b><u>Task</u></b><br>Implement MATES to measure inter-rater reliability and usability"), 
+                                           class = "bottom-button shiny-button"),
+                              actionButton("workshop3", HTML("<b><u>Workshop 3</u></b><br>Interpret task results and feedback"), 
+                                           class = "bottom-button shiny-button")
                           )
                       ),
                       tags$footer(
                         div(class = "footer",
-                            p("Contact us: email@example.com | Phone: 123-456-7890 | Address: 123 Main St, City, Country"),
-                            actionButton("aboutButton3", "About & Citation Info", class = "btn btn-primary")
-                        )
-                      )
+                            p(
+                              "Contact us: ", 
+                              a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), 
+                              " | ", 
+                              a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES")
+                            ),
+                            actionButton("aboutButton2", "About & Citation Info", class = "btn btn-primary")
+                        ))
              ),
+             tabPanel("Translations",
+  div(class = "center-container",
+      div(class = "centered-row",
+          actionButton("englishChecklist", "English Checklist", class = "translation-button"),
+          actionButton("chineseSimplifiedChecklist", "Chinese (Simplified) Checklist", class = "translation-button"),
+          actionButton("chineseTraditionalChecklist", "Chinese (Traditional) Checklist", class = "translation-button")
+      ),
+      div(class = "bottom-row",
+          actionButton("frenchChecklist", "French Checklist", class = "translation-button"),
+          actionButton("japaneseChecklist", "Japanese Checklist", class = "translation-button"),
+          actionButton("italianChecklist", "Italian Checklist", class = "translation-button")
+      ),
+      div(class = "bottom-row",
+          actionButton("polishChecklist", "Polish Checklist", class = "translation-button"),
+          actionButton("russianChecklist", "Russian Checklist", class = "translation-button"),
+          actionButton("spanishChecklist", "Spanish Checklist", class = "translation-button")
+      )
+  
+),
+tags$footer(
+  div(class = "footer",
+      p(
+        "Contact us: ", 
+        a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), 
+        " | ", 
+        a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES")
+      ),
+      actionButton("aboutButton3", "About & Citation Info", class = "btn btn-primary")
+  ))
+),
              tabPanel("Trainer",
                       div(class = "content-area",
                           sidebarLayout(
@@ -1175,17 +1297,19 @@ server <- function(input, output, session) {
       size = "l",  # This makes the modal larger
       div(
         h3("Citation Information"),
-        p("You can cite the PRISMA2020 project as follows:"),
-        p("Page MJ, McKenzie JE, Bossuyt PM, Boutron I, Hoffmann TC, Mulrow CD, et al. The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. BMJ 2021; 372:n71. doi:10.1136/bmj.n71"),
+        p("Citation here: This document is intentionally blank."),
         downloadButton("downloadBib", "Download citation (.bib)", class = "btn btn-secondary"),
         downloadButton("downloadRis", "Download citation (.ris)", class = "btn btn-secondary"),
         hr(),
-        h3("Found a bug?"),
-        p(a("Please email us!", href = "mailto:email@example.com")),
+        h3("Found a problem?"),
+        p(a("Please submit an issue on the GitHub repository!", href = "https://github.com/KyleMorrison99/MATES")),
         hr(),
         h3("About"),
-        p("This application was developed by [Developer Name], adapted from a similar application created for the Transparency Checklist. The full source code for this application is available via the [GitHub repository](https://github.com).")
-      )
+        p("This application was developed by ", 
+          a("Kyle Morrison", href = "mailto:kyle.morrison@unsw.edu.au"), 
+          ". The full source code for this application is available via the ", 
+          a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES"), 
+          " GitHub repository."))
     ))
   })
   
@@ -1197,17 +1321,19 @@ server <- function(input, output, session) {
       size = "l",  # This makes the modal larger
       div(
         h3("Citation Information"),
-        p("You can cite the PRISMA2020 project as follows:"),
-        p("Page MJ, McKenzie JE, Bossuyt PM, Boutron I, Hoffmann TC, Mulrow CD, et al. The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. BMJ 2021; 372:n71. doi:10.1136/bmj.n71"),
+        p("Citation here: This document is intentionally blank."),
         downloadButton("downloadBib", "Download citation (.bib)", class = "btn btn-secondary"),
         downloadButton("downloadRis", "Download citation (.ris)", class = "btn btn-secondary"),
         hr(),
-        h3("Found a bug?"),
-        p(a("Please email us!", href = "mailto:email@example.com")),
+        h3("Found a problem?"),
+        p(a("Please submit an issue on the GitHub repository!", href = "https://github.com/KyleMorrison99/MATES")),
         hr(),
         h3("About"),
-        p("This application was developed by [Developer Name], adapted from a similar application created for the Transparency Checklist. The full source code for this application is available via the [GitHub repository](https://github.com).")
-      )
+        p("This application was developed by ", 
+          a("Kyle Morrison", href = "mailto:kyle.morrison@unsw.edu.au"), 
+          ". The full source code for this application is available via the ", 
+          a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES"), 
+          " GitHub repository.")      )
     ))
   })
   
@@ -1219,17 +1345,19 @@ server <- function(input, output, session) {
       size = "l",  # This makes the modal larger
       div(
         h3("Citation Information"),
-        p("You can cite the PRISMA2020 project as follows:"),
-        p("Page MJ, McKenzie JE, Bossuyt PM, Boutron I, Hoffmann TC, Mulrow CD, et al. The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. BMJ 2021; 372:n71. doi:10.1136/bmj.n71"),
+        p("Citation here: This document is intentionally blank."),
         downloadButton("downloadBib", "Download citation (.bib)", class = "btn btn-secondary"),
         downloadButton("downloadRis", "Download citation (.ris)", class = "btn btn-secondary"),
         hr(),
-        h3("Found a bug?"),
-        p(a("Please email us!", href = "mailto:email@example.com")),
+        h3("Found a problem?"),
+        p(a("Please submit an issue on the GitHub repository!", href = "https://github.com/KyleMorrison99/MATES")),
         hr(),
         h3("About"),
-        p("This application was developed by [Developer Name], adapted from a similar application created for the Transparency Checklist. The full source code for this application is available via the [GitHub repository](https://github.com).")
-      )
+        p("This application was developed by ", 
+          a("Kyle Morrison", href = "mailto:kyle.morrison@unsw.edu.au"), 
+          ". The full source code for this application is available via the ", 
+          a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES"), 
+          " GitHub repository.")      )
     ))
   })
   
@@ -1261,6 +1389,52 @@ server <- function(input, output, session) {
     },
     contentType = "application/pdf"
   )
+  
+  observeEvent(input$workshop1, {
+    showModal(modalDialog(
+      title = "Workshop 1",
+      size = "l",
+      HTML("This document is intentionally blank.
+      ")
+    ))
+  })
+  
+  observeEvent(input$survey, {
+    showModal(modalDialog(
+      title = "Survey",
+      size = "l",
+      HTML("This document is intentionally blank.
+      ")
+    ))
+  })
+  
+  observeEvent(input$workshop2, {
+    showModal(modalDialog(
+      title = "Workshop 2",
+      size = "l",
+      HTML("This document is intentionally blank.
+      " )
+    ))
+  })
+  
+  observeEvent(input$task, {
+    showModal(modalDialog(
+      title = "Task",
+      size = "l",
+      HTML("This document is intentionally blank.
+      ")
+    ))
+  })
+  
+  observeEvent(input$workshop3, {
+    showModal(modalDialog(
+      title = "Workshop 3",
+      size = "l",
+      HTML("This document is intentionally blank.
+      ")
+    ))
+  })
+  
   
   # Observe the study button and open the selected study link
   observeEvent(input$study_button, {
@@ -1661,7 +1835,7 @@ server <- function(input, output, session) {
   output$glossary2 <- renderTable({
     glossary_data
   })
- 
+  
   
   # Update responses based on button clicks
   observeEvent(input$yes1Apply, { responses$item1 <- "Yes" })

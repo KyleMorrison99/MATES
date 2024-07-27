@@ -33,7 +33,9 @@ pacman::p_load(tidyverse,
                here,
                stringr,
                purrr,
-               kableExtra)
+               kableExtra,
+               irr,
+               vcd)
 ```
 
 ## Load data
@@ -1599,7 +1601,7 @@ dat_task_Q4 <- dat_task %>%
     kable_styling("bordered", position = "left") %>%
     scroll_box(width = "150%", height = "400px")
 
-#  write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
+# write_csv(dat_task_Q4, file = here("task_results", "dat_task_Q4.csv"))
 
 ```
 
@@ -2486,41 +2488,107 @@ dat_task_Q30 <- dat_task %>%
 
 # Calculating conflict rates of each question
 ```{r}
-# Function to calculate conflict percentage per column
-conflict_percentage_per_column <- function(column) {
+# Function to calculate agreement percentage per column
+agreement_percentage_per_column <- function(column) {
   yes_count <- sum(column == "Yes", na.rm = TRUE)
   no_count <- sum(column == "No", na.rm = TRUE)
   total <- yes_count + no_count
   if (total == 0) {
     return(NA)
   }
-  min(yes_count, no_count) / total * 100
+  max(yes_count, no_count) / total * 100
 }
 
-# Remove columns with _comment and reshape the dataframe to long format for easier processing
 task_conflict_long <- task_conflict %>%
-    select(study_id, starts_with("item_"),-matches("_comment") ) %>%
-    pivot_longer(cols = -study_id, names_to = "column", values_to = "value")
+  select(study_id, appraiser_id, starts_with("item_"), -matches("_comment")) %>%
+  pivot_longer(cols = -c(study_id, appraiser_id), names_to = "item", values_to = "result")
 
-# Calculate conflict percentage for each column per paper
-conflict_per_paper <- task_conflict_long %>%
-  group_by(study_id, column) %>%
-  summarise(conflict_percentage = conflict_percentage_per_column(value), .groups = 'drop') %>%
-  pivot_wider(names_from = column, values_from = conflict_percentage)
+# Calculate agreement percentage for each column per paper
+agreement_per_paper <- task_conflict_long %>%
+  group_by(study_id, item) %>%
+  summarise(agreement_percentage = agreement_percentage_per_column(result), .groups = 'drop') %>%
+  pivot_wider(names_from = item, values_from = agreement_percentage)
 
-# Calculate the mean and standard deviation for conflict percentage per column
-stats_conflict_per_item <- conflict_per_paper %>%
+# Calculate the mean and standard deviation for agreement percentage per column
+stats_agreement_per_item <- agreement_per_paper %>%
   select(c(-matches("study"))) %>% 
   summarise(across(everything(), list(mean = ~ mean(.x, na.rm = TRUE), sd = ~ sd(.x, na.rm = TRUE))))
 
 # Display the mean and standard deviation for each column
-print(stats_conflict_per_item)
+print(stats_agreement_per_item)
+
+# write_csv(stats_agreement_per_item, file = here("task_results", "stats_agreement_per_item.csv"))
+
 
 ```
 
+
+# KAPPA statistic
+```{r}
+data_kappa <- task_conflict %>%
+  select(appraiser_id, study_id, starts_with("item_")) %>%
+  select(-ends_with("comment")) %>% 
+  pivot_longer(cols = starts_with("item_"), names_to = "item", values_to = "value") %>%
+  mutate(effect_formula = case_when(
+    value == "Yes" ~ 2,
+    value == "No" ~ 1,
+    value == "Not Applicable" ~ 0
+  )) %>%
+  select(-value) %>%
+  pivot_wider(names_from = appraiser_id, values_from = effect_formula)
+
+
+
+data_kappa_a_002_item_1 <- data_kappa %>% 
+  filter(item == "item_1")%>% 
+  select(c(a_01, a_05)) %>% 
+  drop_na()
+
+
+
+kappa2(data_kappa_a_002_item_1)
+
+
+kapp <- structable(a_01 ~ a_02, data=data_kappa) %>% as.table  
+
+# Create a confusion matrix of the raters' assessments
+# Assume we have two raters, Rater A and Rater B
+# Rater A: 1, 0, 1, 1, 0, 1, 0, 0
+# Rater B: 1, 1, 1, 0, 0, 1, 0, 0
+
+rater_a <- c(1, 1, 1, 1, 1, 1, 1, 1)
+rater_b <- c(1, 1, 1, 1, 1, 1, 1, 1)
+
+# Create a table of the raters' assessments
+conf_matrix <- table(rater_a, rater_b)
+
+# Print the confusion matrix
+print(conf_matrix)
+
+# Calculate the number of observations
+n <- sum(conf_matrix)
+
+# Calculate the observed agreement
+p0 <- sum(diag(conf_matrix)) / n
+
+# Calculate the expected agreement by chance
+p_e <- sum(rowSums(conf_matrix) * colSums(conf_matrix)) / (n^2)
+
+# Calculate Cohen's kappa
+kappa <- (p0 - p_e) / (1 - p_e)
+
+# Print Cohen's kappa
+print(kappa)
+
+```
+
+
+
+
+
+
 # Calculating mean time taken
 ```{r}
-
 # Convert start_time and finish_time
 task_conflict$start_time <- strptime(task_conflict$start_time, format="%H:%M")
 task_conflict$finish_time <- strptime(task_conflict$finish_time, format="%H:%M")
@@ -2532,14 +2600,25 @@ task_conflict <- task_conflict %>%
 # Display the first few rows of the dataframe with the new columns
 head(task_conflict[, c("start_time", "finish_time", "time_difference")])
 
-# Select and display the relevant column
+# Select relevant columns, drop NA values, and order by time difference
 task_time_taken <- task_conflict %>%
   select(start_time, finish_time, time_difference) %>% 
-    drop_na()a
+  drop_na() %>%
+  filter(time_difference > 0)
 
-# Calculate mean and standard deviation
+task_time_taken2 <- task_conflict %>%
+  filter(appraiser_name != 'Kyle Morrison') %>%
+  select(start_time, finish_time, time_difference) %>% 
+  drop_na() %>%
+  filter(time_difference > 0) %>%
+  arrange(desc(time_difference))
+
+
+# Calculate mean, standard deviation, minimum, and maximum
 mean_time <- mean(task_time_taken$time_difference)
 sd_time <- sd(task_time_taken$time_difference)
+min_time <- min(task_time_taken$time_difference)
+max_time <- max(task_time_taken$time_difference)
 
 ```
 
