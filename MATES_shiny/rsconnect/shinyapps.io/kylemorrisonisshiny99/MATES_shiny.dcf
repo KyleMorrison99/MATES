@@ -1,0 +1,12 @@
+name: MATES_shiny
+title: MATES_shiny
+username: kylemorrisonisshiny99
+account: kylemorrisonisshiny99
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12388172
+bundleId:
+url: https://kylemorrisonisshiny99.shinyapps.io/MATES_shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
