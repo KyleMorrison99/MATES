@@ -58,6 +58,14 @@ icc_list <- dat_list %>%
                   grname = "study_id",
                   data = .x))
 
+#
+
+icc_list2 <- dat_list %>%
+  map(~ rptBinary(appraisal_result ~ 1 + (1|study_id) + (1|appraiser_id),
+                  grname = c("study_id", "appraiser_id"),
+                  data = .x))
+
+
 # save icc_list as rds
 
 saveRDS(icc_list, here("ICC", "icc_list.rds"))
