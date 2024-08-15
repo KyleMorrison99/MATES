@@ -69,6 +69,7 @@ icc_list2 <- dat_list %>%
 # save icc_list as rds
 
 saveRDS(icc_list, here("ICC", "icc_list.rds"))
+saveRDS(icc_list2, here("ICC", "icc_list2.rds"))
 
 # the order (could have changed above)
 # item_1 item_10 item_11 item_12 item_13 item_14 item_2 item_3 item_4 item_5 item_6 item_7 ... item_9
