@@ -12,7 +12,7 @@ ui <- fluidPage(
   # Custom CSS styles
   tags$head(
     tags$style(HTML('
- .correct {
+.correct {
     color: green;
     font-weight: bold;
     font-size: 1.5em; /* Adjust the size as needed */
@@ -55,10 +55,7 @@ ui <- fluidPage(
 /* Styles for centered and bottom rows */
 .centered-row, .bottom-row {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
+ 
 }
 
 /* Button styling with fixed width and height */
@@ -77,9 +74,8 @@ ui <- fluidPage(
 /* Additional margin for the bottom row */
 .bottom-row {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+        position: relative;
+
 }
 
       /* Styles for translation links and buttons */
@@ -92,10 +88,6 @@ ui <- fluidPage(
      .translation-button {
     border: none;
     cursor: pointer;
-    font-size: 30px; /* Increase font size */
-    padding: 15px 30px; /* Increase padding */
-   height: 250px;
-        width: 350px;
 }
 
 
@@ -127,7 +119,6 @@ ui <- fluidPage(
         background-color: #333333;
         color: #EAEAEA;
         text-align: left;
-        padding: 10px;
         position: fixed;
         bottom: 0;
         width: 100%;
@@ -136,7 +127,7 @@ ui <- fluidPage(
       /* Collapsible panel styles */
       .panel {
         margin-bottom: 20px;
-        border: 1px solid #444;
+        border: 1px solid #4444;
         border-radius: 4px;
       }
 
@@ -199,7 +190,7 @@ border: 3px solid black;
       }
 
       /* Heading styles with custom font and size */
-      h1, h2, h3, p {
+      h1, h2, h3, h4, p {
         font-family: "Trebuchet MS", Helvetica, sans-serif;
       }
       h1 {
@@ -212,6 +203,12 @@ border: 3px solid black;
       }
       h3 {
         font-size: 1.75em;
+      }
+      
+      h4 {
+        font-size: 1.5em;
+        text-decoration: underline;
+
       }
       p {
         font-size: 1.25em; /* Larger and more appealing */
@@ -261,55 +258,58 @@ border: 3px solid black;
 
       /* Main panel padding */
       .main-panel {
-        padding: 20px;
       }
 
-      /* Content area margin */
-      .content-area {
-        margin: 20px;
-      }
+    /* Content area margin */
+.content-area {
+  overflow-y: auto; /* Ensures overflow only on the Y-axis */
+  overflow-x: hidden; /* Prevents overflow on the X-axis */
+}
 
-      /* Duplicate panel heading styles removed */
-      .center-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        padding: 0 0vw;
-      }
-    .centered-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 10px; /* Reduced bottom margin to move up */
+.centered-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px; /* Reduced bottom margin to move up */
 }
 .top-button {
-    height: 300px;
-    width: 350px;
-    white-space: normal;
-    margin: 10px 30px;
-    font-size: 30px; /* Increase font size */
+  white-space: normal;
+  margin: 10px 30px;
+  font-size: 25px; /* Increase font size */
 }
 .bottom-row {
-    margin-top: 10px; /* Reduced top margin to move up */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  margin-top: 10px; /* Reduced top margin to move up */
+  display: flex;
+  width: 100%;
 }
-      .bottom-button {
-        height: 300px;
-        width: 350px;
-        white-space: normal;
-    font-size: 30px; /* Increase font size */
-        margin: 0 30px;
-      }
-      .shiny-button:hover {
-        border: 3px solid red;
-        background-color: #333333;
-      }
+.bottom-button {
+  white-space: normal;
+  font-size: 25px; /* Increase font size */
+  margin: 0 30px;
+}
+.shiny-button:hover {
+  border: 3px solid red;
+  background-color: #333333;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .top-button, .bottom-button {
+    height: 200px;
+    width: 250px;
+    font-size: 20px; /* Adjust font size */
+    margin: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-button, .bottom-button {
+    height: 150px;
+    width: 200px;
+    font-size: 16px; /* Adjust font size */
+    margin: 10px 10px;
+  }
+}
+
     ')),
     tags$script(HTML("
       function toggleCheckbox(button, group) {
@@ -342,7 +342,9 @@ navbarPage("",
                             div(id = "documents",
                                 h1("Key Documents"),
                                 actionButton("downloadMATES", "MATES Checklist", class = "btn-custom"),
-                                actionButton("downloadMATESstatement", "MATES Statement", class = "btn-custom")
+                                actionButton("downloadMATESstatement", "MATES Statement", class = "btn-custom"),
+                                actionButton("aboutButton1", "About & Citation Info", class = "btn btn-primary")
+                                
                             )
                           ),
                           mainPanel(
@@ -372,61 +374,42 @@ navbarPage("",
                                       tags$ul(
                                         tags$li(h3("A dedicated application tool to apply MATES for your own appraisal, including an option to save outcomes in a .csv format."))
                                       
-                              )
+                              ))
                             )
                           )
                         )
                     )
            ),
-           tags$footer(
-             div(class = "footer",
-                 h3(
-                   "Email: ", 
-                   a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), 
-                   " | GitHub:", 
-                   a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES")
-                 ),
-                 actionButton("aboutButton1", "About & Citation Info", class = "btn btn-primary")
-             ))
-           ),
+           
              tabPanel("Development",
+                      h1("MATES: Meta-analysis Appraisal Tool for Environmental Sciences checklist development"),
                       h3("Here we provide details on the community-driven Delphi-like methodology that was used to develop the MATES checklist."),
                       h3("The methodology consists of three separate workshops, a survey involving the community, and an implementation task."),
                       h3("For specific details, please click the appropriate box below!"),
-                      div(class = "center-container",
                        div(class = "centered-row",
-                              actionButton("workshop1", HTML("<b><u>Workshop 1</u></b><br>Develop initial items"), 
+                              actionButton("workshop1", HTML("<u>Workshop 1</u></b><br>Develop initial items"), 
                                            class = "top-button shiny-button"),
-                              actionButton("survey", HTML("<b><u>Survey</u></b><br>Evaluate initial items"), 
+                              actionButton("survey", HTML("<u>Survey</u></b><br>Evaluate initial items"), 
                                            class = "top-button shiny-button"),
-                              actionButton("workshop2", HTML("<b><u>Workshop 2</u></b><br>Interpret survey results"), 
+                              actionButton("workshop2", HTML("<u>Workshop 2</u></b><br>Interpret survey results"), 
                                            class = "top-button shiny-button")
                           ),
                           div(class = "bottom-row",
-                              actionButton("task", HTML("<b><u>Task</u></b><br>Measure inter-rater reliability and usability"), 
+                              actionButton("task", HTML("<u>Task</u></b><br>Measure inter-rater reliability and usability"), 
                                            class = "bottom-button shiny-button"),
-                              actionButton("workshop3", HTML("<b><u>Workshop 3</u></b><br>Interpret task results and feedback"), 
+                              actionButton("workshop3", HTML("<u>Workshop 3</u></b><br>Interpret task results and feedback"), 
                                            class = "bottom-button shiny-button")
                           )
                       ),
-                      tags$footer(
-                        div(class = "footer",
-                            h3(
-                              "Email: ", 
-                              a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), 
-                              " | GitHub:", 
-                              a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES")
-                            ),
-                            actionButton("aboutButton2", "About & Citation Info", class = "btn btn-primary")
-                        ))
-             ),
+                      
              tabPanel("Translations",
-                      h1("MATES: Meta-analysis Appraisal Tool for Environmental Sciences checklist translations"),
+                      div(class = "content-area",
+                          
+                      h1("MATES translations"),
                       h3("MATES has been translated into several languages to increase accessibility of the tool."),
                       h3("To access the translated checklist of your choice select the appropiate button below."),
                       h3("If you are interested in tranlating a MATES checklist into a language of youe choice please contact", a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), "."),
                       
-                      div(class = "center-container",
       div(class = "centered-row",
           actionButton("portugueseChecklist", "Portuguese Checklist", class = "translation-button"),
           actionButton("chineseSimplifiedChecklist", HTML("Chinese (Simplified)<br>Checklist"), class = "translation-button"),
@@ -442,20 +425,10 @@ navbarPage("",
           actionButton("polishChecklist", "Polish Checklist", class = "translation-button"),
           actionButton("russianChecklist", "Russian Checklist", class = "translation-button"),
           actionButton("spanishChecklist", "Spanish Checklist", class = "translation-button")
-      )
+      
   
-),
-tags$footer(
-  div(class = "footer",
-      h3(
-        "Email:", 
-        a("kyle.morrison@unsw.edu.au", href = "mailto:kyle.morrison@unsw.edu.au"), 
-        " | GitHub:", 
-        a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES")
-      ),
-      actionButton("aboutButton3", "About & Citation Info", class = "btn btn-primary")
-  ))
-),
+))),
+
              tabPanel("Trainer",
                       div(class = "content-area",
                           sidebarLayout(
@@ -471,9 +444,13 @@ tags$footer(
                             mainPanel(
                               width = 9,
                               class = "main-panel",
-                              h1("Meta-analysis Appraisal Tool for Environmental Sciences (MATES) trainer"),
+                              h1("MATES trainer"),
                               p("Here we provide a training tool to help users increase accuracy and repeatability of their appraisal outcomes."),
-                              p("Below we provide five meta-analyses which we have assessed as a group deemed as a 'gold standard', in which you can compare appraisal results against."),
+                              p("For detailed instructions on how to use the training tool please click the following button:"),
+                              actionButton("instruction_button", "Go to instructions", class = "btn-custom"),
+                              tags$br(),
+                              p("Here are five meta-analyses evaluated by the MATES core team. The appraisal results from the core team will serve as a reference set of decisions, against which your answers will be deemed correct or incorrect."),
+                              p("To proceed, select a study from the drop down menu and click the 'Go to Study' button to be taken to the open-access publication."),
                               div(style = "display: flex; align-items: center;",
                                   selectInput("study_selector", "Select a study:", 
                                               choices = list(
@@ -519,8 +496,9 @@ tags$footer(
                                               actionButton("yes1", "Yes", class = "btn-custom group1", onclick = "toggleCheckbox(this, 'group1')"),
                                               actionButton("no1", "No", class = "btn-custom group1", onclick = "toggleCheckbox(this, 'group1')"),
                                               actionButton("na1", "Not Applicable", class = "btn-custom group1", onclick = "toggleCheckbox(this, 'group1')"),
-                                              div(style = "margin-left: auto;", actionButton("submit1", "Check Answer", class = "btn-custom btn-submit"))
-                                          ),
+                                              div(style = "margin-left: auto;", 
+                                                  actionButton("submit1", "Check Answer", class = "btn-custom"))
+                                                  ),
                                           tags$br(),
                                           div(textOutput("result1"), class = "result-box"),
                                           uiOutput("explanationBox1")
@@ -546,7 +524,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes2", "Yes", class = "btn-custom group2", onclick = "toggleCheckbox(this, 'group2')"),
                                               actionButton("no2", "No", class = "btn-custom group2", onclick = "toggleCheckbox(this, 'group2')"),
-                                              div(style = "margin-left: auto;", actionButton("submit2", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit2", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result2"), class = "result-box"),
@@ -576,7 +554,7 @@ tags$footer(
                                               actionButton("yes3", "Yes", class = "btn-custom group3", onclick = "toggleCheckbox(this, 'group3')"),
                                               actionButton("no3", "No", class = "btn-custom group3", onclick = "toggleCheckbox(this, 'group3')"),
                                               actionButton("na3", "Not Applicable", class = "btn-custom group3", onclick = "toggleCheckbox(this, 'group3')"),
-                                              div(style = "margin-left: auto;", actionButton("submit3", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit3", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result3"), class = "result-box"),
@@ -603,7 +581,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes4", "Yes", class = "btn-custom group4", onclick = "toggleCheckbox(this, 'group4')"),
                                               actionButton("no4", "No", class = "btn-custom group4", onclick = "toggleCheckbox(this, 'group4')"),
-                                              div(style = "margin-left: auto;", actionButton("submit4", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit4", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result4"), class = "result-box"),
@@ -630,7 +608,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes5", "Yes", class = "btn-custom group5", onclick = "toggleCheckbox(this, 'group5')"),
                                               actionButton("no5", "No", class = "btn-custom group5", onclick = "toggleCheckbox(this, 'group5')"),
-                                              div(style = "margin-left: auto;", actionButton("submit5", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit5", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result5"), class = "result-box"),
@@ -657,7 +635,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes6", "Yes", class = "btn-custom group6", onclick = "toggleCheckbox(this, 'group6')"),
                                               actionButton("no6", "No", class = "btn-custom group6", onclick = "toggleCheckbox(this, 'group6')"),
-                                              div(style = "margin-left: auto;", actionButton("submit6", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit6", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           uiOutput("explanationBox6")
@@ -683,7 +661,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes7", "Yes", class = "btn-custom group7", onclick = "toggleCheckbox(this, 'group7')"),
                                               actionButton("no7", "No", class = "btn-custom group7", onclick = "toggleCheckbox(this, 'group7')"),
-                                              div(style = "margin-left: auto;", actionButton("submit7", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit7", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result7"), class = "result-box"),
@@ -713,7 +691,7 @@ tags$footer(
                                               actionButton("yes8", "Yes", class = "btn-custom group8", onclick = "toggleCheckbox(this, 'group8')"),
                                               actionButton("no8", "No", class = "btn-custom group8", onclick = "toggleCheckbox(this, 'group8')"),
                                               actionButton("na8", "Not Applicable", class = "btn-custom group8", onclick = "toggleCheckbox(this, 'group8')"),
-                                              div(style = "margin-left: auto;", actionButton("submit8", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit8", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result8"), class = "result-box"),
@@ -743,7 +721,7 @@ tags$footer(
                                               actionButton("yes9", "Yes", class = "btn-custom group9", onclick = "toggleCheckbox(this, 'group9')"),
                                               actionButton("no9", "No", class = "btn-custom group9", onclick = "toggleCheckbox(this, 'group9')"),
                                               actionButton("na9", "Not Applicable", class = "btn-custom group9", onclick = "toggleCheckbox(this, 'group9')"),
-                                              div(style = "margin-left: auto;", actionButton("submit9", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit9", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result9"), class = "result-box"),
@@ -773,7 +751,7 @@ tags$footer(
                                               actionButton("yes10", "Yes", class = "btn-custom group10", onclick = "toggleCheckbox(this, 'group10')"),
                                               actionButton("no10", "No", class = "btn-custom group10", onclick = "toggleCheckbox(this, 'group10')"),
                                               actionButton("na10", "Not Applicable", class = "btn-custom group10", onclick = "toggleCheckbox(this, 'group10')"),
-                                              div(style = "margin-left: auto;", actionButton("submit10", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit10", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result10"), class = "result-box"),
@@ -800,7 +778,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes11", "Yes", class = "btn-custom group11", onclick = "toggleCheckbox(this, 'group11')"),
                                               actionButton("no11", "No", class = "btn-custom group11", onclick = "toggleCheckbox(this, 'group11')"),
-                                              div(style = "margin-left: auto;", actionButton("submit11", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit11", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result11"), class = "result-box"),
@@ -830,7 +808,7 @@ tags$footer(
                                               actionButton("yes12", "Yes", class = "btn-custom group12", onclick = "toggleCheckbox(this, 'group12')"),
                                               actionButton("no12", "No", class = "btn-custom group12", onclick = "toggleCheckbox(this, 'group12')"),
                                               actionButton("na12", "Not Applicable", class = "btn-custom group12", onclick = "toggleCheckbox(this, 'group12')"),
-                                              div(style = "margin-left: auto;", actionButton("submit12", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit12", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result12"), class = "result-box"),
@@ -857,7 +835,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes13", "Yes", class = "btn-custom group13", onclick = "toggleCheckbox(this, 'group13')"),
                                               actionButton("no13", "No", class = "btn-custom group13", onclick = "toggleCheckbox(this, 'group13')"),
-                                              div(style = "margin-left: auto;", actionButton("submit13", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit13", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result13"), class = "result-box"),
@@ -886,7 +864,7 @@ tags$footer(
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes14", "Yes", class = "btn-custom group14", onclick = "toggleCheckbox(this, 'group14')"),
                                               actionButton("no14", "No", class = "btn-custom group14", onclick = "toggleCheckbox(this, 'group14')"),
-                                              div(style = "margin-left: auto;", actionButton("submit14", "Check Answer", class = "btn-custom btn-submit"))
+                                              div(style = "margin-left: auto;", actionButton("submit14", "Check Answer", class = "btn-custom"))
                                           ),
                                           tags$br(),
                                           div(textOutput("result14"), class = "result-box"),
@@ -908,22 +886,24 @@ tags$footer(
                       
              tabPanel("Apply",
                       div(class = "content-area",
-                          div(class = "content-area",
-                              sidebarLayout(
-                                position = "right",
-                                sidebarPanel(
-                                  width = 3,
-                                  class = "sidebar-panel",
-                                  div(id = "glossary-docs",
-                                      h3("Glossary"),
+                          sidebarLayout(
+                            position = "right",
+                            sidebarPanel(
+                              width = 3,
+                              class = "sidebar-panel",
+                              div(id = "glossary-docs",
+                                  h3("Glossary"),
                                       tableOutput("glossary2")
                                   )
                                 ),
                                 mainPanel(
                                   width = 9,
-                                  class = "main-panel-custom",
-                                  h1("Meta-analysis Appraisal Tool for Environmental Sciences (MATES) Apply"),
-                                  p("Here you can apply the MATES checklist to your own studies."),
+                                  class = "main-panel",
+                                  h1("Apply MATES"),
+                                  p("Here, we offer an application tool that enables users to apply the MATES checklist to a selected set of studies."),
+                                  p("For detailed instructions on how to use the apply tool please click the following button:"),
+                                  actionButton("instruction_button1", "Go to instructions", class = "btn-custom"),
+                                  tags$br(),
                                   textAreaInput("study_name", "Study Name:", "", width = "50%"),
                                   textAreaInput("study_id", "Study Identifier:", "", width = "50%"),
                                   
@@ -1330,6 +1310,6 @@ tags$footer(
                           )
                       )
              )
-  )))
+  ))
 
 

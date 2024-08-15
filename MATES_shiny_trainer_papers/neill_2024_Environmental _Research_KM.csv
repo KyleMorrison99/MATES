@@ -1,0 +1,17 @@
+"Study_Name","Study_ID","Item_1_Response","Item_1_Comment","Item_2_Response","Item_2_Comment","Item_3_Response","Item_3_Comment","Item_4_Response","Item_4_Comment","Item_5_Response","Item_5_Comment","Item_6_Response","Item_6_Comment","Item_7_Response","Item_7_Comment","Item_8_Response","Item_8_Comment","Item_9_Response","Item_9_Comment","Item_10_Response","Item_10_Comment","Item_11_Response","Item_11_Comment","Item_12_Response","Item_12_Comment","Item_13_Response","Item_13_Comment","Item_14_Response","Item_14_Comment"
+"Exposure to endocrine-disrupting plasticisers and lung function in children and adolescents: A systematic review and meta-analysis","s_001","Yes","Section 2.4: To achieve this rescaling, we used the
+following formula: ̂βloga = logb(a) × ̂βlogb , with ̂βlogb the regression coefficient
+obtained from regressing the outcome on the base b logarithmic
+exposure. Additionally, we used a separate conversion formula in cases
+where a beta coefficient was expressed as a percent change. Specifically,
+we applied the equation β = ln
+􀀀 %
+100+1) to convert the percent change
+into a regression coefficient.","Yes","Section 2.4: we performed a meta-analysis using a random effects
+model using the Paule-Mandel estimator. ","No","Not reported.","Yes","Section 2.4: All analyses were conducted in R, using the
+metafor package (R Development Core Team, 2022).","Yes","Figure 1 in flowchart ","No","","Yes","Table 2: Reports pooled means per chemical","No","Not reported","Yes","Section 2.4: ""Between-study heterogeneity
+was calculated using I2 statistic (0%–40%: low heterogeneity, 30%–
+60%: moderate heterogeneity, 50%–90%: substantial heterogeneity,
+75%–100%: considerable heterogeneity).""","Yes","Section 2.4 ""Publication bias was investigated
+using funnel plots visual inspection, and Egger’s test (p < 0.05
+indicating publication bias).""","Yes","Section 2.6","No","","No","","No",""

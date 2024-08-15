@@ -1,0 +1,20 @@
+"Study_Name","Study_ID","Item_1_Response","Item_1_Comment","Item_2_Response","Item_2_Comment","Item_3_Response","Item_3_Comment","Item_4_Response","Item_4_Comment","Item_5_Response","Item_5_Comment","Item_6_Response","Item_6_Comment","Item_7_Response","Item_7_Comment","Item_8_Response","Item_8_Comment","Item_9_Response","Item_9_Comment","Item_10_Response","Item_10_Comment","Item_11_Response","Item_11_Comment","Item_12_Response","Item_12_Comment","Item_13_Response","Item_13_Comment","Item_14_Response","Item_14_Comment"
+"The relationship between maternal exposure to ambient air pollutants and
+premature rupture of membranes: A systematic review and meta-analysis","s_002","No","Section 2.6 - states the study used the pooled odds ratio but not the formula","Yes","section 2.6: We used either a random-effects model or a
+fixed-effects model, depending on whether significant heterogeneity
+was present, and we generated forest plots to visualize the ORs and their
+95%CI","No","","Yes","Section 2.6: We performed all statistical analyses using R version 4.1.2","Yes","figure 1 - provided in the flow chart","No","","Yes","provided in some results figures","No","weights provided but no weighting strategy","Yes",". Section 2.6: We used the Q test and I
+2 test to assess
+heterogeneity across studies. When the P value was less than 0.10 in the
+Q test or the I
+2 statistic was greater than 50% in the I
+2 test, significant
+heterogeneity was deemed to exist between studies (Higgins et al., 2002;
+Kim et al., 2018). ","Yes","section 2.6: We assessed publication bias using
+Begg’s funnel plot and Egger’s test, and the presence of asymmetry in the
+funnel plot or a P value less than 0.05 in Egger’s test indicated the
+presence of bias (Egger et al., 1997)","Yes","sectiob 2.6: "" After that, we conducted stratified
+analysis (region, unit of increase, study design, air pollutants level,
+exposure assessment and study quality) and sensitivity analyses to
+further explore the source of heterogeneity and assess the robustness of
+every estimated results.""","No","","No","","No",""

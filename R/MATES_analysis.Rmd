@@ -33,9 +33,7 @@ pacman::p_load(tidyverse,
                here,
                stringr,
                purrr,
-               kableExtra,
-               irr,
-               vcd)
+               kableExtra)
 ```
 
 ## Load data
@@ -2519,13 +2517,54 @@ print(stats_agreement_per_item)
 
 # write_csv(stats_agreement_per_item, file = here("task_results", "stats_agreement_per_item.csv"))
 
+stats_agreement_per_item_long <- stats_agreement_per_item %>%
+  pivot_longer(cols = everything(), names_to = c("item", ".value"), names_pattern = "(.*)_(.*)") %>%
+  mutate(item_num = as.numeric(gsub("item_", "", item))) %>%
+  arrange(item_num) %>%
+  select(-item_num) %>%
+  mutate(item = factor(item, levels = paste0("item_", sort(as.numeric(gsub("item_", "", unique(item)))))))
+
+
+# Update the item labels
+item_labels <- c(
+  "1: Effect size statistic formula",
+  "2: Model type",
+  "3: Effect size dependence",
+  "4: Software/programming language",
+  "5: Number of included primary studies",
+  "6: Number of included effect sizes",
+  "7: Pooled mean effect",
+  "8: Effect size weighting strategy",
+  "9: Heterogeneity",
+  "10: Publication bias",
+  "11: Sensitivity analysis",
+  "12: Code",
+  "13: Data archiving",
+  "14: Variable description"
+)
+
+# Modify the item labels in the data
+stats_agreement_per_item_long$item <- factor(stats_agreement_per_item_long$item, 
+                                              levels = rev(unique(stats_agreement_per_item_long$item)),
+                                             labels = rev(item_labels))
+
+
+ggplot(stats_agreement_per_item_long, aes(y = item , x = mean)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(xmin = mean - sd, xmax = mean + sd), width = 0.2) +
+  geom_text(aes(label = paste0("(", round(mean, 1), " ± ", round(sd, 1), "%)"), x = mean / 2), size = 6, color = "white", fontface = "bold") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(stats_agreement_per_item_long$mean) * 1.1)) +
+  MATES_theme() +
+  labs(caption = "The value inside each bar is the mean ± SD agreement rate (%) ")
+
+ggsave(here("task_results", "fig_task_agreement.jpg"), width = 20, height = 12, units = "cm", scale = 2, dpi = 120)
+
 
 ```
 
-
 # KAPPA statistic
 ```{r}
-data_kappa <- task_conflict %>%
+data_long <- task_conflict %>%
   select(appraiser_id, study_id, starts_with("item_")) %>%
   select(-ends_with("comment")) %>% 
   pivot_longer(cols = starts_with("item_"), names_to = "item", values_to = "value") %>%
@@ -2538,18 +2577,6 @@ data_kappa <- task_conflict %>%
   pivot_wider(names_from = appraiser_id, values_from = effect_formula)
 
 
-
-data_kappa_a_002_item_1 <- data_kappa %>% 
-  filter(item == "item_1")%>% 
-  select(c(a_01, a_05)) %>% 
-  drop_na()
-
-
-
-kappa2(data_kappa_a_002_item_1)
-
-
-kapp <- structable(a_01 ~ a_02, data=data_kappa) %>% as.table  
 
 # Create a confusion matrix of the raters' assessments
 # Assume we have two raters, Rater A and Rater B
@@ -2585,8 +2612,6 @@ print(kappa)
 
 
 
-
-
 # Calculating mean time taken
 ```{r}
 # Convert start_time and finish_time
@@ -2607,7 +2632,7 @@ task_time_taken <- task_conflict %>%
   filter(time_difference > 0)
 
 task_time_taken2 <- task_conflict %>%
-  filter(appraiser_name != 'Kyle Morrison') %>%
+  filter(appraiser_id != 'a_01') %>%
   select(start_time, finish_time, time_difference) %>% 
   drop_na() %>%
   filter(time_difference > 0) %>%
@@ -2619,6 +2644,10 @@ mean_time <- mean(task_time_taken$time_difference)
 sd_time <- sd(task_time_taken$time_difference)
 min_time <- min(task_time_taken$time_difference)
 max_time <- max(task_time_taken$time_difference)
+
+# Calculate mean, standard deviation, minimum, and maximum
+mean_time2 <- mean(task_time_taken2$time_difference)
+sd_time2 <- sd(task_time_taken2$time_difference)
 
 ```
 

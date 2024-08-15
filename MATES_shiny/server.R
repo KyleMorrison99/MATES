@@ -25,55 +25,6 @@ server <- function(input, output, session) {
     ))
   })
   
-  observeEvent(input$aboutButton2, {
-    showModal(modalDialog(
-      title = "About & Citation Info",
-      easyClose = TRUE,
-      footer = modalButton("Close"),
-      size = "l",  # This makes the modal larger
-      div(
-        h3("Citation Information"),
-        p("Citation here: This document is intentionally blank."),
-        downloadButton("downloadBib", "Download citation (.bib)", class = "btn btn-secondary"),
-        downloadButton("downloadRis", "Download citation (.ris)", class = "btn btn-secondary"),
-        hr(),
-        h3("Found a problem?"),
-        p(a("Please submit an issue on the GitHub repository!", href = "https://github.com/KyleMorrison99/MATES")),
-        hr(),
-        h3("About"),
-        p("This application was developed by ", 
-          a("Kyle Morrison", href = "mailto:kyle.morrison@unsw.edu.au"), 
-          ". The full source code for this application is available via the ", 
-          a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES"), 
-          " GitHub repository.")      )
-    ))
-  })
-  
-  observeEvent(input$aboutButton3, {
-    showModal(modalDialog(
-      title = "About & Citation Info",
-      easyClose = TRUE,
-      footer = modalButton("Close"),
-      size = "l",  # This makes the modal larger
-      div(
-        h3("Citation Information"),
-        p("Citation here: This document is intentionally blank."),
-        downloadButton("downloadBib", "Download citation (.bib)", class = "btn btn-secondary"),
-        downloadButton("downloadRis", "Download citation (.ris)", class = "btn btn-secondary"),
-        hr(),
-        h3("Found a problem?"),
-        p(a("Please submit an issue on the GitHub repository!", href = "https://github.com/KyleMorrison99/MATES")),
-        hr(),
-        h3("About"),
-        p("This application was developed by ", 
-          a("Kyle Morrison", href = "mailto:kyle.morrison@unsw.edu.au"), 
-          ". The full source code for this application is available via the ", 
-          a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES"), 
-          " GitHub repository.")      )
-    ))
-  })
-  
-  
   
   observeEvent(input$downloadMATES, {
     shinyjs::runjs("window.open('https://unsw-my.sharepoint.com/:w:/g/personal/z5393783_ad_unsw_edu_au/ESmqk4Q5Lp9BqX0LOU_36CMBAnAidx45JMPG_BTG6aboyg?e=L4v8ud', '_blank');")
@@ -130,6 +81,58 @@ server <- function(input, output, session) {
   })
   
   
+  
+  observeEvent(input$instruction_button, {
+    showModal(modalDialog(
+      title = "Training tool instructions",
+      easyClose = TRUE,
+      footer = modalButton("Close"),
+      size = "l",  # This makes the modal larger
+      div(
+        h4("Familiarise yourself with the checklist"),
+        p("Review the MATES checklist items and the provided glossary of terms."),  
+        hr(),
+        h4("Select a study"),
+        p("Choose a study from the drop down menu and click 'Go to Study' to be taken to the open access publication."),
+        hr(),
+        h4("Appraise the meta-analysis"),
+        p("Carefully read the study and select an option for each MATES item: 'Yes' (the item is provided in the study), 'No' (the item is not provided in the study), or in some cases 'Not Applicable' (this item is not suitable for this study)."),
+        hr(),
+        h4("Check your appriasal results"),
+        p("Click the 'Check Answer' button in each box to reveal whether your appraisal answer is correct, along with an explanation."),
+        hr(),
+        h4("Complete and Reset"),
+        p("After completing all appraisal items, press the 'Reset All Answers' button at the bottom of the page to clear your answers and either start to apply the tool to the next study or move to the 'Apply' tab. Note: This button refreshes the shiny app and will return you to the home page.")
+        
+        )
+    ))
+    
+  })
+  
+  
+  observeEvent(input$instruction_button1, {
+    showModal(modalDialog(
+      title = "Apply tool instructions",
+      easyClose = TRUE,
+      footer = modalButton("Close"),
+      size = "l",  # This makes the modal larger
+      div(
+        h4("Familiarise yourself with the checklist"),
+        p("Review the MATES checklist items and the provided glossary of terms."),  
+        hr(),
+        h4("Enter the study title and a unique study identifier"),
+        p("Enter the study title and a unique study identifier into the appropriate text input box."),
+        hr(),
+        h4("Appraise the meta-analysis"),
+        p("Carefully read the study and select an option for each MATES item: 'Yes' (the item is provided in the study), 'No' (the item is not provided in the study), or in some cases 'Not Applicable' (this item is not suitable for this study)."),
+        hr(),
+        h4("Complete, Save & Reset"),
+        p("After completing all appraisal items, enter the name which you want the file to be saved as and click the 'Download All Answers' button. Once saved clickt the 'Rest All answers button' to reset and apply MATES on another study."),
+      )
+    ))
+    
+  })
+  
   observeEvent(input$workshop1, {
     showModal(modalDialog(
       title = "Workshop 1",
@@ -179,8 +182,8 @@ server <- function(input, output, session) {
   # Observe the study button and open the selected study link
   observeEvent(input$study_button, {
     url <- switch(input$study_selector,
-                  study1 = "https://example.com/study1",
-                  study2 = "https://example.com/study2",
+                  study1 = "https://github.com/Yefeng0920/ALAN_MEL/tree/main/data",
+                  study2 = "https://unsw-my.sharepoint.com/:w:/g/personal/z5393783_ad_unsw_edu_au/EUoD_g7x6ntGrv12TnsZkXEBa6Q5JV9bls9Qc0wt1goK-w?e=FCozvG",
                   study3 = "https://example.com/study3",
                   study4 = "https://example.com/study4",
                   study5 = "https://example.com/study5")
@@ -579,7 +582,6 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$reset_button_test, {
-    shinyjs::runjs("window.scrollTo(0, 0);")
     shinyjs::js$resetPage()
   })
   
@@ -756,5 +758,3 @@ server <- function(input, output, session) {
     responses$item14 <- "None Selected"
   })
 }
-
-shinyApp(ui, server)
