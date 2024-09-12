@@ -1,0 +1,19 @@
+"Study_Name","Study_ID","Item_1_Response","Item_1_Comment","Item_2_Response","Item_2_Comment","Item_3_Response","Item_3_Comment","Item_4_Response","Item_4_Comment","Item_5_Response","Item_5_Comment","Item_6_Response","Item_6_Comment","Item_7_Response","Item_7_Comment","Item_8_Response","Item_8_Comment","Item_9_Response","Item_9_Comment","Item_10_Response","Item_10_Comment","Item_11_Response","Item_11_Comment","Item_12_Response","Item_12_Comment","Item_13_Response","Item_13_Comment","Item_14_Response","Item_14_Comment"
+"The relationship between maternal exposure to ambient air pollutants and premature rupture of membranes: A systematic review and meta-analysis","Liang_2024_ML","Yes","To compare and combine effect sizes across different studies, we standardized the effect estimate of each air pollutant in these studies to a 10 μg/m3 change. First, we transformed parts per billion (ppb) to mass per volume unit (μg/m3) using the following formula: Conc1 = (Conc2 × M)/24.45 (1 atm, 25 °C), where M represents the molecular mass of a pollutant, and Conc1 or Conc2 represents the calculated or reported concentration of a pollutant, respectively (
+Rouse et al., 2004
+; 
+Klepac et al., 2018
+). Then, we calculated the standardized effect estimate for each air pollutant in each study using the following formula (
+Rouse et al., 2004
+; 
+Yang et al., 2018
+; 
+Shah et al., 2013
+): RR(standardized) = RRincrement (standardized)/increment (original) (original).","Yes","We used either a random-effects model or a fixed-effects model, depending on whether significant heterogeneity was present, and we generated forest plots to visualize the ORs and their 95%CIs (
+Borenstein et al., 2010
+).","Not Applicable","lloks like one ES per study ","Yes","We performed all statistical analyses using R version 4.1.2 and considered statistical significance to be present when P values were less than 0.05 (two-sided), except for the heterogeneity tests.","Yes","Fig. 1
+ below shows the flowchart of the literature search and selection process. Ultimately, we included 17 studies published up to February 2024 in this systematic review and meta-analysis, according to the eligibility criteria","Yes","Table 2 and Si","Yes","Table 2. The summary of pooled OR and 95%CI on PROM associated with maternal long-term exposure to air pollutants. and SI","No","","Yes","We used the Q test and I2 test to assess heterogeneity across studies. Table 2, SI","Yes","Begg's funnel plot and Egger's test were conducted for each air pollutant on PROM, PPROM, and TPROM in every exposure period, which showed no significant publication bias. Occasional asymmetries in the funnel plots were observed to some extent. However, the small number of studies in some associations limited the power of Egger's test (
+Tables 2
+ and 3, 
+Fig. S1
+).","Yes","3.4. Sensitivity analyses","No","","No","","No",""

@@ -1,0 +1,228 @@
+StartDate,EndDate,Status,IPAddress,Progress,Duration,Finished,RecordedDate,ResponseId,RecipientLastName,RecipientFirstName,RecipientEmail,ExternalReference,LocationLatitude,LocationLongitude,DistributionChannel,UserLanguage,Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16,Q17,Q18,Q19,Q20,Q21,Q22,Q23,Q24,Q25,Q26,Q27,Q28,Q29,Q30,Q_DataPolicyViolations
+Start Date,End Date,Response Type,IP Address,Progress,Duration,Finished,Recorded Date,Response ID,Recipient Last Name,Recipient First Name,Recipient Email,External Data Reference,Location Latitude,Location Longitude,Distribution Channel,User Language,"Add your full name (i.e., First and Surname)","Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 1: Software reporting
+
+Question
+Do the authors report the software or programming language used to conduct the analysis (i.e., the software or programming language used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the software or programming language used to conduct the analysis in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Appliable’ option for MATES item 1.",How difficult was MATES item 1: Software reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 2: Code reporting
+
+Question
+Do the authors report any relevant code used to conduct the analysis (i.e., the code used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript, supplementary material, or external repository? 
+
+Criteria for ‘Yes’
+The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+The authors have used a GUI/click based software that does not produce a code. Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 1).",How difficult was MATES item 2: Code reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+ MATES item 3: Number of included primary studies reporting
+
+Question 
+Do the authors report the total number of primary studies (i.e., separate individual articles)  included in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies can be inferred from a screening flowchart (e.g., PRISMA flowchart), or the authors can state the number of studies per subgroup analysis. 
+
+Criteria for ‘No’
+The authors have not reported the total number of primary studies synthesised in the meta-analysis in the manuscript or supplementary material. The total number of studies cannot be inferred by counting from a forest plot, or from a provided dataset. 
+
+Criteria for ‘Not Applicable
+There is no ‘Not Applicable’ option for MATES item 3.",How difficult was MATES item 3: Number of included studies reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 4: Number of included effect sizes reporting
+
+Question
+Do the authors report the total number of effect size estimates synthesised in the meta-analysis in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the total number of effect sizes estimates synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘No’
+The authors have not reported the total number of effect sizes synthesised in the meta-analysis in the manuscript or supplementary material. The total number of effect sizes cannot be inferred by counting and must be stated explicitly.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 4.",How difficult was MATES item 4: Number of included effect size reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 5: Effect size statistic formula reporting
+
+Question
+Do the authors report the formula (or reference for formula) for the effect size statistic/measure used (e.g., Zr, Hedge’s g, Cohen’s d, or lnRR) in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the formula (or reference for formula) for the effect size statistic/measure used in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 5.",How difficult was MATES item 5: Effect size statistic/measure reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 6: Model type reporting
+
+Question
+Do the authors report the type of the meta-analytic/meta-regression model (e.g., fixed, random, or multi-level model), either descriptively or in statistical notation in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the type of the meta-analytic/meta-regression model, either descriptively or in statistical notation in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable'
+There is no ‘Not Applicable’ option for MATES item 6.",How difficult was MATES item 6: Model type reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 7: Effect size weights reporting
+
+Question 
+Do the authors report the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors have reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘No’
+The authors have not reported the sampling variance, sampling error or equivalent (i.e., strategy to assign weights) of effect size estimates in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+The authors have conducted a meta-analysis without weights (i.e., unweighted meta-analysis).",How difficult was MATES item 7: Effect size weights reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 8: Effect size dependence (non-independence) reporting
+
+
+Question
+Do the authors report the dependence (e.g., multiplicity or, repeated measure) of effect size estimates (e.g., acknowledge multiple effect sizes were taken from a single study) in the manuscript or supplementary material?
+
+
+Criteria for ‘Yes’
+The authors have reported whether there is dependence of effect size estimates in the manuscript or supplementary material. If a meta-analysis reports that effect size estimates are independent allocate ‘Yes’.
+
+
+Criteria for ‘No’
+The authors have not reported whether there is dependence of effect size estimates in the manuscript or supplementary material.
+
+
+Criteria for ‘Not Applicable’ 
+There is no ‘Not Applicable’ option for MATES item 8.",How difficult was MATES item 8: Effect size dependence (non-independence) reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 9: Overall mean effect reporting
+
+Question
+Do the authors report the overall mean effect of the meta-analyses/meta-regression using a plot, table or within text in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors reported the overall mean effect of the meta-analyses/meta-regression in the text, or within a plot or table in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported the overall mean effect of the meta-analyses/meta-regression in the text, or within a plot or table in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 9.",How difficult was MATES item 9: Overall mean effect reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 10: Heterogeneity reporting
+
+Question
+Do the authors report an assessment of heterogeneity (e.g., I2, tau2, 𝜎2 or, Q-statistic) between effect size estimates in the manuscript or supplementary material?
+
+Criteria for ‘Yes’
+The authors have reported an assessment of heterogeneity between effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘No’
+The authors have not reported an assessment of heterogeneity between effect size estimates in the manuscript or supplementary material. 
+
+Criteria for ‘Not Applicable'
+The study has stated that the analysis is unweighted.","How difficult was 
+MATES item 10: Heterogeneity reporting to implement?","Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 11: Publication bias reporting
+
+Question 
+Do the authors report an assessment of publication bias in the manuscript or supplementary material?
+
+Criteria for ‘Yes'
+The authors have reported an assessment of publication bias in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported an assessment of publication bias in the manuscript or supplementary material.
+
+Criteria for ‘Not Applicable’
+The authors report an assessment of publication bias cannot be conducted.",How difficult was MATES item 11: Publication bias reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 12: Sensitivity analysis reporting
+
+Question 
+Do the authors report a sensitivity analysis or subgroup analysis (e.g., leave-one-out analysis, use of alternative model or within-study risk of bias assessment) in the manuscript or supplementary material? 
+
+Criteria for ‘Yes’
+The authors reported a sensitivity analysis in the manuscript or supplementary material.
+
+Criteria for ‘No’
+The authors have not reported a sensitivity analysis in the manuscript or supplementary material. 
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 12.",How difficult was MATES item 12: Sensitivity analysis reporting to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 13: Data reporting/archiving
+
+Question
+Do the authors report the data (i.e., used to calculate effect sizes and conduct the meta-analysis) extracted from each eligible primary study (i.e., research paper) in the manuscript, supplementary material, or external repository?
+
+Criteria for ‘Yes’
+The authors have reported the data extracted from each eligible primary in the manuscript, supplementary material, or external repository. In cases when the authors state the data is sensitive and cannot be shared allocate ‘Yes’. 
+
+Criteria for ‘No’
+The authors have not reported the data extracted from each eligible primary study the manuscript, supplementary material, or external repository.
+
+Criteria for ‘Not Applicable’
+There is no ‘Not Applicable’ option for MATES item 13.",How difficult was MATES item 13: Data reporting/archiving to implement?,"Provide feedback and suggest rewording of the following item (if necessary):
+
+MATES item 14: Variable description reporting
+
+Question
+Do the authors report descriptions of the variables extracted (i.e., meta-data or columns in dataset) from each eligible study primary study (i.e., research paper) in the manuscript, supplementary material, or external repository?
+
+Criteria for ‘Yes'
+The authors have reported descriptions of the variables extracted from each eligible study primary study in the manuscript, supplementary material, or external repository.
+
+Criteria for ‘No’
+The authors have not reported descriptions of the variables extracted from each eligible study primary study in the manuscript, supplementary material, or external repository. 
+
+Criteria for ‘Not Applicable’
+The authors have not reported the data extracted from each eligible primary study in the manuscript, supplementary material, or external repository (i.e., ‘No’ for MATES item 13) or the authors have reported that the data cannot be provided because the data is sensitive.","How difficult was MATES item 14: Variable description reporting
+to implement?","Provide overall comments on MATES (e.g. order of questions, structure of questions or on glossary of terms)",Q_DataPolicyViolations
+"{""ImportId"":""startDate"",""timeZone"":""Australia/Canberra""}","{""ImportId"":""endDate"",""timeZone"":""Australia/Canberra""}","{""ImportId"":""status""}","{""ImportId"":""ipAddress""}","{""ImportId"":""progress""}","{""ImportId"":""duration""}","{""ImportId"":""finished""}","{""ImportId"":""recordedDate"",""timeZone"":""Australia/Canberra""}","{""ImportId"":""_recordId""}","{""ImportId"":""recipientLastName""}","{""ImportId"":""recipientFirstName""}","{""ImportId"":""recipientEmail""}","{""ImportId"":""externalDataReference""}","{""ImportId"":""locationLatitude""}","{""ImportId"":""locationLongitude""}","{""ImportId"":""distributionChannel""}","{""ImportId"":""userLanguage""}","{""ImportId"":""QID20_TEXT""}","{""ImportId"":""QID22_TEXT""}","{""ImportId"":""QID36""}","{""ImportId"":""QID23_TEXT""}","{""ImportId"":""QID37""}","{""ImportId"":""QID24_TEXT""}","{""ImportId"":""QID38""}","{""ImportId"":""QID25_TEXT""}","{""ImportId"":""QID39""}","{""ImportId"":""QID26_TEXT""}","{""ImportId"":""QID40""}","{""ImportId"":""QID27_TEXT""}","{""ImportId"":""QID41""}","{""ImportId"":""QID28_TEXT""}","{""ImportId"":""QID42""}","{""ImportId"":""QID29_TEXT""}","{""ImportId"":""QID43""}","{""ImportId"":""QID30_TEXT""}","{""ImportId"":""QID44""}","{""ImportId"":""QID31_TEXT""}","{""ImportId"":""QID45""}","{""ImportId"":""QID32_TEXT""}","{""ImportId"":""QID46""}","{""ImportId"":""QID33_TEXT""}","{""ImportId"":""QID47""}","{""ImportId"":""QID34_TEXT""}","{""ImportId"":""QID48""}","{""ImportId"":""QID35_TEXT""}","{""ImportId"":""QID49""}","{""ImportId"":""QID50_TEXT""}","{""ImportId"":""Q_DataPolicyViolations""}"
+16/05/2024 7:09,16/05/2024 9:39,IP Address,sensitive data,100,8945,TRUE,16/05/2024 9:39,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"unclear if ""report the software or programming language"" simple means that reporting the name is sufficient",Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,
+27/05/2024 14:56,27/05/2024 15:06,IP Address,sensitive data,100,608,TRUE,27/05/2024 15:06,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,
+27/05/2024 22:56,27/05/2024 22:59,IP Address,sensitive data,100,164,TRUE,27/05/2024 22:59,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,
+03/06/2024 18:05,03/06/2024 19:17,IP Address,sensitive data,100,4329,TRUE,03/06/2024 19:17,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,
+02/06/2024 23:11,04/06/2024 19:01,IP Address,sensitive data,100,157790,TRUE,04/06/2024 19:01,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat difficult,sensitive data,Extremely difficult,sensitive data,Extremely difficult,sensitive data,Extremely difficult,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,
+05/06/2024 9:20,05/06/2024 9:59,IP Address,sensitive data,100,2370,TRUE,05/06/2024 9:59,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,
+07/06/2024 18:20,07/06/2024 18:28,IP Address,sensitive data,100,454,TRUE,07/06/2024 18:28,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"The question states software/language and models used, while the criteria only state software/language",Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,
+08/06/2024 1:22,08/06/2024 2:00,IP Address,sensitive data,100,2293,TRUE,08/06/2024 2:00,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely difficult,sensitive data,Extremely difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,
+11/06/2024 2:46,11/06/2024 3:13,IP Address,sensitive data,100,1660,TRUE,11/06/2024 3:13,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,
+15/06/2024 18:58,15/06/2024 19:15,IP Address,sensitive data,100,1014,TRUE,15/06/2024 19:15,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"We can use the keyword ""software"" to identify this question. It is suggested to provide a list of common software as example or for selection (i.e., STATA, Matlab, Python) ",Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat difficult,sensitive data,Somewhat easy,sensitive data,
+17/06/2024 9:17,17/06/2024 9:54,IP Address,sensitive data,100,2275,TRUE,17/06/2024 9:54,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Somewhat difficult,sensitive data,Somewhat difficult,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,
+18/06/2024 1:10,18/06/2024 1:37,IP Address,sensitive data,100,1624,TRUE,18/06/2024 1:37,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"
+I would say that the software is not the most important; what matters is the details of the models used. If possible, include details such as the estimator of tau2 (DerSimonian, others), how the confidence intervals are calculated (parametric, non-parametric, etc.). This will have a much greater impact on the results than the software used, I believe.",Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat difficult,sensitive data,
+18/06/2024 6:29,18/06/2024 7:06,IP Address,sensitive data,100,2215,TRUE,18/06/2024 7:06,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,
+19/06/2024 0:39,19/06/2024 0:52,IP Address,sensitive data,100,776,TRUE,19/06/2024 0:52,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Somewhat difficult,sensitive data,
+20/06/2024 11:24,20/06/2024 15:04,IP Address,sensitive data,100,13172,TRUE,20/06/2024 15:04,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,
+22/06/2024 15:29,22/06/2024 16:00,IP Address,sensitive data,100,1827,TRUE,22/06/2024 16:00,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"Unclear how specific the information needs to be. In a few instances, authors reported the use of R but without details on the packages used.",Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,
+26/06/2024 1:47,26/06/2024 4:12,IP Address,sensitive data,100,8722,TRUE,26/06/2024 4:13,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"You could brief the parenthetical as it refers to 'analysis': ""(i.e., computations, statistical modeling, and inferences comprising the meta-analysis)""",Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,
+27/06/2024 5:05,27/06/2024 5:38,IP Address,sensitive data,100,1983,TRUE,27/06/2024 5:38,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,"In some cases, different softwares are used according to the analysis performed, and I would like to know if this information was important to discriminate it, since I have mostly surveyed one of them and not all of them.",Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat difficult,sensitive data,Extremely difficult,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,
+28/06/2024 17:39,28/06/2024 19:42,IP Address,sensitive data,100,7349,TRUE,28/06/2024 19:42,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,
+30/06/2024 17:20,30/06/2024 17:22,IP Address,sensitive data,100,174,TRUE,30/06/2024 17:23,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,
+03/07/2024 21:54,03/07/2024 22:00,IP Address,sensitive data,100,302,TRUE,03/07/2024 22:00,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,Extremely easy,sensitive data,
+19/07/2024 17:27,19/07/2024 20:20,IP Address,sensitive data,100,10365,TRUE,19/07/2024 20:20,sensitive data,,,,,sensitive data,sensitive data,anonymous,EN,sensitive data,It is generally very easy to identify software in the statistical sections,Extremely easy,sensitive data,Somewhat easy,sensitive data,Extremely easy,sensitive data,Somewhat difficult,sensitive data,Neither easy nor difficult,sensitive data,Somewhat easy,sensitive data,Somewhat difficult,sensitive data,Somewhat difficult,sensitive data,Somewhat easy,sensitive data,Somewhat easy,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,Neither easy nor difficult,sensitive data,

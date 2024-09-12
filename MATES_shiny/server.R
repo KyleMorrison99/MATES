@@ -17,11 +17,14 @@ server <- function(input, output, session) {
         p(a("Please submit an issue on the GitHub repository!", href = "https://github.com/KyleMorrison99/MATES")),
         hr(),
         h3("About"),
-        p("This application was developed by ", 
+        p(
+          "This application was developed by ",
           a("Kyle Morrison", href = "mailto:kyle.morrison@unsw.edu.au"), 
           ". The full source code for this application is available via the ", 
           a("KyleMorrison99", href = "https://github.com/KyleMorrison99/MATES"), 
-          " GitHub repository."))
+          " GitHub repository."
+        )
+      )
     ))
   })
   
@@ -84,7 +87,7 @@ server <- function(input, output, session) {
   
   observeEvent(input$instruction_button, {
     showModal(modalDialog(
-      title = "Training tool instructions",
+      title = "PRISMA_gallery instructions",
       easyClose = TRUE,
       footer = modalButton("Close"),
       size = "l",  # This makes the modal larger
@@ -104,7 +107,7 @@ server <- function(input, output, session) {
         h4("Complete and Reset"),
         p("After completing all appraisal items, press the 'Reset All Answers' button at the bottom of the page to clear your answers and either start to apply the tool to the next study or move to the 'Apply' tab. Note: This button refreshes the shiny app and will return you to the home page.")
         
-        )
+      )
     ))
     
   })
@@ -182,11 +185,11 @@ server <- function(input, output, session) {
   # Observe the study button and open the selected study link
   observeEvent(input$study_button, {
     url <- switch(input$study_selector,
-                  study1 = "https://github.com/Yefeng0920/ALAN_MEL/tree/main/data",
-                  study2 = "https://unsw-my.sharepoint.com/:w:/g/personal/z5393783_ad_unsw_edu_au/EUoD_g7x6ntGrv12TnsZkXEBa6Q5JV9bls9Qc0wt1goK-w?e=FCozvG",
-                  study3 = "https://example.com/study3",
-                  study4 = "https://example.com/study4",
-                  study5 = "https://example.com/study5")
+                  Benke_2024 = "https://pdf.sciencedirectassets.com/271763/1-s2.0-S0160412024X00057/1-s2.0-S0160412024003659/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjENv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIB5QxuxHLB7z7C1MAoCurWZ2frafWMM4wTNK6HxGqDrSAiA3MVsayK6S71PhVTD%2FaYkF4Tvq1HjyhZv9iFloxgMY7yq8BQjj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAUaDDA1OTAwMzU0Njg2NSIMp2eFe%2BBqiZbWKALjKpAFWnYtZItV1pAnq4JJj%2Fk7se89GSs%2F%2FEtu%2B4bAubVieOuxhDIQ2AijLI7aH3juarXzswkwi36Ln2Ecxa4oezwh%2Fr3%2FT9m11K0MESZVcX%2B6nROiM0xiiLd1fZbWXAj0pILdLzcj5j1u0qILf7ldOha80%2F%2B1kV7vA35O6w5scc4W1LrnjABsDo6tnTuGhl6cG6ep5niNkiIcgH6UMTIqQzExQ1IeAl87KmkxP%2FxzImIDztfSkCyTixpnIm2hMmBHrdsrrKENW4armfJ5fDnAcgYTuKHWWKgwYvRTxCVtROIYI%2BxUEa4dDcLMfrLuFqgrBJl%2BtibF1hUPVBdMtJCYBjSfOnkVqqp4lbaJ4FA4S0nI8e6oqlwQvC2wStr%2BPFDYO6rOxwu5rqmxhAmTzmRe8XCyMVvCzjj%2BlToXjIdE6Z%2FUkEYGFTMcUVDLlhkzoDHdu2uGzutnNbSCOvydIcWgPoUniCl55jDOMyQP1%2FE24ORB%2FpwwxqFAvvSleGs2pMzRcPJ9AfZWftn9Bhd67oyMJAmbXjxUo6eXnc4ag8E0uveNmQuCsZZiG535Brxe5PmTHrBt5DgVy6iDz6n4%2BbdYMjahGSpaLG9romGwy5aVbX%2FDWR5VvYHvd5Hhh4rRRHED%2FwKeQ%2BHJzrtpUofragdvbeQzIIaSU0B1wk5CSvq7Jlek19rOhaUtz63c06qlGY1LnMpc%2F4jaqjzmgb9MT%2BrqaHoU%2Fh7C9I57hknbVq3OyJLiX8f7c5ekMR9e9E6ysIie7ODCX9ovSbpeaOf8YvWsXQ39Q514MDksoja3p0zPcn31nR1Qd3l%2BrgDNbeRvZYA15Zum0NWWhb%2BP4DbBvzAMQZlu8gLSPYrw0vCECCaX8Idslz4wpcyvtgY6sgFWH%2F2OSh637Dy0f1B7wSrHn01EKjbOhoojy6ryyjG%2FJxCD4C5x4N5K6vPKq6MrP19jkfMqPezMlqbAQmGvdf0Ygyx8cDjJO33%2FMrMn5KIBU0PElBdbOoRAJ1GcI9pjh6MDyw%2BMjxMMlnQmRhOGXtiKdm%2Btcx6v%2F%2B5G9AT3I9OLW8N9eNxsQZgTC4AUv%2F83RV1Kx8MqIw7MfSQ%2FBRbDu2dG35nGiJbUTXy3i7M0FxHjF89H&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240826T032412Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYZGI223W6%2F20240826%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=5964dfdbeba1e8905331ad465d67d9acec026078e8b19391eea5293ffd52044e&hash=143b95f15ba25ad429f83ff347e7dbe883b00618498917b3dc3a329282fe8acd&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0160412024003659&tid=spdf-36a02957-a867-4305-a8e0-bc8076301a23&sid=dfe53e5c42060143aa5a9b85a4458a23848egxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=01105b065b55025350&rr=8b90b521acc8a947&cc=au",
+                  Ellis_2024 = "https://ehp.niehs.nih.gov/doi/epdf/10.1289/EHP12678",
+                  Liang_2024 = "https://pdf.sciencedirectassets.com/271833/1-s2.0-S0269749124X00056/1-s2.0-S0269749124003257/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIGhOfP%2Fo08BQzPzq0fgHEhMpybQwE72fFwFAEQwOXP7cAiEAwF3BTL4glCq1BbtuRKa2F8ktqqtMHq%2B1tykZt%2BO%2BGtwqvAUI5f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAFGgwwNTkwMDM1NDY4NjUiDEODGTWsbGJYbyNaIyqQBeGnElSiXJRqVQvoMGVe4lDgF0PkwTOsLGcS9E74s4nMMSBdVvJ6QxbLaWebegkr3EmYgVYWHv3JL7oBzq%2FEyj6pomwxYYO%2BzzApEFOdmDtgOdOHaDlbhyLHsHPPbzOhM9Wa72K5qKICVi6OKOAoNsPY0f%2B509%2F8JO9Uq%2B%2Bkfjn4%2Bsh0sK6%2BPfjsJQZ%2F83ENLDwWRTq0iZR84hpcbXjjk4TRzciHoKRjmtf9YxEQJ1WLPs%2FjMr8O%2BzF64QcwsQWYBjnpOgZkolrJtkEIu2%2FS7wMDwvOZo2J2MeCqwCkOM2zXvg6L0vd4btDl%2FlINzW3ASOimyn%2F40VfkdqXuoE65Gu6xh3To5VNRlW1bkEVcI5h5ucbfIs0GFLe7Nxt2d1XFPdUOBFnwrJkMb93Z%2B8muWo0eZ64LZISOY5LTSDTYlbjows%2BrfQvkY%2BtpfOvg9Qe7l2IS5ykm%2BGLd1BQ1KY67w3ysrDkfpiTV%2Fmkh76O5En%2BIPzz1Sdc8jIela332MR9DxjcjxPCkUJuc65cEeIMnMY8yItK5a2Wme96kxmznRZUXUunuhUujg6awJfo5J4MbY0ggXlS7EVhP9VCBR7mvhs%2Byvg%2BDvP4KoHRALqXMXzT8rpmonQ9GDOst9BR19opxhI27BTEPtAHgb3jh8fFM7qkmt4tE%2FigjR6VlNtu1h1p%2BrwUl%2FDNA7gP1gRqM%2F9WprfC6uDGmjIGW8GYRkIZ63QDo0jPDZYLgm1qo4GS%2FIP%2BDOOpg3sqedwx1%2BEgPC423BcBgupBkacwlW6OfsTgG%2B02FWukxx2dV%2B20f%2FMtPoT9HNwfN%2B4BifC9v3IHWQ7v2X3%2FvgqP6RLt5tsadcKD9CGVJLhOFE69P0gKRn4wZe8pKMJeBsLYGOrEBp9zpqDKA%2F01jd6zybTXq4y5EMwhKj9Y%2B%2FxizIH3307Mq1ZoZeK54zk80GOP%2FQIDvQ2kHG9SZhOmed1%2B%2FE00QM4Yr8k8brENIhF7ltLfhtgL%2Fl7i3sO7gMs47B6wh75Fs6F5yuBTOWrMb3O76kKaaSRraI1%2FXiVIerVfAG%2FYUcliqNvxpGj%2BYQFOgzQ4yFWv5a54%2ByltbnQYR0hVc7B1tb5HKHqS44%2BmZKA9AcMMun9nd&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240826T044541Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYXO5RMHSU%2F20240826%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=df2f201dcc5b7df97546bf78b6e72c39fb3df6a4e07eac6ec1a4e594d8174535&hash=6d98dcf2c64d8bdcdad182a7bc328aaf1cfc616b4d2e3915c0497cf6e3b3b22d&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0269749124003257&tid=spdf-dd3cde6a-3f03-42f1-ad0a-d569a7cc78b8&sid=dfe53e5c42060143aa5a9b85a4458a23848egxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=01105b065b54520555&rr=8b912c7e182ca89e&cc=au",
+                  Oneill_2024 = "https://pdf.sciencedirectassets.com/272394/1-s2.0-S0013935123X00310/1-s2.0-S0013935123025550/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIGhOfP%2Fo08BQzPzq0fgHEhMpybQwE72fFwFAEQwOXP7cAiEAwF3BTL4glCq1BbtuRKa2F8ktqqtMHq%2B1tykZt%2BO%2BGtwqvAUI5f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAFGgwwNTkwMDM1NDY4NjUiDEODGTWsbGJYbyNaIyqQBeGnElSiXJRqVQvoMGVe4lDgF0PkwTOsLGcS9E74s4nMMSBdVvJ6QxbLaWebegkr3EmYgVYWHv3JL7oBzq%2FEyj6pomwxYYO%2BzzApEFOdmDtgOdOHaDlbhyLHsHPPbzOhM9Wa72K5qKICVi6OKOAoNsPY0f%2B509%2F8JO9Uq%2B%2Bkfjn4%2Bsh0sK6%2BPfjsJQZ%2F83ENLDwWRTq0iZR84hpcbXjjk4TRzciHoKRjmtf9YxEQJ1WLPs%2FjMr8O%2BzF64QcwsQWYBjnpOgZkolrJtkEIu2%2FS7wMDwvOZo2J2MeCqwCkOM2zXvg6L0vd4btDl%2FlINzW3ASOimyn%2F40VfkdqXuoE65Gu6xh3To5VNRlW1bkEVcI5h5ucbfIs0GFLe7Nxt2d1XFPdUOBFnwrJkMb93Z%2B8muWo0eZ64LZISOY5LTSDTYlbjows%2BrfQvkY%2BtpfOvg9Qe7l2IS5ykm%2BGLd1BQ1KY67w3ysrDkfpiTV%2Fmkh76O5En%2BIPzz1Sdc8jIela332MR9DxjcjxPCkUJuc65cEeIMnMY8yItK5a2Wme96kxmznRZUXUunuhUujg6awJfo5J4MbY0ggXlS7EVhP9VCBR7mvhs%2Byvg%2BDvP4KoHRALqXMXzT8rpmonQ9GDOst9BR19opxhI27BTEPtAHgb3jh8fFM7qkmt4tE%2FigjR6VlNtu1h1p%2BrwUl%2FDNA7gP1gRqM%2F9WprfC6uDGmjIGW8GYRkIZ63QDo0jPDZYLgm1qo4GS%2FIP%2BDOOpg3sqedwx1%2BEgPC423BcBgupBkacwlW6OfsTgG%2B02FWukxx2dV%2B20f%2FMtPoT9HNwfN%2B4BifC9v3IHWQ7v2X3%2FvgqP6RLt5tsadcKD9CGVJLhOFE69P0gKRn4wZe8pKMJeBsLYGOrEBp9zpqDKA%2F01jd6zybTXq4y5EMwhKj9Y%2B%2FxizIH3307Mq1ZoZeK54zk80GOP%2FQIDvQ2kHG9SZhOmed1%2B%2FE00QM4Yr8k8brENIhF7ltLfhtgL%2Fl7i3sO7gMs47B6wh75Fs6F5yuBTOWrMb3O76kKaaSRraI1%2FXiVIerVfAG%2FYUcliqNvxpGj%2BYQFOgzQ4yFWv5a54%2ByltbnQYR0hVc7B1tb5HKHqS44%2BmZKA9AcMMun9nd&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240826T050916Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYXO5RMHSU%2F20240826%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=de54ad5c2d24a17fae18fb14d44c8ee18f81e03cb4ebef2415c69b3f30b58c37&hash=8690cd5e84a38ceb6e4b7a941119631ee942e1539e9b79cbbbb1134f0ac0c6fe&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0013935123025550&tid=spdf-8433a950-8a79-43d8-be84-d35e64fc3323&sid=dfe53e5c42060143aa5a9b85a4458a23848egxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=01105b065b54540052&rr=8b914f090fc95d32&cc=au",
+                  Yu_2024 = "https://pdf.sciencedirectassets.com/271800/1-s2.0-S0048969724X00054/1-s2.0-S0048969724026494/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIG4hB3Ae5bfLZYOB7FGJNmSVTIuQkfrz%2Bf8o6bLN0jDXAiARKKiJ%2Busgk7DYIbnJbKpmsTjpO0o046JXphN%2FDa8FFiq8BQjn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAUaDDA1OTAwMzU0Njg2NSIMoS21ypEcUjysS6SkKpAFpWuqRSeZo5JwE9seCHbFxpUPVCY4iW25%2BnsRGGTQtDokFRD9NeWoexXzL4jVPDl%2F1%2BeD%2BJ%2BFtwF3e0rS7c84KBCxtNraxaHetrghYlr9IKKMTZT8rdg0K%2Fi6EC7vzB333N7ZA3txK3Ht8MJeosAMNhFA3W9wTjdVY1Tt3EbmG%2Fhh%2B56eHI8Wm9Ujmv7t1F%2F1KMM8vXs0XttXy6xVj%2FD2aVrcFNMzH8d%2BCZjfZ%2FqzYaLD9m6%2BXaTao5SSX8d428KDWRTFjhCTq2K%2F8SiBdKcGOxgBomrIiA5btxNZw9OnE4pY8ctG%2BpD90gIAo8kevWj15ypXqnl%2FB7IBAe9QUTc6yv7%2FXAzOtmdlp0H%2F9omFOs45NcdB4XTjUM1XRqqw5%2BRec4z%2BuYcMgGMKcK59%2Btb7hvH7bE%2B2igDy5Z10r1YOK6NzW7Akn8y8C%2FswogQWyX7%2Bk%2BCh1343bq6LI3FczfoIJG2wDWIX%2BvyOTPsgpfpMmt%2BEBDkuRmxXLUDrotRs1t%2FdtwzLEgJvs6XDYYD3P5bUp82fXvrvnSZmpEnZxXKobraYDDBioKWklippmHJOv1XHgh9D2xWnr1UsYYfpCvwyWBj7ElNt%2Fd4IBCxLTzZLTS7GQVsgOYYFGt6amHfsKlTONJYUIhVR6QLi7Qj0MN4k4j5WV1uxsVz5LIUhi0IzMBI9v6%2BU3%2Bj5a35i6hKccFMk9B%2BW%2FgW2KlE4ugbQ754JvK8SN40tMpmy1fnCM3l%2BQD3oiIMc2Odh7FunRT6FEPxbwNdnQi%2FTsVGsBzdKRzBf9TxCz09B1gCiEfuttqgCStWrwRIODs1nZJ9s2zfbeWWFR3%2BLxMf3CDEMxl5vch2aP3bIA2HFPmKP31nQpDiJ3Rowo6OwtgY6sgFPdXwnqjiwWx7L8I3M%2Bn4p6URTOj3J7LdWTHYxI%2FdaQU4moOu6tbm3XlEOfkrg3sXpcRfiYjC6wIPqlchL3yiyV%2F8RhMl51FWHU7KDN8za4lnayaUGnZnRzj5c6paQGLgiWWSaJgmxKuC7%2F23B0xUbbLkJ%2FgsR9C04lyI9YowkYIeGkFq7UZYgPeqtqVSHwEsddpfh2xQJgx%2BedQNy10HO59dqsV94so5e714xt2epIUWR&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240826T054529Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTY6AKYQB7J%2F20240826%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=391b18219f86f3bd0eb3b4145e6a141bc571a3d011b0a53aa03e1992dbf57079&hash=28a0c47737aa785980642722e3fb8223a5f19d6d6e5649ca4aebf7deae760a8b&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0048969724026494&tid=spdf-21ece32f-24d6-4e13-b610-9169f8affeb1&sid=dfe53e5c42060143aa5a9b85a4458a23848egxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=01105b065b54585253&rr=8b918415b9b1a95c&cc=au")
     shinyjs::runjs(sprintf("window.open('%s', '_blank')", url))
   })
   
@@ -224,8 +227,8 @@ server <- function(input, output, session) {
   
   # Define correct answers for each study
   correct_answers <- list(
-    study1 = list(
-      item1 = "yes",
+    Benke_2024 = list(
+      item1 = "no",
       item2 = "yes",
       item3 = "yes",
       item4 = "yes",
@@ -240,153 +243,153 @@ server <- function(input, output, session) {
       item13 = "yes",
       item14 = "yes"
     ),
-    study2 = list(
-      item1 = "no",
-      item2 = "no",
-      item3 = "no",
-      item4 = "no",
-      item5 = "no",
-      item6 = "no",
-      item7 = "no",
-      item8 = "no",
-      item9 = "no",
-      item10 = "no",
-      item11 = "no",
-      item12 = "no",
-      item13 = "no",
+    Ellis_2024 = list(
+      item1 = "yes",
+      item2 = "yes",
+      item3 = "yes",
+      item4 = "yes",
+      item5 = "yes",
+      item6 = "yes",
+      item7 = "yes",
+      item8 = "yes",
+      item9 = "yes",
+      item10 = "yes",
+      item11 = "yes",
+      item12 = "yes",
+      item13 = "yes",
       item14 = "no"
     ),
-    study3 = list(
-      item1 = "na",
-      item2 = "na",
-      item3 = "na",
-      item4 = "na",
-      item5 = "na",
-      item6 = "na",
-      item7 = "na",
-      item8 = "na",
-      item9 = "na",
-      item10 = "na",
-      item11 = "na",
-      item12 = "na",
-      item13 = "na",
-      item14 = "na"
-    ),
-    study4 = list(
+    Liang_2024 = list(
       item1 = "yes",
-      item2 = "no",
-      item3 = "yes",
-      item4 = "no",
+      item2 = "yes",
+      item3 = "no",
+      item4 = "yes",
       item5 = "yes",
       item6 = "no",
       item7 = "yes",
       item8 = "no",
       item9 = "yes",
-      item10 = "no",
+      item10 = "yes",
       item11 = "yes",
       item12 = "no",
-      item13 = "yes",
+      item13 = "no",
       item14 = "no"
     ),
-    study5 = list(
-      item1 = "no",
+    oneill_2024 = list(
+      item1 = "yes",
+      item2 = "yes",
+      item3 = "no",
+      item4 = "yes",
+      item5 = "yes",
+      item6 = "no",
+      item7 = "yes",
+      item8 = "no",
+      item9 = "yes",
+      item10 = "yes",
+      item11 = "yes",
+      item12 = "no",
+      item13 = "no",
+      item14 = "no"
+    ),
+    Yu_2024 = list(
+      item1 = "yes",
       item2 = "yes",
       item3 = "no",
       item4 = "yes",
       item5 = "no",
-      item6 = "yes",
-      item7 = "no",
-      item8 = "yes",
+      item6 = "no",
+      item7 = "yes",
+      item8 = "no",
       item9 = "no",
       item10 = "yes",
       item11 = "no",
-      item12 = "yes",
+      item12 = "no",
       item13 = "no",
-      item14 = "yes"
+      item14 = "no"
     )
   )
   
   # Explanation for each incorrect answer for each study
   explanations <- list(
-    study1 = list(
-      item1 = "The correct answer is 'Yes' because the authors reported the formula or reference for the formula for the effect size statistic/measure used.",
-      item2 = "The correct answer is 'Yes' because the authors reported the type of the meta-analytic/meta-regression model used.",
-      item3 = "The correct answer is 'Yes' because the authors reported whether there is dependence of effect size estimates.",
-      item4 = "The correct answer is 'Yes' because the authors reported the name or reference to the software or programming language used to conduct the analysis.",
-      item5 = "The correct answer is 'Yes' because the authors reported the total number of primary studies included in the meta-analysis.",
-      item6 = "The correct answer is 'Yes' because the authors reported the total number of effect size estimates synthesized in the meta-analysis.",
-      item7 = "The correct answer is 'Yes' because the authors reported the pooled mean effect of the meta-analysis/meta-regression.",
-      item8 = "The correct answer is 'Yes' because the authors reported the strategy used to assign weights of effect size estimates.",
-      item9 = "The correct answer is 'Yes' because the authors reported an assessment of heterogeneity between effect size estimates.",
-      item10 = "The correct answer is 'Yes' because the authors reported a statistical or graphical assessment of publication bias.",
-      item11 = "The correct answer is 'Yes' because the authors reported a sensitivity analysis in addition to the publication bias assessment.",
-      item12 = "The correct answer is 'Yes' because the authors reported any relevant code used to conduct the analysis.",
-      item13 = "The correct answer is 'Yes' because the authors reported the raw data extracted from each eligible primary study.",
-      item14 = "The correct answer is 'Yes' because the authors reported descriptions of the variables extracted from each eligible study primary study."
+    Benke_2024 = list(
+      item1 = "The correct answer is 'No'. Although the authors report the effect size used they do not report the formula.",
+      item2 = "The correct answer is 'Yes'. The authors report the model type within Section 3.7",
+      item3 = "The correct answer is 'No'. Despite having multiple effect sizes per study the authors do not report the dependency of data.",
+      item4 = "The correct answer is 'Yes'. The authors report the software used to conduct the analysis within Section 3.7.",
+      item5 = "The correct answer is 'Yes'. The authors report the number of included studies in Figure 1.",
+      item6 = "The correct answer is 'No'. The authors do not report the number of effect size estimates.",
+      item7 = "The correct answer is 'Yes'. The authors report the pooled mean effect in Section 4.4.",
+      item8 = "The correct answer is 'No'. The authors do not report the weighting strategy used for effect size estimates.",
+      item9 = "The correct answer is 'Yes'. The authors report an assessment of heterogeneity in Section 4.4.",
+      item10 = "The correct answer is 'Not Applicable'. The authors do not report an assessment of publication bias because there is too few studies.",
+      item11 = "The correct answer is 'No'. The authors do not report a sensitivity analysis to investigate robustness of results.",
+      item12 = "The correct answer is 'No'. The authors use a point and click software which can also produce syntax.",
+      item13 = "The correct answer is 'Yes'. The authors report the raw data within Supplementary file 5.",
+      item14 = "The correct answer is 'No'. Although the authors provide headings for the reported data they do not provide any variable descriptions."
     ),
-    study2 = list(
-      item1 = "The correct answer is 'No' because the authors did not report the formula or reference for the formula for the effect size statistic/measure used.",
-      item2 = "The correct answer is 'No' because the authors did not report the type of the meta-analytic/meta-regression model used.",
-      item3 = "The correct answer is 'No' because the authors did not report whether there is dependence of effect size estimates.",
-      item4 = "The correct answer is 'No' because the authors did not report the name or reference to the software or programming language used to conduct the analysis.",
-      item5 = "The correct answer is 'No' because the authors did not report the total number of primary studies included in the meta-analysis.",
-      item6 = "The correct answer is 'No' because the authors did not report the total number of effect size estimates synthesized in the meta-analysis.",
-      item7 = "The correct answer is 'No' because the authors did not report the pooled mean effect of the meta-analysis/meta-regression.",
-      item8 = "The correct answer is 'No' because the authors did not report the strategy used to assign weights of effect size estimates.",
-      item9 = "The correct answer is 'No' because the authors did not report an assessment of heterogeneity between effect size estimates.",
+    Ellis_2024 = list(
+      item1 = "The correct answer is 'Yes'. The authors report the effect size statistic formula in Section: Data preparation.",
+      item2 = "The correct answer is 'Yes'. The authors report the model type used in Section: Meta-analytical model",
+      item3 = "The correct answer is 'Yes'. The authors report the dependency of effect size estimates in Section: Meta-analytical model",
+      item4 = "The correct answer is 'Yes'. The authors report the software/programming language in Section: Meta-analytical model.",
+      item5 = "The correct answer is 'Yes'. The authors report the number of included studies in Figure 1.",
+      item6 = "The correct answer is 'Yes'. The authors report the number of included effect size estimates in Figure 1.",
+      item7 = "The correct answer is 'Yes'. The authors report the pooled mean effect in Section: Summary of Meta-Analysis Results.",
+      item8 = "The correct answer is 'Yes'. The authors report the weighting strategy used for effect size estimates in Section: Meta-analytical model.",
+      item9 = "The correct answer is 'Yes'. The authors report an assessment of heterogeneity in Table 3 ",
+      item10 = "The correct answer is 'Yes'. The authors report an assessment of publication bias in the Section: Publication bias results.",
+      item11 = "The correct answer is 'Yes'. The authors report a sensitivity analysis in Section: Sensitivity meta-analyses results.",
+      item12 = "The correct answer is 'Yes'. The authors report the code used to conduct the analysis in an external GitHub repository.",
+      item13 = "The correct answer is 'Yes'. The authors report the raw data extracted from each primary study in an external GitHub repository.",
+      item14 = "The correct answer is 'No'. The authors do not report the variable descriptions for data extracted from the primary studies."
+    ),
+    Liang_2024 = list(
+      item1 = "The correct answer is 'Yes'. The authors report relevant references for the effect sizes estimates used in Section 2.5.",
+      item2 = "The correct answer is 'Yes'. The authors report the model type used in Section 2.6.",
+      item3 = "The correct answer is 'No'. Despite having multiple effect sizes per study the authors do not report the dependency of data.",
+      item4 = "The correct answer is 'Yes'. The authors report the software/programming language used in Section 2.6.",
+      item5 = "The correct answer is 'Yes'. The authors report the number of included studies in Figure 1.",
+      item6 = "The correct answer is 'No'. The authors do not report the number of effect size estimates.",
+      item7 = "The correct answer is 'Yes'. The authors report the pooled mean effect size estimates for each subgroup analysis.",
+      tem8 = "The correct answer is 'No'. The authors do not report the weighting strategy used for effect size estimates.",
+      item9 = "The correct answer is 'Yes'. The authors report an assessment of heterogeneity in Section 3.2.",
+      item10 = "The correct answer is 'Yes'. The authors report an assessment of publication bias in the Section:3.2.2.",
+      item11 = "The correct answer is 'Yes'. The authors report a sensitivity analysis in Section 3.4",
+      item12 = "The correct answer is 'No'. The authors do not report the code used to conduct the analysis.",
+      item13 = "The correct answer is 'No'. The authors do not report the raw data to calculate effect size estimates.",
+      item14 = "The correct answer is 'No'. The authors do not report the variable descriptions for the extracted data"
+    ),
+    oneill_2024 = list(
+      item1 = "The correct answer is 'Yes'.The authors report the effect size statistic formula in Section 2.4.",
+      item2 = "The correct answer is 'Yes'. The authors report the model type used in Section 2.4.",
+      item3 = "The correct answer is 'No'. Despite having multiple effect sizes per study the authors do not report the dependency of data.",
+      item4 = "The correct answer is 'Yes'. The authors report the software/programming language used in Section 2.4.",
+      item5 = "The correct answer is 'Yes'. The authors report the number of included studies in Figure 1.",
+      item6 = "The correct answer is 'No'. The authors do not report the number of effect size estimates.",
+      item7 = "The correct answer is 'Yes'. The authors report the pooled mean effect size estimates for each subgroup analysis in Section 3.2.1.",
+      item8 = "The correct answer is 'No'. The authors do not report the weighting strategy used for effect size estimates.",
+      item9 = "The correct answer is 'Yes'. The authors report an assessment of heterogeneity in suplementary material 1.",
       item10 = "The correct answer is 'No' because the authors did not report a statistical or graphical assessment of publication bias.",
-      item11 = "The correct answer is 'No' because the authors did not report a sensitivity analysis in addition to the publication bias assessment.",
+      item11 = "The correct answer is 'Yes'. The authors report a sensitivity analysis in Section: 3.2.3.",
       item12 = "The correct answer is 'No' because the authors did not report any relevant code used to conduct the analysis.",
-      item13 = "The correct answer is 'No' because the authors did not report the raw data extracted from each eligible primary study.",
-      item14 = "The correct answer is 'No' because the authors did not report descriptions of the variables extracted from each eligible study primary study."
+      item13 = "The correct answer is 'No'. The authors do not report the raw data to calculate effect size estimates.",
+      item14 = "The correct answer is 'No'. The authors do not report the variable descriptions for the extracted data"
     ),
-    study3 = list(
-      item1 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item2 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item3 = "The correct answer is 'Not Applicable' because the authors extracted one effect size per each primary study.",
-      item4 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item5 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item6 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item7 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item8 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item9 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item10 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item11 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item12 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item13 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies.",
-      item14 = "The correct answer is 'Not Applicable' because the authors conducted an arms-based meta-analysis or extracted the effect sizes directly from the included primary studies."
-    ),
-    study4 = list(
-      item1 = "The correct answer is 'Yes' because the authors reported the formula or reference for the formula for the effect size statistic/measure used.",
-      item2 = "The correct answer is 'No' because the authors did not report the type of the meta-analytic/meta-regression model used.",
-      item3 = "The correct answer is 'Yes' because the authors reported whether there is dependence of effect size estimates.",
-      item4 = "The correct answer is 'No' because the authors did not report the name or reference to the software or programming language used to conduct the analysis.",
-      item5 = "The correct answer is 'Yes' because the authors reported the total number of primary studies included in the meta-analysis.",
-      item6 = "The correct answer is 'No' because the authors did not report the total number of effect size estimates synthesized in the meta-analysis.",
-      item7 = "The correct answer is 'Yes' because the authors reported the pooled mean effect of the meta-analysis/meta-regression.",
-      item8 = "The correct answer is 'No' because the authors did not report the strategy used to assign weights of effect size estimates.",
-      item9 = "The correct answer is 'Yes' because the authors reported an assessment of heterogeneity between effect size estimates.",
-      item10 = "The correct answer is 'No' because the authors did not report a statistical or graphical assessment of publication bias.",
-      item11 = "The correct answer is 'Yes' because the authors reported a sensitivity analysis in addition to the publication bias assessment.",
-      item12 = "The correct answer is 'No' because the authors did not report any relevant code used to conduct the analysis.",
-      item13 = "The correct answer is 'Yes' because the authors reported the raw data extracted from each eligible primary study.",
-      item14 = "The correct answer is 'No' because the authors did not report descriptions of the variables extracted from each eligible study primary study."
-    ),
-    study5 = list(
-      item1 = "The correct answer is 'No' because the authors did not report the formula or reference for the formula for the effect size statistic/measure used.",
-      item2 = "The correct answer is 'Yes' because the authors reported the type of the meta-analytic/meta-regression model used.",
-      item3 = "The correct answer is 'No' because the authors did not report whether there is dependence of effect size estimates.",
-      item4 = "The correct answer is 'Yes' because the authors reported the name or reference to the software or programming language used to conduct the analysis.",
-      item5 = "The correct answer is 'No' because the authors did not report the total number of primary studies included in the meta-analysis.",
-      item6 = "The correct answer is 'Yes' because the authors reported the total number of effect size estimates synthesized in the meta-analysis.",
-      item7 = "The correct answer is 'No' because the authors did not report the pooled mean effect of the meta-analysis/meta-regression.",
-      item8 = "The correct answer is 'Yes' because the authors reported the strategy used to assign weights of effect size estimates.",
-      item9 = "The correct answer is 'No' because the authors did not report an assessment of heterogeneity between effect size estimates.",
-      item10 = "The correct answer is 'Yes' because the authors reported a statistical or graphical assessment of publication bias.",
-      item11 = "The correct answer is 'No' because the authors did not report a sensitivity analysis in addition to the publication bias assessment.",
-      item12 = "The correct answer is 'Yes' because the authors reported any relevant code used to conduct the analysis.",
-      item13 = "The correct answer is 'No' because the authors did not report the raw data extracted from each eligible primary study.",
-      item14 = "The correct answer is 'Yes' because the authors reported descriptions of the variables extracted from each eligible study primary study."
+    Yu_2024 = list(
+      item1 = "The correct answer is 'Yes'.The authors report the effect size statistic formula in Section 2.3.1.",
+      item2 = "The correct answer is 'Yes'. The authors report the model type used in Section 2.4.",
+      item3 = "The correct answer is 'No'. Despite having multiple effect sizes per study the authors do not report the dependency of data.",
+      item4 = "The correct answer is 'Yes'. The authors report the software/programming language used in Section 2.3.1.",
+      item5 = "The correct answer is 'Yes'. The authors do not report the number of primary studies.",
+      item6 = "The correct answer is 'No'. The authors do not report the number of effect size estimates.",
+      item7 = "The correct answer is 'Yes'. The authors report the pooled mean effect size estimates for each subgroup analysis in Section 3.1.",
+      item8 = "The correct answer is 'No'. The authors do not report the weighting strategy used for effect size estimates.",
+      item9 = "The correct answer is 'No'. The authors do not report an assessment of heterogeneity.",
+      item10 = "The correct answer is 'Yes'. The authors do not report an assessment of publication bias.",
+      item11 = "The correct answer is 'No'. The authors do not report a sensitivity analysis.",
+      item12 = "The correct answer is 'No'. The authors do not report the code used to conduct the analysis.",
+      item13 = "The correct answer is 'No'. The authors do not report the raw data to calculate effect size estimates.",
+      item14 = "The correct answer is 'No'. The authors do not report the variable descriptions for the extracted data"
     )
   )
   
@@ -713,7 +716,8 @@ server <- function(input, output, session) {
         Item_13_Response = responses$item13,
         Item_13_Comment = input$comment13Apply,
         Item_14_Response = responses$item14,
-        Item_14_Comment = input$comment14Apply
+        Item_14_Comment = input$comment14Apply,
+        Overall_Comment = input$overall_comment
       )
       write.csv(appraisal_data, file, row.names = FALSE)
     }
@@ -740,6 +744,7 @@ server <- function(input, output, session) {
     updateTextAreaInput(session, "comment12Apply", value = "")
     updateTextAreaInput(session, "comment13Apply", value = "")
     updateTextAreaInput(session, "comment14Apply", value = "")
+    updateTextAreaInput(session, "overall_comment", value = "")
     
     # Reset reactive values
     responses$item1 <- "None Selected"
@@ -758,3 +763,5 @@ server <- function(input, output, session) {
     responses$item14 <- "None Selected"
   })
 }
+
+# shinyApp(ui = ui,server = server)

@@ -454,11 +454,11 @@ navbarPage("",
                               div(style = "display: flex; align-items: center;",
                                   selectInput("study_selector", "Select a study:", 
                                               choices = list(
-                                                "Study 1" = "study1",
-                                                "Study 2" = "study2",
-                                                "Study 3" = "study3",
-                                                "Study 4" = "study4",
-                                                "Study 5" = "study5"
+                                                "Benke et al., 2024" = "Benke_2024",
+                                                "Ellis et al., 2024" = "Ellis_2024",
+                                                "Liang et al, 2024" = "Liang_2024",
+                                                "Boissiere-O’Neil et al., 2024" = "oneill_2024",
+                                                "Yu et al., 2024" = "Yu_2024"
                                               )),
                                   actionButton("study_button", "Go to Study", class = "btn-custom")
                               ),
@@ -798,11 +798,11 @@ navbarPage("",
                                           p(tags$u("Question")),
                                           p("Do the authors report any relevant code used to conduct the analysis (i.e., used to conduct the computations, statistical models, and inferences comprising the meta-analysis) in the manuscript, supplementary material, or external repository?"),
                                           p(tags$u("Criteria for ‘Yes’")),
-                                          p("The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository. Common examples of software used to perform meta-analysis, which can generate code or syntax, include R, Python, SPSS, and STATA."),
+                                          p("The authors have reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository. Common examples of software used to perform meta-analysis, which can generate code or record syntax, include R, Python, SPSS, and STATA."),
                                           p(tags$u("Criteria for ‘No’")),
-                                          p("The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository. Common examples of software used to perform meta-analysis, which can generate code or syntax, include R, Python, SPSS, and STATA."),
+                                          p("The authors have not reported any relevant code used to conduct the analysis in the manuscript, supplementary material, or external repository. Common examples of software used to perform meta-analysis, which can generate code or record syntax, include R, Python, SPSS, and STATA."),
                                           p(tags$u("Criteria for ‘Not Applicable’")),
-                                          p("The authors have used a GUI/click based software that does not produce a code or syntax (e.g., comprehensive meta-analysis software). Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 4)."),
+                                          p("The authors have used a GUI/click based software that does not produce a code or record syntax (e.g., comprehensive meta-analysis software). Alternatively, the authors have not reported the software used to conduct the analysis (i.e., ‘No’ to MATES item 4)."),
                                           tags$br(),
                                           div(style = "display: flex; align-items: center; gap: 10px;",
                                               actionButton("yes12", "Yes", class = "btn-custom group12", onclick = "toggleCheckbox(this, 'group12')"),
@@ -1004,7 +1004,7 @@ navbarPage("",
                                   
                                   div(class = "panel panel-default",
                                       div(class = "panel-heading panel-heading-custom",
-                                          h3(class = "panel-title panel-title-custom", "MATES item 4: Software/reporting tools"),
+                                          h3(class = "panel-title panel-title-custom", "MATES item 4: Software reporting"),
                                           tags$button(type = "button", class = "btn btn-default btn-xs", 'data-toggle' = "collapse", 'data-target' = "#item4Apply", 
                                                       span(class = "glyphicon glyphicon-chevron-up"))
                                       ),
@@ -1283,10 +1283,25 @@ navbarPage("",
                                               tags$br(),
                                               div(style = "display: flex; align-items: center; gap: 10px;",
                                                   actionButton("yes14Apply", "Yes", class = "btn-custom group14", onclick = "toggleCheckbox(this, 'group14')"),
-                                                  actionButton("no14Apply", "No", class = "btn-custom group14", onclick = "toggleCheckbox(this, 'group14')")
+                                                  actionButton("no14Apply", "No", class = "btn-custom group14", onclick = "toggleCheckbox(this, 'group14')"),
+                                                  actionButton("na14Apply", "Not Applicable", class = "btn-custom group14", onclick = "toggleCheckbox(this, 'group14')")
                                               ),
                                               tags$br(),
                                               textAreaInput("comment14Apply", "Comment:", "", width = "75%")
+                                          )
+                                      )
+                                  ),
+                                  
+                                  # Overall Comment Section
+                                  div(class = "panel panel-default",
+                                      div(class = "panel-heading panel-heading-custom",
+                                          h3(class = "panel-title panel-title-custom", "Overall Comment"),
+                                          tags$button(type = "button", class = "btn btn-default btn-xs", 'data-toggle' = "collapse", 'data-target' = "#overallComment", 
+                                                      span(class = "glyphicon glyphicon-chevron-up"))
+                                      ),
+                                      div(id = "overallComment", class = "panel-collapse collapse in",
+                                          div(class = "panel-body",
+                                              textAreaInput("overall_comment", "Enter your overall comments:", "", width = "100%")
                                           )
                                       )
                                   ),
@@ -1304,6 +1319,7 @@ navbarPage("",
                                               downloadButton("downloadCSV", "Download CSV", class = "btn-custom btn-selected"),
                                               actionButton("reset_button", "Reset All Answers", class = "btn-custom btn-danger")
                                           )
+                                          
                                   )
                                 )
                               )
@@ -1311,5 +1327,7 @@ navbarPage("",
                       )
              )
   ))
+
+
 
 

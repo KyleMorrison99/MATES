@@ -5,7 +5,7 @@ account: kylemorrisonisshiny99
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 12388172
-bundleId: 8931894
+bundleId: 9028636
 url: https://kylemorrisonisshiny99.shinyapps.io/MATES_shiny/
 version: 1
 asMultiple: FALSE
