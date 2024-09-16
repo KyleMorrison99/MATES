@@ -2630,6 +2630,99 @@ icc <- icc_list %>%
 
 ```
 
+## Paper level kappa
+```{r}
+library("irr")
+
+data("diagnoses", package = "irr")
+
+#data("diagnoses", package = "irr")
+head(diagnoses[, 1:3])
+
+mydata <- diagnoses[, 1:3]
+# Compute kapa
+kappam.fleiss(mydata)
+
+kappam.fleiss(mydata, detail = TRUE)
+```
+
+```{r}
+compute_kappa_per_study <- function(data) {
+  # Ensure uniqueness within the study
+  data <- data %>%
+    group_by(item, appraiser_id) %>%
+    summarise(appraisal_result = mean(appraisal_result), .groups = 'drop')
+  
+  # Reshape data to wide format
+  data_wide <- data %>%
+    pivot_wider(
+      id_cols = item,
+      names_from = appraiser_id,
+      values_from = appraisal_result
+    )
+  
+  # Check for at least two appraisers
+  num_appraisers <- ncol(data_wide) - 1
+  if (num_appraisers < 2) {
+    warning(paste("Study", unique(data$study_id), "does not have enough appraisers to compute Fleiss' Kappa."))
+    return(tibble(
+      study_id = unique(data$study_id),
+      kappa = NA,
+      se = NA,
+      z = NA,
+      p_value = NA
+    ))
+  }
+  
+  # Convert to matrix
+  appraisal_matrix <- as.matrix(data_wide[, -1])
+  
+  # Handle missing values
+  if (any(is.na(appraisal_matrix))) {
+    appraisal_matrix <- appraisal_matrix[complete.cases(appraisal_matrix), ]
+    if (nrow(appraisal_matrix) == 0) {
+      warning(paste("Study", unique(data$study_id), "has no complete cases after removing missing data."))
+      return(tibble(
+        study_id = unique(data$study_id),
+        kappa = NA,
+        se = NA,
+        z = NA,
+        p_value = NA
+      ))
+    }
+  }
+  
+  # Compute Fleiss' Kappa
+  kappa_result <- kappam.fleiss(appraisal_matrix, detail = TRUE)
+  
+  # Return results
+  tibble(
+    study_id = unique(data$study_id),
+    kappa = kappa_result$value,
+    se = kappa_result$se,
+    z = kappa_result$statistic,
+    p_value = kappa_result$p.value
+  )
+}
+
+
+# Apply the function to each study
+kappa_results <- d %>%
+  group_by(study_id) %>%
+  group_modify(~ compute_kappa_per_study(.x)) %>%
+  ungroup()
+
+# View the results
+print(kappa_results)
+
+# Assuming 'kappa_results' is a dataframe with a column 'kappa'
+ggplot(kappa_results, aes(x = kappa)) +
+  geom_histogram(binwidth = 0.05, color = "black") + 
+  scale_fill_identity(guide = "none") + 
+  scale_x_continuous(expand = c(0,0)) + 
+  theme_bw() + 
+  labs( x = "Kappa", y = "Frequency") 
+```
 
 Calculating mean time taken
 ```{r}
@@ -2650,6 +2743,15 @@ task_time_taken <- task_conflict %>%
   drop_na() %>%
   filter(time_difference > 0)
 
+# Assuming 'task_time_taken' is a dataframe with a column 'time_difference'
+ggplot(task_time_taken, aes(x = time_difference)) +
+  geom_histogram(binwidth = 2, color = "black") + 
+  scale_fill_identity(guide = "none") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+ theme_bw() +  
+  labs(x = "Time Taken", y = "Frequency")  
+
+
 task_time_taken2 <- task_conflict %>%
   filter(appraiser_id != 'a_01') %>%
   select(start_time, finish_time, time_difference) %>% 
@@ -2657,6 +2759,12 @@ task_time_taken2 <- task_conflict %>%
   filter(time_difference > 0) %>%
   arrange(desc(time_difference))
 
+ggplot(task_time_taken2, aes(x = time_difference)) +
+  geom_histogram(binwidth = 2, color = "black") + 
+  scale_fill_identity(guide = "none") +  
+  scale_x_continuous(expand = c(0, 0)) +  
+ theme_bw() +  
+  labs(x = "Time Taken", y = "Frequency")  
 
 # Calculate mean, standard deviation, minimum, and maximum
 mean_time <- mean(task_time_taken$time_difference)
@@ -2669,4 +2777,6 @@ mean_time2 <- mean(task_time_taken2$time_difference)
 sd_time2 <- sd(task_time_taken2$time_difference)
 
 ```
+
+
 
