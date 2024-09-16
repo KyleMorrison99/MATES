@@ -33,22 +33,24 @@ pacman::p_load(tidyverse,
                here,
                stringr,
                purrr,
-               kableExtra)
+               kableExtra,
+               rptR,
+               lme4)
 ```
 
 ## Load data
 ```{r}
 # Load data sets
-MATES_survey_part <- read_csv(here("data", "survey", "MATES_participant_paper_list.csv"), skip = 0) # 4757 8 
+MATES_survey_part <- read_csv(here("data", "survey", "MATES_participant_paper_list.csv"), skip = 0) # removed due to sensitive data
 
-dat <- read_csv(here("data", "survey",  "MATES_survey_results.csv"), skip = 0)  # 188 rows 60 columns 
+dat <- read_csv(here("data", "survey",  "MATES_survey_results_blank.csv"), skip = 0)  # 188 rows 60 columns 
 
 task_vol <- read_csv(here("data", "task",  "MATES_coauthor_details.csv"), skip = 0) # 30 rows 4 columns
 
 task_pap <- read_csv(here("data", "task", "MATES_task_papers.csv"), skip = 0) # 50 rows 1 column
 
 # MATES_task_results 
-dat_task <- read_csv(here("data", "task", "MATES_task_feedback.csv"), skip = 0) # 17 rows 48 column
+dat_task <- read_csv(here("data", "task", "MATES_task_feedback_blank.csv"), skip = 0) # removed comments to make ensure anonymous
 
 task_conflict <- read_csv(here("data", "task", "MATES_task_conflict_rate.csv"), skip = 0) # 230 rows 51 column
 
@@ -2510,7 +2512,7 @@ agreement_per_paper <- task_conflict_long %>%
 # Calculate the mean and standard deviation for agreement percentage per column
 stats_agreement_per_item <- agreement_per_paper %>%
   select(c(-matches("study"))) %>% 
-  summarise(across(everything(), list(mean = ~ mean(.x, na.rm = TRUE), sd = ~ sd(.x, na.rm = TRUE))))
+  summarise(across(everything(), list(mean = ~ mean(.x, na.rm = TRUE))))
 
 # Display the mean and standard deviation for each column
 print(stats_agreement_per_item)
@@ -2551,68 +2553,85 @@ stats_agreement_per_item_long$item <- factor(stats_agreement_per_item_long$item,
 
 ggplot(stats_agreement_per_item_long, aes(y = item , x = mean)) +
   geom_bar(stat = "identity") +
-  geom_errorbar(aes(xmin = mean - sd, xmax = mean + sd), width = 0.2) +
-  geom_text(aes(label = paste0("(", round(mean, 1), " ± ", round(sd, 1), "%)"), x = mean / 2), size = 6, color = "white", fontface = "bold") +
+  geom_text(aes(label = paste0("(", round(mean, 1), "%)"), x = mean / 2), size = 6, color = "white", fontface = "bold") +
   scale_x_continuous(expand = c(0, 0), limits = c(0, max(stats_agreement_per_item_long$mean) * 1.1)) +
   MATES_theme() +
   labs(caption = "The value inside each bar is the mean ± SD agreement rate (%) ")
 
-ggsave(here("task_results", "fig_task_agreement.jpg"), width = 20, height = 12, units = "cm", scale = 2, dpi = 120)
+# ggsave(here("task_results", "fig_task_agreement.jpg"), width = 20, height = 12, units = "cm", scale = 2, dpi = 120)
 
 
 ```
 
-# KAPPA statistic
 ```{r}
-data_long <- task_conflict %>%
+# One thing to note is the "Not Applicable" option for some items is coded as 0 and if an appriaser did not do a study it is NA 
+
+# I think for binary you would need to code the Not Applicable as NA also.
+
+d <- task_conflict %>%
   select(appraiser_id, study_id, starts_with("item_")) %>%
-  select(-ends_with("comment")) %>% 
+  select(-ends_with("comment")) %>%
   pivot_longer(cols = starts_with("item_"), names_to = "item", values_to = "value") %>%
   mutate(effect_formula = case_when(
     value == "Yes" ~ 2,
     value == "No" ~ 1,
-    value == "Not Applicable" ~ 0
+    value == "Not Applicable" ~ 0 # Change to NA if you need to
   )) %>%
   select(-value) %>%
-  pivot_wider(names_from = appraiser_id, values_from = effect_formula)
+  pivot_longer(cols = -c(study_id, item, appraiser_id), names_to = "appraiser", values_to = "appraisal_result") %>%
+  select(study_id, item, appraiser_id, appraisal_result)
+
+str(dat)
+
+# making character strings into factors for dat
+
+d <- d %>%
+  mutate(across(where(is.character), as.factor))
+
+# turning appraisal_result - turing 0 = NA, 1 = 0 and 2 = 1
+
+d$appraisal_result <- ifelse(d$appraisal_result == 0, NA, ifelse(d$appraisal_result == 1, 0, 1))
+
+
+# create 14 different data sets by grouping by item
+d_list <- d %>%
+  group_by(item) %>%
+  group_split()
+
+# create a list of the ICCs for each item using the rptBinary function
+
+icc_list <- d_list %>%
+  map(~ rptBinary(appraisal_result ~ 1 + (1|study_id),
+                  grname = "study_id",
+                  data = .x))
+
+# save icc_list as rds
+
+saveRDS(icc_list, here("R", "icc_list.rds"))
 
 
 
-# Create a confusion matrix of the raters' assessments
-# Assume we have two raters, Rater A and Rater B
-# Rater A: 1, 0, 1, 1, 0, 1, 0, 0
-# Rater B: 1, 1, 1, 0, 0, 1, 0, 0
+# can use this function to read r data instead of running the model again
+icc_list <- readRDS(file = here("R", "icc_list.rds"))
 
-rater_a <- c(1, 1, 1, 1, 1, 1, 1, 1)
-rater_b <- c(1, 1, 1, 1, 1, 1, 1, 1)
 
-# Create a table of the raters' assessments
-conf_matrix <- table(rater_a, rater_b)
+# the order (could have changed above)
+# item_1 item_10 item_11 item_12 item_13 item_14 item_2 item_3 item_4 item_5 item_6 item_7 ... item_9
+# getting a vector of the ICCs - $ R  
 
-# Print the confusion matrix
-print(conf_matrix)
+icc <- icc_list %>%
+  map_dbl(~ .$R$study_id[2]) 
 
-# Calculate the number of observations
-n <- sum(conf_matrix)
 
-# Calculate the observed agreement
-p0 <- sum(diag(conf_matrix)) / n
 
-# Calculate the expected agreement by chance
-p_e <- sum(rowSums(conf_matrix) * colSums(conf_matrix)) / (n^2)
 
-# Calculate Cohen's kappa
-kappa <- (p0 - p_e) / (1 - p_e)
-
-# Print Cohen's kappa
-print(kappa)
+# fit <- glmer(appraisal_result ~ 1 + (1|study_id), data = d_list[[2]], 
+#             family = "binomial")
 
 ```
 
 
-
-
-# Calculating mean time taken
+Calculating mean time taken
 ```{r}
 # Convert start_time and finish_time
 task_conflict$start_time <- strptime(task_conflict$start_time, format="%H:%M")

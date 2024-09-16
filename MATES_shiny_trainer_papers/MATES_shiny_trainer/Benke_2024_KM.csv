@@ -1,0 +1,7 @@
+Study_Name,Study_ID,Item_1_Response,Item_1_Comment,Item_2_Response,Item_2_Comment,Item_3_Response,Item_3_Comment,Item_4_Response,Item_4_Comment,Item_5_Response,Item_5_Comment,Item_6_Response,Item_6_Comment,Item_7_Response,Item_7_Comment,Item_8_Response,Item_8_Comment,Item_9_Response,Item_9_Comment,Item_10_Response,Item_10_Comment,Item_11_Response,Item_11_Comment,Item_12_Response,Item_12_Comment,Item_13_Response,Item_13_Comment,Item_14_Response,Item_14_Comment
+The effects of radiofrequency exposure on cognition: A systematic review and meta-analysis of human observational studies,Benke_2024_ML,No,In section 3.6 they mention effect sizes and not formula,Yes,Section 3.7,No,Does not mention one effect size per study and is not present,Yes,Section 3.7,Yes,In flowchart,No,not in flowchart or text,Yes,Section 4.4,No,Is not reported - would expect in section 3.7,Yes,"We assessed heterogeneity through visual inspection of the studyspecific exposure − response curves. Formal testing for heterogeneity
+was conducted using the χ2 test (using a significance level of α = 0.1),
+and we quantified heterogeneity in the study-specific exposure
+− response coefficients using the I
+2 statistic.",Not Applicable,"Section 3.8: we had too few studies to prepare funnel plots or conduct tests of funnel
+plot asymmetry.  THIS IS TRICKY ",No,was not provided,No,StataSE - can provide syntax along with click based software,No,,Yes,Supplementary figure s5

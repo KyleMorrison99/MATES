@@ -1,0 +1,9 @@
+"Study_Name","Study_ID","Item_1_Response","Item_1_Comment","Item_2_Response","Item_2_Comment","Item_3_Response","Item_3_Comment","Item_4_Response","Item_4_Comment","Item_5_Response","Item_5_Comment","Item_6_Response","Item_6_Comment","Item_7_Response","Item_7_Comment","Item_8_Response","Item_8_Comment","Item_9_Response","Item_9_Comment","Item_10_Response","Item_10_Comment","Item_11_Response","Item_11_Comment","Item_12_Response","Item_12_Comment","Item_13_Response","Item_13_Comment","Item_14_Response","Item_14_Comment"
+"Meta-analysis unravels the complex combined toxicity of microplastics and antibiotics in aquatic ecosystems","Yu_2024_ML","Yes","Hedges' d index was used to calculate the effect size to estimate the differences of single and combined toxicity of MPs and antibiotics (Eqs. 
+(1)
+, 
+(2)
+ and 
+(3)
+).","Yes","The random effects model was used to calculate the weighted mean difference (WMD) with Metawin 2.1.","No","","Yes","The random effects model was used to calculate the weighted mean difference (WMD) with Metawin 2.1. 
+Data and statistical analyses were conducted using Microsoft Office 365 (Microsoft Corporation, USA) and IBM SPSS Statistics 22 (IBM Inc., USA) software. Graphs were created using OriginPro (2023b, Originlab Corporation, USA) or RStudio (2022.02.0, Build 443). The partial correlation analysis was performed using the RStudio (package ppcor).","Yes"," In this study, we conduct a global meta-analysis, examining 730 datasets from 29 laboratory studies.","Yes","Figure 2","Yes","Figure 2","No","","No","","Yes","Fig. S3 showed that the distribution of effective size was well-fitted in the Gaussian curve (R2 = 0.9914, P < 0.001), which indicated that the results were unaffected by the potential publication bias, and the meta-analysis results were convincing (Fig. S3).","Yes",":""2.3.2. The effects of influencing factors and their interaction""","No","","No","Data will be made available on request.","No",""
