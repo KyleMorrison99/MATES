@@ -13,8 +13,6 @@ pacman::p_load(tidyverse,
 task_conflict <- read_csv(here("data", "task", "MATES_task_conflict_rate.csv"), skip = 0) # load in data
 
 
-
-
 # Make the data long 
 
 
@@ -75,10 +73,20 @@ saveRDS(icc_list2, here("ICC", "icc_list2.rds"))
 # item_1 item_10 item_11 item_12 item_13 item_14 item_2 item_3 item_4 item_5 item_6 item_7 ... item_9
 # getting a vector of the ICCs - $ R  
 
+icc_list <- readRDS(here("ICC", "icc_list.rds")) # load in data
+
+# one can see the discrepancy between the point esitmate (based on a formula) and the bootstrapped confidence intervals
+plot(icc_list[[2]])
+
 icc <- icc_list %>%
   map_dbl(~ .$R$study_id[2])
 
+icc2 <- icc_list %>%
+  lapply(function(x) x$R_boot_link$study_id)
 
+# this gets mean value from the bootstrapped confidence intervals
+icc3 <- icc2  %>% lapply(function(x) mean(x, na.rm = TRUE))
+#icc4 <- icc2  %>% lapply(function(x) median(x, na.rm = TRUE))
 # fit lmer model binary 
 # 
 # fit <- glmer(appraisal_result ~ 1 + (1|study_id), data = dat_list[[2]], 
